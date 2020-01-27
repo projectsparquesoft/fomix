@@ -20,6 +20,6 @@ class Departamento extends Model
 
     public function municipios()
     {
-        return $this->hasMany('App\Models\Municipio', 'id_departamento');
+        return $this->hasMany('App\Models\Municipio', 'departamento_id');
     }
 }

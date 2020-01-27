@@ -17,13 +17,11 @@ class CreateSolicitantesTable extends Migration
             $table->bigInteger('proponente_id')->unsigned();
 
             $table->bigInteger('nid')->unsigned()->unique();
-            $table->string('nombre', 150);
-            $table->string('apellido', 150);
-            $table->string('razon_social', 255)->nullable()->comment('si tiene empresa');
+            $table->string('razon_social', 255)->comment('si tiene empresa / nombre natural');
             $table->string('email', 255);
             $table->text('direccion');
-            $table->bigInteger('celular');
-            $table->bigInteger('telefono');
+            $table->bigInteger('celular')->nullable();
+            $table->bigInteger('telefono')->nullable();
             $table->string('representante_legal', 255);
 
             $table->foreign('municipio_id')

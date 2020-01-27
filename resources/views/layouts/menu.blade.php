@@ -34,59 +34,20 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 
-                <li class="app-sidebar__heading">Utilidades</li>
+                <li class="app-sidebar__heading">Modulo Recepcion</li>
                 <li>
                     <a href="#">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                         Images Laravel
+                         Solicitante
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="javascript:void(0)">
+                        <a href="{{route('solicitante.index')}}">
                                 <i class="metismenu-icon"></i>
-                                Crop And Upload Image
+                                Listado de Solicitantes
                             </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="metismenu-icon"></i>
-                                Store Image BLOB
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="metismenu-icon pe-7s-display2"></i>
-                         Tables Laravel
-                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                    </a>
-                    <ul>
-                        <li>
-                        <a href="javascript:void(0)">
-                                <i class="metismenu-icon"></i>
-                                Pagination Simple AJAX
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="metismenu-icon pe-7s-ticket"></i>
-                         AutoComplete Laravel
-                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                    </a>
-                    <ul>
-                        <li>
-                        <a href="javascript:void(0)">
-                                <i class="metismenu-icon"></i>
-                                AutoComplete Multiple AJAX
-                            </a>
-                        </li>
-                        
+                        </li>        
                     </ul>
                 </li>
                 

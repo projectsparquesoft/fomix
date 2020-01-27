@@ -8,3 +8,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('solicitante', 'SolicitanteController', ['except' => [
+    'destroy', 'create',
+]]);
+
+Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');

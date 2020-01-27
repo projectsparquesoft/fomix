@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Build whatever layout you need with our Architect framework.">
     <meta name="msapplication-tap-highlight" content="no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     @yield('css-extra')
