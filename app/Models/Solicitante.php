@@ -36,4 +36,22 @@ class Solicitante extends Model
     {
         $this->attributes['representante_legal'] = ucwords($value);
     }
+
+    public function municipio()
+    {
+        return $this->belongsTo('App\Models\Municipio', 'muncipio_id');
+    }
+    public function persona()
+    {
+        return $this->belongsTo('App\Models\Persona', 'persona_id');
+    }
+    public function proponente()
+    {
+        return $this->belongsTo('App\Models\proponente', 'proponente_id');
+    }
+    public function solicitudes()
+    {
+        return $this->hasMany('App\Models\Solicitud', 'solicitante_id');
+    }
+
 }

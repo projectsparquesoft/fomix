@@ -18,9 +18,8 @@ class Radicado extends Model
         'created_at', 'updated_at',
     ];
 
-
-    public function empleados()
+    public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Solicitud', 'radicado_solicitud',  'radicado_id', 'solicitud_id');
     }
 }

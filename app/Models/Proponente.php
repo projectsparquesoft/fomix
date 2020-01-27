@@ -18,9 +18,8 @@ class Proponente extends Model
         'created_at', 'updated_at',
     ];
 
-
-    public function empleados()
-    {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+    public function solicitantes(){
+        return $this->hasMany('App\Model\Solicitante', 'proponente_id');
     }
+
 }

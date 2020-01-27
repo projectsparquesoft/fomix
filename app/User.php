@@ -29,4 +29,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Empleado', 'empleado_id');
     }
+    public function solicitudes()
+    {
+        return $this->belongsToMany('App\Models\Solicitud', 'historiales', 'user_id', 'solicitud_id');
+    }
 }

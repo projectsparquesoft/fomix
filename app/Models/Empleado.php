@@ -25,6 +25,7 @@ class Empleado extends Model
 
     public function dependencias()
     {
-        return $this->belongsToMany('App\Models\Dependencia', 'empleado_dependencia', 'empleado_id', 'dependencia_id');
+        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado', 'empleado_id', 'dependencia_id');
     }
+
 }

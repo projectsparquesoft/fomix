@@ -21,5 +21,9 @@ class Municipio extends Model
     {
         return $this->belongsTo('App\Models\Departamento', 'departamento_id');
     }
+    public function solicitantes()
+    {
+        return $this->hasMany('App\Models\Solicitante', 'municipio_id');
+    }
 
 }

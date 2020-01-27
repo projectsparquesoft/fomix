@@ -19,8 +19,8 @@ class Documento extends Model
     ];
 
 
-    public function falta()
+    public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Solicitud', 'anexos',  'documento_id', 'solicitud_id');
     }
 }

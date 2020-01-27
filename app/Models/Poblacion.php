@@ -18,9 +18,9 @@ class Poblacion extends Model
         'created_at', 'updated_at',
     ];
 
-    public function falta()
+    public function proyectos()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Proyecto', 'poblacion_proyecto', 'poblacion_id','proyecto_id');
     }
 
     public function clasificacion()

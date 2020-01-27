@@ -18,13 +18,45 @@ class Solicitud extends Model
         'created_at', 'updated_at',
     ];
 
-    public function user()
+    public function proyecto()
     {
-        return $this->hasOne('App\User', 'empleado_id');
+        return $this->hasOne('App\Models\Proyecto', 'solicitud_id');
     }
 
-    public function dependencias()
+    public function solicitante()
     {
-        return $this->belongsToMany('App\Models\Dependencia', 'empleado_dependencia', 'empleado_id', 'dependencia_id');
+        return $this->belongsTo('App\Models\Solicitante', 'solicitante_id');
+    }
+    public function categoria()
+    {
+        return $this->belongsTo('App\Models\Categoria', 'categoria_id');
+    }
+
+    public function historiales()
+    {
+        return $this->hasMany('App\Models\Historial', 'solicitud_id');
+    }
+
+    public function anexos()
+    {
+        return $this->hasMany('App\Models\Anexo', 'solicitud_id');
+    }
+
+    public function radicados()
+    {
+        return $this->belongsToMany('App\Models\Radicado', 'radicado_solicitud', 'solicitud_id', 'radicado_id');
+    }
+
+    public function documentos()
+    {
+        return $this->belongsToMany('App\Models\Documento', 'anexos', 'solicitud_id', 'documento_id');
+    }
+    public function estados()
+    {
+        return $this->belongsToMany('App\Models\Estado', 'historiales', 'solicitud_id', 'estado_id');
+    }
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'historiales', 'solicitud_id', 'user_id');
     }
 }

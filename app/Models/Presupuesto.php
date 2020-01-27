@@ -19,8 +19,8 @@ class Presupuesto extends Model
     ];
 
 
-    public function empleados()
+    public function proyecto()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Proyecto', 'proyecto_id');
     }
 }
