@@ -10,18 +10,23 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    
+
     protected $fillable = [
         'empleado_id', 'email', 'password',
     ];
 
-   
+
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function empleado()
+    {
+        return $this->belongsTo('App\Models\Empleado', 'empleado_id');
+    }
 }
