@@ -18,9 +18,8 @@ class Estado extends Model
         'created_at', 'updated_at',
     ];
 
-
-    public function falta()
+    public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Solicitud', 'historiales',  'estado_id', 'solicitud_id');
     }
 }

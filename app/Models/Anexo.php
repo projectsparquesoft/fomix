@@ -19,9 +19,13 @@ class Anexo extends Model
     ];
 
 
-    public function falta()
+    public function solicitud()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Solicitud', 'solicitud_id');
+    }
+    public function documento()
+    {
+        return $this->belongsTo('App\Models\Documento', 'documento_id');
     }
 
 }

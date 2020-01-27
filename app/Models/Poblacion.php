@@ -11,16 +11,15 @@ class Poblacion extends Model
     protected $primaryKey = 'id_poblacion';
 
     protected $fillable = [
-       'item', 'clasificacion', 'detalle'
+       'item', 'clasificacion_id', 'detalle'
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
-
-    public function falta()
+    public function proyectos()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Proyecto', 'poblacion_proyecto', 'poblacion_id','proyecto_id');
     }
 }

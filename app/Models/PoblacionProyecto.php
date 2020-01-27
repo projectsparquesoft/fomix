@@ -19,8 +19,12 @@ class PoblacionProyecto extends Model
     ];
 
 
-    public function falta()
+    public function poblacion()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Poblacion', 'poblacion_id');
+    }
+    public function proyecto()
+    {
+        return $this->belongsTo('App\Models\Proyecto', 'proyecto_id');
     }
 }

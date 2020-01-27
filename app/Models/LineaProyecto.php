@@ -11,7 +11,7 @@ class LineaProyecto extends Model
     protected $primaryKey = 'id_linea_proyecto';
 
     protected $fillable = [
-       'proyecto_id', 'linea_id', 'status' 
+       'proyecto_id', 'linea_id', 'status'
     ];
 
     protected $hidden = [
@@ -19,8 +19,12 @@ class LineaProyecto extends Model
     ];
 
 
-    public function falta()
+    public function proyecto()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Proyecto', 'proyecto_id');
+    }
+    public function linea()
+    {
+        return $this->belongsTo('App\Models\Linea', 'linea_id');
     }
 }

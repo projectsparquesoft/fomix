@@ -19,8 +19,12 @@ class IndicadorLinea extends Model
     ];
 
 
-    public function falta()
+    public function indicador()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Indicador', 'indicador_id');
+    }
+    public function linea()
+    {
+        return $this->belongsTo('App\Models\Linea', 'linea_id');
     }
 }

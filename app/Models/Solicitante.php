@@ -19,8 +19,21 @@ class Solicitante extends Model
     ];
 
 
-    public function falta()
+    public function municipio()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Municipio', 'muncipio_id');
     }
+    public function persona()
+    {
+        return $this->belongsTo('App\Models\Persona', 'persona_id');
+    }
+    public function proponente()
+    {
+        return $this->belongsTo('App\Models\proponente', 'proponente_id');
+    }
+    public function solicitudes()
+    {
+        return $this->hasMany('App\Models\Solicitud', 'solicitante_id');
+    }
+
 }

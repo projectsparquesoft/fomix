@@ -19,8 +19,13 @@ class ProcesoProyecto extends Model
     ];
 
 
-    public function empleados()
+    public function proceso()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Proceso', 'proceso_id');
+    }
+
+    public function proyecto()
+    {
+        return $this->belongsTo('App\Models\Proyecto', 'proyecto_id');
     }
 }

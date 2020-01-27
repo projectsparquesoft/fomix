@@ -18,9 +18,13 @@ class Linea extends Model
         'created_at', 'updated_at',
     ];
 
-
-    public function falta()
+    public function proyectos()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Proyecto', 'linea_proyecto', 'linea_id','proyecto_id');
     }
+    public function indicadores()
+    {
+        return $this->belongsToMany('App\Models\Indicador', 'indicador_linea', 'linea_id','indicador_id');
+    }
+
 }

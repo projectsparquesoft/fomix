@@ -18,9 +18,14 @@ class DependenciaEmpleado extends Model
         'created_at', 'updated_at',
     ];
 
-
-    public function falta()
+    public function empleado()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Empleado',  'empleado_id');
     }
+
+    public function dependencia()
+    {
+        return $this->belongsTo('App\Models\Dependencia',  'dependencia_id');
+    }
+
 }

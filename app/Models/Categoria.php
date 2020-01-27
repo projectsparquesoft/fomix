@@ -19,8 +19,8 @@ class Categoria extends Model
     ];
 
 
-    public function falta()
+    public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->hasMany('App\Models\Solicitud', 'categoria_id');
     }
 }

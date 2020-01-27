@@ -19,8 +19,13 @@ class RadicadoSolicitud extends Model
     ];
 
 
-    public function empleados()
+    public function radicado()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsTo('App\Models\Radicado', 'radicado_id');
+    }
+
+    public function solicitud()
+    {
+        return $this->belongsTo('App\Models\Solicitud', 'solicitud_id');
     }
 }
