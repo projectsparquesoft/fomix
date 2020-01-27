@@ -12,10 +12,9 @@ class CreateIndicadoresTable extends Migration
         Schema::create('indicadores', function (Blueprint $table) {
             $table->bigIncrements('id_indicador');
 
-            $table->string('nombre_indicador');
+            $table->text('nombre_indicador');
             $table->tinyInteger('orden_indicador')->comment('1,2..7');
             $table->tinyInteger('status')->comment('vigente/No vigente');
-            
 
             $table->timestamps();
         });

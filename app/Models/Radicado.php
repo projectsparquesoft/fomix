@@ -11,7 +11,7 @@ class Radicado extends Model
     protected $primaryKey = 'id_radicado';
 
     protected $fillable = [
-       'codigo_radicado'
+       'codigo_radicado',
     ];
 
     protected $hidden = [

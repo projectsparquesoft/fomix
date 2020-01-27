@@ -19,8 +19,9 @@ class Linea extends Model
     ];
 
 
-    public function falta()
+    public function indicadores()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'empleado_dependencia', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Indicador', 'indicador_linea', 'linea_id', 'indicador_id')
+        ->withTimestamps();
     }
 }
