@@ -15,3 +15,5 @@ Route::resource('solicitante', 'SolicitanteController', ['except' => [
 ]]);
 
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
+
+Route::post('solicitantes/search', 'SolicitanteController@action')->name('solicitante.search');

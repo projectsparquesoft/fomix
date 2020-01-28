@@ -13,8 +13,18 @@ $(function () {
     });
 
     $('#btnsave').click(function (e) {
+        e.preventDefault();
         save();
     });
+
+    pageitem();
+
+    $('#search').click(function (e) {
+        e.preventDefault();
+        let text_search = $('#text_search').val();
+        getSearch(text_search);
+    });
+
 
 
 });
@@ -119,3 +129,62 @@ const showErrorMessage = (messages) => {
         html: messages
     });
 }
+
+
+const pageitem = () => {
+    $(document).on('click', '.page-item a', function (event) {
+        event.preventDefault();
+        $('li').removeClass('active');
+        $(this).parent('li').addClass('active');
+        let myurl = $(this).attr('href');
+        let page = myurl.split('page=')[1];
+        getData(page);
+    });
+}
+
+const getData = (page) => {
+    let text_search = $('#text_search').val();
+
+    let datos = { 'opcion': 1, 'text_search': text_search };
+
+    $.ajax({
+        url: '?page=' + page,
+        data: datos,
+        type: "get",
+        datatype: "html"
+    }).done(function (data) {
+        $("#table").empty().html(data);
+        location.hash = page;
+    }).fail(function (jqXHR, ajaxOptions, thrownError) {
+        alert('No response from server');
+    });
+}
+
+const getSearch = (text_search) => {
+    let form = $('#form_search');
+    $.ajax({
+        url: form.attr('action'),
+        data: { 'opcion': 2, 'text_search': text_search },
+        type: form.attr('method')
+    }).done(function (data) {
+        $("#table").empty().html(data);
+        $('#text_search').val("");
+    }).fail(function (jqXHR, ajaxOptions, thrownError) {
+        alert('No response from server');
+    });
+}
+
+const haschange = () => {
+    $(window).on('hashchange', function () {
+        if (window.location.hash) {
+            var page = window.location.hash.replace('#', '');
+            if (page == Number.NaN || page <= 0) {
+                return false;
+            } else {
+                getData(page);
+            }
+        }
+    });
+}
+
+

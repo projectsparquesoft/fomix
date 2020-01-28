@@ -11,9 +11,13 @@
     <meta name="description" content="Build whatever layout you need with our Architect framework.">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
+    
 
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+
     @yield('css-extra')
 
 </head>
@@ -448,6 +452,7 @@
     </div>
 <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+
 @yield('scripts-extra')
 </body>
 </html>

@@ -4,7 +4,7 @@
 @section('titulo', "Listado de Solicitantes")
 
 @section('css-extra')
-    <link rel="stylesheet" href="{{asset('plugins/sweetalert/sweetalert2.min.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/sweetalert/sweetalert2.min.css')}}">
 @endsection
 
 @section('title_module')
@@ -40,7 +40,28 @@
 
     <div class="main-card mb-3 card">
         <div class="card-body">
-            
+            <div class="col-lg-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Listado de Solicitantes</h5>
+
+                        <div class="col-md-6">
+                        <form id="form_search" action = "{{route('solicitante.index')}}" method="GET">
+                                @csrf
+                                <div class="input-group"><input type="text" class="form-control" name="text_search" id="text_search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-secondary" name="search" id="search"><li class="pe-7s-search"></li></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>    
+
+                    <br>
+                        <div class="table-responsive" id="table">
+                            @include('ajax.table-solicitantes')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -51,10 +72,10 @@
 
     <div class="main-card mb-3 card">
         <div class="card-body">
-        <form id="form" action="{{route('solicitante.store')}}" method="POST">
+            <form id="form" action="{{route('solicitante.store')}}" method="POST">
 
                 @csrf
-                
+
                 <div class="form-row">
                     <div class="col-md-4">
                         <div class="position-relative form-group">
@@ -142,7 +163,8 @@
                             <select name="proponente_id" id="proponente" class="form-control" required>
                                 <option value="">-- Escoger Proponente --</option>
                                 @foreach ($proponentes as $proponente)
-                                    <option value="{{$proponente->id_proponente}}">{{$proponente->nombre_proponente}}</option>
+                                <option value="{{$proponente->id_proponente}}">{{$proponente->nombre_proponente}}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -167,6 +189,6 @@
 
 
 @section('scripts-extra')
-    <script src="{{asset('plugins/sweetalert/sweetalert2.min.js')}}"></script>
-    <script src="{{asset('js/solicitud.js')}}"></script>
+<script src="{{asset('plugins/sweetalert/sweetalert2.min.js')}}"></script>
+<script src="{{asset('js/solicitud.js')}}"></script>
 @endsection
