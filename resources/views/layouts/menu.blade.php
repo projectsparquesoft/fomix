@@ -33,7 +33,7 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                
+
                 <li class="app-sidebar__heading">Modulo Recepcion</li>
                 <li>
                     <a href="#">
@@ -47,12 +47,47 @@
                                 <i class="metismenu-icon"></i>
                                 Listado de Solicitantes
                             </a>
-                        </li>        
+                        </li>
                     </ul>
                 </li>
-                
 
-                
+                <li class="app-sidebar__heading"> Modulo Dependencias</li>
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                         Dependencias
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                        <a href="{{route('dependencia.index')}}">
+                                <i class="metismenu-icon"></i>
+                                Listado  Dependencias
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="app-sidebar__heading"> Modulo de los Empleados</li>
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                         Empleados
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                        <a href="{{route('empleados.index')}}">
+                                <i class="metismenu-icon"></i>
+                                Listado  de Empleados
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
             </ul>
         </div>
     </div>

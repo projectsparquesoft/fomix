@@ -24,7 +24,7 @@ class SolicitanteRequest extends FormRequest
             'telefono' => 'integer|min:7|nullable',
             'celular' => 'integer|min:10|nullable',
             'proponente_id' => 'required|integer|exists:proponentes,id_proponente',
-            'representante_legal' => 'required',
+            'representante_legal' => 'required|min:3',
         ];
     }
 
