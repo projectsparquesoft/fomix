@@ -3,90 +3,101 @@
 
 @section('titulo', "Home")
 
-@section('title_module')
 
-<div class="page-title-icon">
-    <i class="pe-7s-graph text-success">
-    </i>
+@section('link')
+
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h1>Entradas</h1>
+  </div>
+  <div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active">Entradas</li>
+    </ol>
+  </div>
 </div>
-<div>Home
-    <div class="page-title-subheading">Ejemplos de uso de imagenes y tablas en Laravel + AJAX.
+
+@endsection
+
+@section('content')
+<div class="container-fluid">
+
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Entradas</h3>
+
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
     </div>
-</div>
-@endsection
+    <!-- /.card-header -->
+    <div class="card-body">
 
-@section('link_module')
-<li class="nav-item">
-    <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-        <span>Items</span>
-    </a>
-</li>
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>10</h3>
 
-@endsection
-
-@section('content_module')
-<div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-    <div class="row">
-     
-        <div class="col-md-4">
-    
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Ejemplo # 1</h5>
-                    <div class="card-shadow-success border mb-3 card card-body border-success">
-                        <h5 class="card-title">Crop And Upload Image</h5>Cortar y cargar imagen, util para img de perfil.
-                    </div>
-                </div>
+              <p>Solicitantes</p>
             </div>
+            <div class="icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <a href="javascript:void(0)" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>800</h3>
 
+              <p>Solicitudes</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-school"></i>
+            </div>
+            <a href="javascript:void(0)" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small card -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>40</h3>
+
+              <p>Proyectos</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <a href="javascript:void(0)" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
         </div>
 
-        <div class="col-md-4">
-    
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Ejemplo #2</h5>
-                    <div class="card-shadow-success border mb-3 card card-body border-success">
-                        <h5 class="card-title">Store Image BLOB</h5>Guardar Imagen con campo Tipo BLOB
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-    
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Ejemplo #3</h5>
-                    <div class="card-shadow-success border mb-3 card card-body border-success">
-                        <h5 class="card-title">Table SimplePagination Ajax</h5>Paginar datos de una tabla con simplepagination usando AJAX 
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-    
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Ejemplo #4</h5>
-                    <div class="card-shadow-success border mb-3 card card-body border-success">
-                        <h5 class="card-title">AutoComplete TextBox Multiple</h5>Auto Completar Con Plugin TokenFields + JQueryUI Con AJAX 
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-
+      </div>
+      <!-- /.row -->
 
     </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+      Esto es un texto para el pie de cada card layout.
+    </div>
+  </div>
+
+
+
 
 </div>
-
 @endsection
-
-

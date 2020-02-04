@@ -20,32 +20,12 @@ class SolicitanteController extends Controller
     public function index(Request $request)
     {
         $solicitantes = Solicitante::paginate(2);
-        $personas = Persona::all(['id_persona', 'tipo_persona']);
-        $departamentos = Departamento::all(['id_departamento', 'nombre_departamento']);
-        $proponentes = Proponente::all(['id_proponente', 'nombre_proponente']);
+        //$personas = Persona::all(['id_persona', 'tipo_persona']);
+        //$departamentos = Departamento::all(['id_departamento', 'nombre_departamento']);
+        //$proponentes = Proponente::all(['id_proponente', 'nombre_proponente']);
 
-        if ($request->ajax()) {
-            $opcion = $request->opcion;
-            if ($opcion == 1) {
-                $buscar = $request->text_search;
-
-                if ($buscar) {
-                    $solicitantes = Solicitante::search($request->text_search)->paginate(2);
-                    return response()->view('ajax.table-solicitantes', compact('solicitantes'));
-                } else {
-                    return response()->view('ajax.table-solicitantes', compact('solicitantes'));
-                }
-
-            }
-
-            if ($opcion == 2) {
-                $solicitantes = Solicitante::search($request->text_search)->paginate(2);
-                return response()->view('ajax.table-solicitantes', compact('solicitantes'));
-            }
-
-        }
-
-        return view('solicitante.index', compact('solicitantes', 'personas', 'departamentos', 'proponentes'));
+    
+        return view('solicitante.index2', compact('solicitantes'));
     }
 
     public function store(SolicitanteRequest $request)

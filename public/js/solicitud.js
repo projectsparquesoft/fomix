@@ -25,6 +25,8 @@ $(function () {
         getSearch(text_search);
     });
 
+    $('#exampleModal').modal('show');
+
 
 
 });
