@@ -14,11 +14,29 @@ class EmpleadoController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //$empleados = Empleado::all();
-        $empleados = empleado::orderBy('id_empleado', 'ASC')->paginate(2);
-        return view('empleados.index', compact('empleados'));
+        $empleados = empleado::paginate(2);
+        if ($request->ajax()) {
+            $opcion = $request->opcion;
+            if ($opcion == 1) {
+                $buscar = $request->text_search;
+
+                if ($buscar) {
+                    $empleados = empleado::search($request->text_search)->paginate(3);
+                    return response()->view('ajax.table-empleados', compact('empleados'));
+                } else {
+                    return response()->view('ajax.table-empleados', compact('empleados'));
+                }
+
+            }
+
+                if ($opcion == 2) {
+                    $empleados = empleado::search($request->text_search)->paginate(3);
+                    return response()->view('ajax.table-empleados', compact('empleados'));
+                }
+        }
+                    return view('empleados.index', compact('empleados'));
     }
 
     public function create()

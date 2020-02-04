@@ -13,7 +13,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
+
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+
     @yield('css-extra')
 
 </head>
@@ -99,7 +103,7 @@
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" onclick="event.preventDefault(); 
+                                            <button type="button" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" tabindex="0" class="dropdown-item">Salir</button>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
@@ -129,7 +133,7 @@
         </div>
         {{-- FIN NavBar --}}
 
-         
+
         <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">
                 <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
@@ -409,7 +413,7 @@
                 </div>
             </div>
         </div>
-            
+
         <div class="app-main">
 
               {{-- Menu Sidebar Left --}}
@@ -426,8 +430,8 @@
 
 
                                 </div>
-     
-                                
+
+
                             </div>
                         </div>
                         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
@@ -438,7 +442,7 @@
                         </ul>
                         <div class="tab-content">
                             @yield('content_module')
-                           
+
                         </div>
                     </div>
 
@@ -446,8 +450,15 @@
                 </div>
         </div>
     </div>
-<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+
 <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
 @yield('scripts-extra')
+
+<!---bustrap---->
+<script>
+    $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+</script>
+
 </body>
 </html>

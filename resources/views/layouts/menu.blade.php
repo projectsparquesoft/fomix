@@ -84,9 +84,22 @@
                         </li>
                     </ul>
                 </li>
-
-
-
+                <li class="app-sidebar__heading"> Modulo de Solicitudes</li>
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Solicitudes
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                        <a href="{{route('solicitud.index')}}">
+                                <i class="metismenu-icon"></i>
+                                Listado  de Solicitudes
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

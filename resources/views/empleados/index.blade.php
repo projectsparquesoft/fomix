@@ -41,31 +41,29 @@
 
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <table class="table table-light">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nid|CC</th>
-                        <th>Acciones</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($empleados as $empleado)
-                   <tr>
-                       <td>{{$empleado->nombre}}</td>
-                       <td>{{$empleado->apellido}}</td>
-                       <td>{{$empleado->nid}}</td>
-                       <td>
-                           <a href="">Editar</a>
-                           <a href="">Eliminar</a>
-                       </td>
-                   </tr>
-                    @endforeach
-                </tbody>
-            </table>
-{!! $empleados->render() !!}
+            <div class="col-lg-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Listado de Empleados</h5>
+                        <div class="col">
+                            <button id="btnlistar" class="btn btn-primary" style="float:right;">Listar Nuevamente</button>
+                        </div>
+                        <div class="col-md-6">
+                        <form id="form_search" action = "{{route('empleados.index')}}" method="GET">
+                                @csrf
+                                <div class="input-group"><input type="text" class="form-control" name="text_search" id="text_search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-secondary" name="search" id="search"><li class="pe-7s-search"></li></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <br>
+                        <div class="table-responsive" id="table">
+                            @include('ajax.table-empleados')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

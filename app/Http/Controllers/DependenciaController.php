@@ -13,17 +13,40 @@ class DependenciaController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $dependencias = Dependencia::all();
-        return view('dependencias.index', compact('dependencias'));
+
+        $dependencias = Dependencia::paginate(3);
+
+        if ($request->ajax()) {
+            $opcion = $request->opcion;
+            if ($opcion == 1) {
+                $buscar = $request->text_search;
+
+                if ($buscar) {
+                    $dependencias = dependencia::search($request->text_search)->paginate(3);
+                    return response()->view('ajax.table-dependencias', compact('dependencias'));
+                } else {
+                    return response()->view('ajax.table-dependencias', compact('dependencias'));
+                }
+
+            }
+
+                if ($opcion == 2) {
+                    $dependencias = dependencia::search($request->text_search)->paginate(3);
+                    return response()->view('ajax.table-dependencias', compact('dependencias'));
+                }
+        }
+                    return view('dependencias.index', compact('dependencias'));
     }
 
-
+  
     public function create()
     {
 
     }
+
+
     public function store(DependenciasCreateRequest $request)
     {
         if (request()->ajax()){

@@ -23,4 +23,11 @@ class Dependencia extends Model
     {
         return $this->belongsToMany('App\Models\Empleado', 'dependencia_empleado', 'dependencia_id', 'empleado_id');
     }
+    
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('nombre_dependencia', 'like', "%$search%")
+            ->orWhere('descripcion', 'like', "%$search%");
+
+    }
 }

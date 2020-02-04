@@ -11,7 +11,7 @@ class Linea extends Model
     protected $primaryKey = 'id_linea';
 
     protected $fillable = [
-       'nombre_linea', 'orden_linea', 'status'
+       'nombre_linea', 'descripcion','orden_linea', 'status'
     ];
 
     protected $hidden = [

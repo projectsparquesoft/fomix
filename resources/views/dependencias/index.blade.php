@@ -41,31 +41,35 @@
 
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <table class="table table-light">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Nombre de la Dependencia</th>
-                        <th>Descripción</th>
+            <div class="col-lg-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Listado de las Dependencias</h5>
+                        <div class="col">
+                            <button id="btnlistar" class="btn btn-primary" style="float:right;">Listar Nuevamente</button>
 
-                    </tr>
-                </thead>
-                <tbody>
-                   @foreach ($dependencias as $dependencia)
-                   <tr>
-                       <td>
-                           {{ $dependencia->nombre_dependencia }}
-                       </td>
-                       <td>
-                        {{ $dependencia->descripcion}}
-                       </td>
-                   </tr>
+                        </div>
 
-                   @endforeach
-                </tbody>
-            </table>
-
+                        <!----BOTON DE BUSQUEDA--->
+                        <div class="col-md-6">
+                            <form id="form_search" action = "{{route('dependencia.index')}}" method="GET">
+                                @csrf
+                                <div class="input-group"><input type="text" class="form-control" name="text_search" id="text_search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-secondary" name="search" id="search"><li class="pe-7s-search"></li></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <br>
+                        <div class="table-responsive" id="table">
+                            @include('ajax.table-dependencias')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 
 </div>
 <!---FORMULARIO DE CREACION DE DEPENDENCIAS--->
@@ -102,3 +106,4 @@
     <script src="{{asset('js/dependencia.js')}}"></script>
 
 @endsection
+

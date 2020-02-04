@@ -28,4 +28,14 @@ class Empleado extends Model
         return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado', 'empleado_id', 'dependencia_id');
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('nid', 'like', "%$search%")
+            ->orWhere('nombre', 'like', "%$search%")
+            ->orWhere('apellido', 'like', "%$search%")
+            ->orWhere('email', 'like', "%$search%")
+            ->orWhere('celular', 'like', "%$search%")
+            ->orWhere('is_jefe', 'like', "%$search%");
+    }
+
 }
