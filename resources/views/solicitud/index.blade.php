@@ -3,423 +3,553 @@
 
 @section('titulo', "Solicitud")
 
-@section('css-extra')
-    <link rel="stylesheet" href="{{asset('plugins/sweetalert/sweetalert2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('plugins/bootstrap-select/css/bootstrap-select.min.css')}}">
+@section('extra-css')
+    <!--select-->
+    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @endsection
 
-@section('title_module')
-
-<div class="page-title-icon">
-    <i class="pe-7s-graph text-success">
-    </i>
-</div>
-<div>Solicitudes
-    <div class="page-title-subheading">Aqui se podrá registrar la solicitud que ingresará.
+@section('link')
+<div class="row mb-2">
+    <div class="col-sm-6">
+      <h1>Solicitudes</h1>
     </div>
 </div>
 @endsection
 
-@section('link_module')
-<li class="nav-item">
-    <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-        <span>Creación de las Solicitudes</span>
-    </a>
-</li>
-@endsection
 
-@section('content_module')
-<!-----solicitudes-->
-<div id="accordion" class="accordion-wrapper mb-3">
-    <div class="card">
-        <div id="headingOne" class="card-header">
-            <button type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="false" aria-controls="collapseOne" class="text-left m-0 p-0 btn btn-link btn-block collapsed">
-                <h5 class="m-0 p-0">Registro de Solicitudes</h5>
-            </button>
-        </div>
-        <div data-parent="#accordion" id="collapseOne1" aria-labelledby="headingOne" class="collapse" style="">
-            <div class="card-body">
-            <form id="form_solicitud" action="{{route('solicitud.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-            <div class="form-row">
-                <div class="col-md-4">
-                    <label for="solicitud" ><strong>Tipo de Solicitud:</strong></label>
-                        <select name="categoria_id" id="categoria_id" class="form-control" required>
-                            <option value="">-- Escoger Tipo Solicitud --</option>
-                            @foreach ($categorias as $categoria)
-                            <option value="{{$categoria->id_categoria}}">{{$categoria->tipo_solicitud}}</option>
-                            @endforeach
-                        </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="solicitud" ><strong>Solicitante:</strong></label>
-                        <select name="solicitante_id" id="solicitante_id" class="form-control selectpicker show-tick" data-live-search="true" required>
-                                @foreach ($solicitantes as $solicitante)
-                                <option value=" {{$solicitante->id_solicitante}}">{{$solicitante->razon_social}}
-                            </option>
-                                @endforeach
-                        </select>
-                </div>
-                <div class="col-md-4">
-                            <label for="archivo"><strong>Archivo:</strong></label>
-                            <input name="archivo" id="archivo" type="file" class="form-control" required>
-                </div>
-                <div class="col-md-1">
-                            <button id="btnsave" class="btn btn-lg btn-primary mt-2">Guadar</button>
-                </div>
-            </div>
-                </form>
-        </div>
-    </div>
-</div>
+@section('content')
+<div class="container-fluid">
 
-<!-----lineas-->
-<div class="card">
-        <div id="headingThree" class="card-header">
-            <button type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="false" aria-controls="collapseThree" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Líneas</h5></button>
+<!--solicitud--->
+<div class="card card-default collapsed-card">
+      <div class="card-header">
+        <h3 class="card-title">Solicitud</h3>
+        <!---boton-min-max-->
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
-        <div data-parent="#accordion" id="collapseOne3" class="collapse">
-            <div class="card-body">
-            <div class="col-md-12 col-lg-12" >
-
+      </div>
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
               <div class="form-group">
-                    <select  id="id_linea" class="form-control selectpicker show-tick" data-live-search="true" data-width="auto" required  multiple>
-                           @foreach ($lineas as $linea)
-                                <option data-subtext="{{$linea->descripcion}}" value="{{$linea->id_linea}}">{{$linea->nombre_linea}}</option>
+                <label>Tipo de solicitud </label>
+                <select name="categoria_id" class="form-control select2bs4" style="width: 100%;">
+                  <option selected="selected">-- Escoger Tipo Solicitud --</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id_categoria}}">{{$categoria->tipo_solicitud}}</option>
+                    @endforeach
+                </select>
+              </div>
+              <!--archivo-->
+              <div class="form-group">
+                <label for="archivo"><strong>Archivo:</strong></label>
+                <input name="archivo" id="archivo" type="file" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Solicitante </label>
+                <select name="solicitante_id" class="form-control select2bs4" style="width: 100%;">
+                  <option selected="selected">-- Escoger Solicitante--</option>
+                  @foreach ($solicitantes as $solicitante)
+                  <option value=" {{$solicitante->id_solicitante}}">{{$solicitante->razon_social}}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+              <!-- boton save -->
+              <div class="form-group">
+                <button id="btnsave" class="btn  btn-primary mt-4">Guadar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- footer-body -->
+      <div class="card-footer">
+        Listado de Solicitudes.
+      </div>
+</div>
+
+<!---lineas---->
+<div class="card card-default collapsed-card">
+    <div class="card-header">
+        <h3 class="card-title">Lineas</h3>
+            <!---boton-min-max-->
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            </div>
+    </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <label>Líneas</label>
+                        <select name="id_linea" class="form-control select2bs4" style="width: 100%;" multiple data-placeholder="Escoger Líneas">
+                            @foreach ($lineas as $linea)
+                                <option  value="{{$linea->id_linea}}">{{$linea->descripcion}}</option>
                             @endforeach
-                    </select>
+                        </select>
+                    </div>
                 </div>
             </div>
-
-            </div>
+        </div>
+        <!-- footer-body -->
+        <div class="card-footer">
+        Listado de Líneas.
         </div>
 </div>
 
-<!-----proyectos-->
-<div class="card">
-        <div id="headingTwo" class="b-radius-0 card-header">
-            <button type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="false" aria-controls="collapseTwo" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Proyectos</h5></button>
-        </div>
-        <div data-parent="#accordion" id="collapseOne2" class="collapse">
-            <div class="card-body">
-            <form action="{{route('proyecto.store')}}" method="POST" id="form_proyecto">
-                @csrf
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="position-relative form-group">
-                            <label for="descripcion" ><strong>Descripción del proyecto:</strong></label>
-                            <textarea class="form-control" name="descripcion" rows="5" cols="15" placeholder="(Describa en que consiste el proyecto, máximo 10 lineas)" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="position-relative form-group">
-                            <label for="antecedente" ><strong>Antecedentes y trayectoria del proyecto:</strong></label>
-                            <textarea class="form-control" name="antecedente" rows="5" cols="15" placeholder="(Indique años de realización, número de ediciones, resultados cuantitativos y cualitativos de las fases anteriores del proyecto)" ></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="position-relative form-group">
-                            <label for="justificacion" ><strong>Justificación del proyecto:</strong></label>
-                            <textarea class="form-control" name="justificacion" rows="5" cols="15" placeholder="(Argumente por qué es importante la realización del proyecto y la relación del proyecto con el plan de desarrollo departamental)" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="position-relative form-group">
-                            <label for="metodologia" ><strong>Metodología:</strong></label>
-                            <textarea class="form-control" name="metodologia" rows="5" cols="15" placeholder="(Señale en qué consiste el proyecto, sus diferentes etapas o fases, cómo va a ser organizado y qué actividades de seguimiento y evaluación se adelantarán de acuerdo con los objetivos y metas propuestos, porque es importante)" ></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="position-relative form-group">
-                            <label for="objetivo_general" ><strong>Objetivo General:</strong></label>
-                            <textarea class="form-control" name="objetivo_general" rows="5" cols="15" placeholder="(Describa que se quiere lograr con el proyecto, es decir, cual es el propósito que se pretende alcanzar, debe estar relacionado con la justificación)" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="position-relative form-group">
-                            <label for="objetivo_especifico" ><strong>Objetivos Especificos:</strong></label>
-                            <textarea class="form-control" name="objetivo_especifico" rows="5" cols="15" placeholder="(Corresponde a los propósitos más puntuales que contribuyan a lograr el objetivo general, señale tres objetivos específicos)" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="position-relative form-group">
-                         <center>  <label for="metas"><strong >METAS (RESULTADOS O PRODUCTOS ESPERADOS DEL PROYECTO):</strong></label></center>
-                            <textarea class="form-control" name="metas" rows="5" cols="15" placeholder="(Estas deben ser cuantitativas (medibles); Son el resultado de lo que se quiere lograr y están relacionados con los objetivos formulados). Se estructuran así:
-                                1.Proceso o acción [verbo en infinitivo medible]
-                                2.Cantidad
-                                3.Descripción del proceso)" ></textarea>
-                        </div>
-                        <input type="hidden" name="solicitud_id" value="1">
-                    </div>
-                    <div class="col-md-4">
-                        <button id="boton" class="btn btn-lg btn-primary mt-2">Guadar</button>
-                    </div>
-                </div>
-            </form>
+<!---Proyectos--->
+<div class="card card-default collapsed-card">
+    <div class="card-header">
+        <h3 class="card-title">Formato</h3>
+            <!---boton-min-max-->
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
             </div>
-        </div>
-</div>
-
-<!-----Anexos-->
-<div class="card">
-    <div id="headingTwo" class=" card-header">
-        <button type="button" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="false" aria-controls="collapseTwo" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Anexos</h5></button>
     </div>
-    <div data-parent="#accordion" id="collapseOne4" class="collapse">
-        <div class="card-body">
-            <div style="float:right">
-                <button class="btn btn-primary">Añadir Más</button>
-            </div>
-          <br>
+ <div class="card-body">
+    <div class="row">
+        <form action="{{route('proyecto.store')}}" method="POST" id="form_proyecto">
+        @csrf
             <div class="form-row">
-                    <div class="col-md-4">
-                        <label for="">Cedula:</label>
-                        <input type="file" class="form-control" name="">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label for="descripcion" ><strong>Descripción del proyecto:</strong></label>
+                        <textarea class="form-control" name="descripcion" rows="5" cols="15" placeholder="(Describa en que consiste el proyecto, máximo 10 lineas)" ></textarea>
                     </div>
-                    <div class="col-md-4">
-                        <label for="">Fotocopia Rut:</label>
-                        <input type="file" class="form-control" name="">
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label for="antecedente" ><strong>Antecedentes y trayectoria del proyecto:</strong></label>
+                        <textarea class="form-control" name="antecedente" rows="5" cols="15" placeholder="(Indique años de realización, número de ediciones, resultados cuantitativos y cualitativos de las fases anteriores del proyecto)" ></textarea>
                     </div>
-                    <div class="col-md-4">
-                        <label for="">Camara de comercio:</label>
-                        <input type="file" class="form-control" name="">
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label for="justificacion" ><strong>Justificación del proyecto:</strong></label>
+                        <textarea class="form-control" name="justificacion" rows="5" cols="15" placeholder="(Argumente por qué es importante la realización del proyecto y la relación del proyecto con el plan de desarrollo departamental)" ></textarea>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label for="metodologia" ><strong>Metodología:</strong></label>
+                        <textarea class="form-control" name="metodologia" rows="5" cols="15" placeholder="(Señale en qué consiste el proyecto, sus diferentes etapas o fases, cómo va a ser organizado y qué actividades de seguimiento y evaluación se adelantarán de acuerdo con los objetivos y metas propuestos, porque es importante)" ></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label for="objetivo_general" ><strong>Objetivo General:</strong></label>
+                        <textarea class="form-control" name="objetivo_general" rows="5" cols="15" placeholder="(Describa que se quiere lograr con el proyecto, es decir, cual es el propósito que se pretende alcanzar, debe estar relacionado con la justificación)" ></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label for="objetivo_especifico" ><strong>Objetivos Especificos:</strong></label>
+                        <textarea class="form-control" name="objetivo_especifico" rows="5" cols="15" placeholder="(Corresponde a los propósitos más puntuales que contribuyan a lograr el objetivo general, señale tres objetivos específicos)" ></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="position-relative form-group">
+                        <center><label for="metas"><strong >METAS (RESULTADOS O PRODUCTOS ESPERADOS DEL PROYECTO):</strong></label></center>
+                        <textarea class="form-control" name="metas" rows="5" cols="15" placeholder="(Estas deben ser cuantitativas (medibles); Son el resultado de lo que se quiere lograr y están relacionados con los objetivos formulados). Se estructuran así:
+                                    1.Proceso o acción [verbo en infinitivo medible]
+                                    2.Cantidad
+                                    3.Descripción del proceso)" ></textarea>
+                    </div>
+                        <input type="hidden" name="solicitud_id" value="1">
+                </div>
+                <div class="col-md-12">
+                        <button id="boton" class="btn btn-primary" style="float:right">Guadar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+  <!-- footer-body -->
+    <div class="card-footer">
+        Listado de Formato.
+    </div>
+</div>
+
+<!--Anexos---->
+ <div class="card card-default collapsed-card">
+    <div class="card-header">
+      <h3 class="card-title">Anexos</h3>
+      <!---boton-min-max-->
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+        <div style="float:right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#anexos" style="float:right">Añadir Más</button>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="">Cedula:</label>
+                <input type="file" class="form-control" name="">
+            </div>
+            <div class="col-md-4">
+                <label for="">Fotocopia Rut:</label>
+                <input type="file" class="form-control" name="">
+            </div>
+            <div class="col-md-4">
+                <label for="">Cámara de comercio:</label>
+                <input type="file" class="form-control" name="">
             </div>
         </div>
-    </div>
-</div>
- <!-----presupuesto-->
- <div class="card">
-    <div id="headingTwo" class="b-radius-0 card-header">
-        <button type="button" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="false" aria-controls="collapseTwo" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Presupuesto General</h5></button>
-    </div>
-    <div data-parent="#accordion" id="collapseOne5" class="collapse">
-            <div class="card-body">
-                <form action="{{route('presupuesto.index')}}" method="POST">
-                @csrf
-                    <div class="table-responsive">
-                        <div style="float:right">
-                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".modal">Large modal</button>
-                        </div>
-
-                    <br><br>
-                        <table class="table table-light">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>PRESUPUESTO DE EGRESOS (Gastos)</th>
-                                    <th>INGRESOS (Fuentes de Financiación)</th>
-                                </tr>
-                            </thead>
-                        </table>
+        <!----Modals-->
+        <div class="modal fade" id="anexos">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Anexos</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                       hola mundo
                     </div>
-                </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+              </div>
             </div>
+          </div>
+
     </div>
-</div>
-
- <!-----Poblacion-->
- <div class="card">
-    <div id="headingTwo" class="b-radius-0 card-header">
-        <button type="button" data-toggle="collapse" data-target="#collapseOne6" aria-expanded="false" aria-controls="collapseTwo" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Población</h5></button>
+    <!-- footer-body -->
+    <div class="card-footer">
+      Listado de Anexos.
     </div>
-    <div data-parent="#accordion" id="collapseOne6" class="collapse">
-        <div class="card-body">
-            <div class="table-responsive">
-                  <table class="table table-light">
-                      <thead class="thead-light">
-                          <tr>
-                              <th>Item</th>
-                              <th>Clasificación</th>
-                              <th>Detalle</th>
-                              <th>Número de personas</th>
-                              <th>Fuente de verificación</th>
+  </div>
 
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>Etaria (Edad)</td>
-                              <td>0 a 14 años</td>
-                              <td><input type="number" class="form-control"></td>
-                              <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>Etaria (Edad)</td>
-                              <td>15 a 19 años</td>
-                              <td><input type="number" class="form-control"></td>
-                              <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Etaria (Edad)</td>
-                            <td>20 a 59 años</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Etaria (Edad)</td>
-                            <td>Mayor de 60 años</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>5</td>
-                            <td>Grupos étnicos</td>
-                            <td>Población Indígena</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>6</td>
-                            <td>Grupos étnicos</td>
-                            <td>Población Afrocolombiana</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>7</td>
-                            <td>Grupos étnicos</td>
-                            <td>Población Raizal</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>8</td>
-                            <td>Grupos étnicos</td>
-                            <td>Pueblo Rom</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>9</td>
-                            <td>Grupos étnicos</td>
-                            <td>Población Mestiza</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>10</td>
-                            <td>Grupos étnicos</td>
-                            <td>Población Palenquera</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>11</td>
-                            <td>Género</td>
-                            <td>Masculino</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>12</td>
-                            <td>Género</td>
-                            <td>Femenino</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>13</td>
-                            <td>Población Vulnerable</td>
-                            <td>Desplazados</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>14</td>
-                            <td>Población Vulnerable</td>
-                            <td>Discapacitados</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                            <td>15</td>
-                            <td>Población Vulnerable</td>
-                            <td>Víctimas</td>
-                            <td><input type="number" class="form-control"></td>
-                            <td><input type="text" class="form-control"></td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td style="float: right"><h5>Total población beneficiada</h5></td>
-                              <td><input type="text" class="form-control"></td>
-
-                          </tr>
-
-                      </tbody>
-                  </table>
-            </div>
-        </div>
+ <!--presupuestos-->
+  <div class="card card-default collapsed-card">
+    <div class="card-header">
+      <h3 class="card-title">Presupuestos</h3>
+      <!---boton-min-max-->
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
     </div>
-</div>
-
- <!-----Actividades-->
- <div class="card">
-    <div id="headingTwo" class="b-radius-0 card-header">
-        <button type="button" data-toggle="collapse" data-target="#collapseOne7" aria-expanded="false" aria-controls="collapseTwo" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Actividades</h5></button>
-    </div>
-    <div data-parent="#accordion" id="collapseOne7" class="collapse">
-        <div class="card-body">
-            <div style="float:right">
-                <button class="btn btn-primary">Añadir Más</button>
-            </div>
-                 <br><br>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg" style="float:right">Añadir Más</button>
+          <br><br>
+        <form action="{{route('presupuesto.index')}}" method="POST">
+        @csrf
             <div class="table-responsive">
             <table class="table table-light">
                 <thead class="thead-light">
                     <tr>
-                        <th>FECHA DE INICIO DEL PROYECTO</th>
-                        <th>FECHA DE REALIZACION DE LAS ACTIVIDADES</th>
+                        <th>PRESUPUESTO DE EGRESOS (Gastos)</th>
+                        <th>INGRESOS (Fuentes de Financiación)</th>
                     </tr>
+                </thead>
+            </table>
+            <!----Modals-->
+            <div class="modal fade" id="modal-lg">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Presupuesto General</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form action="">
+                                <div class="col-md-12">
+                                    <label for="">Rubro(Valor Total)</label>
+                                    <input type="number" class="form-control" name="rubro">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="">Recursos del municipio</label>
+                                    <input type="number" class="form-control" name="recurso_municipio">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="">Fondo mixto de promoción de la cultura y las artes de sucre($)</label>
+                                    <input type="number" class="form-control" name="fondo_mixto">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="">Recursos solicitados al Ministerio de Cultura ($)</label>
+                                    <input type="number" class="form-control" name="ministerio_cultura">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="">Ingresos Propios</label>
+                                    <input type="number" class="form-control" name="ingreso_propio">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+        </form>
+    </div>
+    <!-- footer-body -->
+    <div class="card-footer">
+      Listado de Presupuestos.
+    </div>
+  </div>
+
+  <!-----Poblacion-->
+  <div class="card card-default collapsed-card">
+    <div class="card-header">
+      <h3 class="card-title">Población</h3>
+      <!---boton-min-max-->
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-light">
+                <thead class="thead-light">
                     <tr>
-                        <th>ACTIVIDADES</th>
-                        <th>FECHA DE INICIO</th>
-                        <th>FECHA DE FINALIZACION</th>
+                        <th>Item</th>
+                        <th>Clasificación</th>
+                        <th>Detalle</th>
+                        <th>Número de personas</th>
+                        <th>Fuente de verificación</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><textarea name="" id=""  class="form-control"></textarea></td>
-                        <td><input type="date" class="form-control"></td>
-                        <td><input type="date" class="form-control"></td>
+                        <td>1</td>
+                        <td>Etaria (Edad)</td>
+                        <td>0 a 14 años</td>
+                        <td><input type="number" class="form-control"></td>
+                        <td><input type="text" class="form-control"></td>
                     </tr>
                     <tr>
-                        <td><textarea name="" id=""  class="form-control"></textarea></td>
-                        <td><input type="date" class="form-control"></td>
-                        <td><input type="date" class="form-control"></td>
+                        <td>2</td>
+                        <td>Etaria (Edad)</td>
+                        <td>15 a 19 años</td>
+                        <td><input type="number" class="form-control"></td>
+                        <td><input type="text" class="form-control"></td>
                     </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Etaria (Edad)</td>
+                      <td>20 a 59 años</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Etaria (Edad)</td>
+                      <td>Mayor de 60 años</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Grupos étnicos</td>
+                      <td>Población Indígena</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>Grupos étnicos</td>
+                      <td>Población Afrocolombiana</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>Grupos étnicos</td>
+                      <td>Población Raizal</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>Grupos étnicos</td>
+                      <td>Pueblo Rom</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>Grupos étnicos</td>
+                      <td>Población Mestiza</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>Grupos étnicos</td>
+                      <td>Población Palenquera</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>Género</td>
+                      <td>Masculino</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>12</td>
+                      <td>Género</td>
+                      <td>Femenino</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>13</td>
+                      <td>Población Vulnerable</td>
+                      <td>Desplazados</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>14</td>
+                      <td>Población Vulnerable</td>
+                      <td>Discapacitados</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                      <td>15</td>
+                      <td>Población Vulnerable</td>
+                      <td>Víctimas</td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="float: right"><h5>Total población beneficiada</h5></td>
+                        <td><input type="text" class="form-control"></td>
+
+                    </tr>
+
                 </tbody>
             </table>
+      </div>
+    </div>
+    <!-- footer-body -->
+    <div class="card-footer">
+      Listado de Población.
+    </div>
+  </div>
+
+
+  <!---Actividades--->
+  <div class="card card-default collapsed-card">
+    <div class="card-header">
+      <h3 class="card-title">Actividades</h3>
+      <!---boton-min-max-->
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#actividades" style="float:right">Añadir Más</button>
+            <br><br>
+        <div class="table-responsive">
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>FECHA DE INICIO DEL PROYECTO</th>
+                    <th></th>
+                    <th>FECHA DE REALIZACION DE LAS ACTIVIDADES</th>
+                </tr>
+                <tr>
+                    <th>ACTIVIDADES</th>
+                    <th>FECHA DE INICIO</th>
+                    <th>FECHA DE FINALIZACION</th>
+                </tr>
+            </thead>
+        </table>
+
+      <!----Modals-->
+      <div class="modal fade" id="actividades">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Actividades</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+                <div class="">
+                    <form action="">
+                        <div class="col-md-12">
+                            <label for="">Actividades</label>
+                            <textarea name="nombre_actividad" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="">Fecha de Inicio</label>
+                            <input type="date" class="form-control" name="fecha_inicio">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="">Fecha de Finalización</label>
+                            <input type="date" class="form-control" name="fecha_final">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
     </div>
-</div>
+    <!-- footer-body -->
+    <div class="card-footer">
+     Cronograma de Actividades.
+    </div>
+  </div>
 
-</div>
 
-
+ </div>
 @endsection
+@section('extra-script')
 
-@section('scripts-extra')
-    <script src="{{asset('plugins/sweetalert/sweetalert2.min.js')}}"></script>
-     <script src="{{asset('plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-     <script>
-     $(function () {
-        $('#id_linea').selectpicker({
-            noneSelectedText: 'Selecciona',
-        });
-    });
+{{-- <scriptsrc="asset('js/proyecto.js')"></script>--}}
 
+<!---select-->
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
 
-     </script>
-    <script src="{{asset('js/proyecto.js')}}"></script>
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+
+    })
+  </script>
 
 @endsection
 

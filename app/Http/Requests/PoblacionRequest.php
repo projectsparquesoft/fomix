@@ -13,7 +13,7 @@ class PoblacionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,15 @@ class PoblacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'numero_persona' => 'required|min:3',
-            'fuente_verificacion' => 'required|min:3'
+            'clasificacion_id' => 'required',
+            'detalle' => 'required'
         ];
     }
 
-    public function attribute(){
+    public function attributes(){
         return [
-            'numero_persona' => 'Número de personas',
-            'fuente_verificacion' => 'Fuente de verificación'
+            'clasificacion_id' => 'Clasificación',
+            'detalle' => 'Detalle'
 
         ];
 

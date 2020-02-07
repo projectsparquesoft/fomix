@@ -30,6 +30,24 @@ Route::resource('proyecto', 'proyectoController', ['except' => [
 Route::resource('presupuesto', 'PresupuestoController', ['except' => [
     'destroy', 'show',
 ]]);
+Route::resource('proponente', 'ProponenteController', ['except' => [
+    'destroy', 'show',
+]]);
+Route::resource('indicadores', 'IndicadorController', ['except' => [
+    'destroy', 'show',
+]]);
+Route::resource('lineas', 'Lineacontroller', ['except' => [
+    'destroy', 'show',
+]]);
+Route::resource('tipopoblacion', 'TipoPoblacionController', ['except' => [
+    'destroy', 'show',
+]]);
+Route::resource('poblacion', 'PoblacionController', ['except' => [
+    'destroy', 'show',
+]]);
+Route::resource('documentos', 'DocumentoController', ['except' => [
+    'destroy', 'show',
+]]);
 
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
 

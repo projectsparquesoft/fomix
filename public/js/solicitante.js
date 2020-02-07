@@ -1,6 +1,5 @@
 $(function () {
 
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -16,34 +15,45 @@ $(function () {
         e.preventDefault();
         save();
     });
-//primero
-    pageitem();
-
-    $('#search').click(function (e) {
-        e.preventDefault();
-        let text_search = $('#text_search').val();
-        getSearch(text_search);
-    });
-
 });
 
+/*Mostrar mensaje*/
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
+
+/*mensaje de guardado*/
 const success = (mensaje) => {
+    Toast.fire({
+        type: 'success',
+        title: `${mensaje}`
+      })/*
     return Swal.fire({
         title: 'Exito!',
         text: `${mensaje}`,
         icon: 'success',
         confirmButtonText: 'OK'
     });
+    */
 }
 
-
+/*mensaje de error*/
 const warning = (mensaje) => {
+    Toast.fire({
+        type: 'error',
+        title: `${mensaje}`
+    })
+    /*
     return Swal.fire({
         title: 'Error!',
         text: `${mensaje}`,
         icon: 'error',
         confirmButtonText: 'OK'
     });
+    */
 }
 
 
@@ -90,6 +100,7 @@ const save = () => {
             if (data.success) {
                 success(data.success);
                 $('#form')[0].reset();
+                updateTable();
             } else {
                 warning(data.warning);
             }
@@ -105,6 +116,26 @@ const save = () => {
 
 }
 
+/*recarga-actualizar tbla*/
+const updateTable = () => {
+    let form = $('#form_tabla');
+    $.ajax({
+        data: form.serialize(),
+        url: form.attr('action'),
+        type: form.attr('method'),
+        success: function (data) {
+            if (data.warning) {
+               console.log(data.warning);
+            } else {
+               $('#section_table').html("");
+               $('#section_table').html(data);
+               dataTableInit();
+
+            }
+        }
+    });
+}
+
 const addErrorMessage = (errors) => {
     let messages = "";
     $.each(errors, function (key, value) {
@@ -112,7 +143,6 @@ const addErrorMessage = (errors) => {
         if ($.isPlainObject(value)) {
             $.each(value, function (key, value) {
                 messages = messages + "<li><span class='font-bold text-danger'>" + value + "</span></li><br/>";
-
             });
         }
     });
@@ -121,6 +151,7 @@ const addErrorMessage = (errors) => {
 
 
 const showErrorMessage = (messages) => {
+
     Swal.fire({
         title: "<strong>Error: Datos Incorrectos</strong>!",
         icon: 'error',
@@ -128,62 +159,5 @@ const showErrorMessage = (messages) => {
     });
 }
 
-
-//segundo
-const pageitem = () => {
-    $(document).on('click', '.page-item a', function (event) {
-        event.preventDefault();
-        $('li').removeClass('active');
-        $(this).parent('li').addClass('active');
-        let myurl = $(this).attr('href');
-        let page = myurl.split('page=')[1];
-        getData(page);
-    });
-}
-
-const getData = (page) => {
-    let text_search = $('#text_search').val();
-
-    let datos = { 'opcion': 1, 'text_search': text_search };
-
-    $.ajax({
-        url: '?page=' + page,
-        data: datos,
-        type: "get",
-        datatype: "html"
-    }).done(function (data) {
-        $("#table").empty().html(data);
-        location.hash = page;
-    }).fail(function (jqXHR, ajaxOptions, thrownError) {
-        alert('No response from server');
-    });
-}
-
-const getSearch = (text_search) => {
-    let form = $('#form_search');
-    $.ajax({
-        url: form.attr('action'),
-        data: { 'opcion': 2, 'text_search': text_search },
-        type: form.attr('method')
-    }).done(function (data) {
-        $("#table").empty().html(data);
-        $('#text_search').val("");
-    }).fail(function (jqXHR, ajaxOptions, thrownError) {
-        alert('No response from server');
-    });
-}
-
-const haschange = () => {
-    $(window).on('hashchange', function () {
-        if (window.location.hash) {
-            var page = window.location.hash.replace('#', '');
-            if (page == Number.NaN || page <= 0) {
-                return false;
-            } else {
-                getData(page);
-            }
-        }
-    });
-}
 
 
