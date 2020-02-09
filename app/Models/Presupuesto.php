@@ -8,19 +8,21 @@ class Presupuesto extends Model
 {
     protected $table = 'presupuestos';
 
-    protected $primaryKey = 'id_presupuesto';
-
     protected $fillable = [
-       'proyecto_id', 'rubro', 'recurso_municipio', 'fondo_mixto', 'ministerio_cultura', 'ingreso_propio'
+        'solicitud_id',
+        'rubro',
+        'recurso_municipio',
+        'fondo_mixto',
+        'ministerio_cultura',
+        'ingreso_propio',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
-
-    public function proyecto()
+    public function solicitud()
     {
-        return $this->belongsTo('App\Models\Proyecto', 'proyecto_id');
+        return $this->belongsTo('App\Models\Solicitud');
     }
 }

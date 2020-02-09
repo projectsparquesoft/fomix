@@ -1130,193 +1130,193 @@ class DepartamentoTableSeeder extends Seeder
 
             if ($d->nombre_departamento == 'Amazonas') {
                 foreach ($amazona as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Antioquia') {
                 foreach ($antioquia as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Arauca') {
                 foreach ($arauca as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Atlantico') {
                 foreach ($atlantico as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Bolivar') {
                 foreach ($bolivar as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Boyaca') {
                 foreach ($boyaca as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Caldas') {
                 foreach ($caldas as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Caqueta') {
                 foreach ($caqueta as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Casanare') {
                 foreach ($casanare as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Cauca') {
                 foreach ($cauca as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Cesar') {
                 foreach ($cesar as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Choco') {
                 foreach ($choco as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Cordoba') {
                 foreach ($cordoba as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Cundinamarca') {
                 foreach ($cundinamarca as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Guainia') {
                 foreach ($guainia as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Guaviare') {
                 foreach ($guaviare as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Huila') {
                 foreach ($huila as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'La Guajira') {
                 foreach ($guajira as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Magdalena') {
                 foreach ($magdalena as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Meta') {
                 foreach ($meta as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Nariño') {
                 foreach ($nariño as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Norte Santander') {
                 foreach ($norte_santander as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Putumayo') {
                 foreach ($putumayo as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Quindio') {
                 foreach ($quindio as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Risaralda') {
                 foreach ($risaralda as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'San Andres') {
                 foreach ($san_andres as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Santander') {
                 foreach ($santander as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Sucre') {
                 foreach ($sucre as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Tolima') {
                 foreach ($tolima as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Valle del Cauca') {
                 foreach ($valleDelCauca as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Vaupes') {
                 foreach ($vaupes as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
 
             if ($d->nombre_departamento == 'Vichada') {
                 foreach ($vichada as $municipio) {
-                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id_departamento]);
+                    Municipio::create(['nombre_municipio' => $municipio, 'departamento_id' => $d->id]);
                 }
             }
         }

@@ -10,30 +10,33 @@ class ProcesoTableSeeder extends Seeder
     {
         Proceso::create([
             'nombre_proceso' => 'Aprobado',
+            'status' => 1,
         ]);
 
         Proceso::create([
             'nombre_proceso' => 'Rechazado',
+            'status' => 1,
         ]);
 
         Proceso::create([
             'nombre_proceso' => 'Validado',
+            'status' => 1,
         ]);
 
         Proceso::create([
             'nombre_proceso' => 'Financiado',
+            'status' => 1,
         ]);
-        
+
         Proceso::create([
             'nombre_proceso' => 'En Curso',
+            'status' => 1,
         ]);
 
         Proceso::create([
             'nombre_proceso' => 'Finalizado',
+            'status' => 1,
         ]);
-        
-        
-
 
     }
 }

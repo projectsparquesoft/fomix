@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Proponente extends Model
+class Eje extends Model
 {
-    protected $table = 'proponentes';
+    protected $table = 'ejes';
 
     protected $fillable = [
-        'nombre_proponente',
+        'nombre_eje', 'nombre_programa',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
-    public function solicitantes()
+    public function indicadores()
     {
-        return $this->hasMany('App\Model\Solicitante');
+        return $this->hasMany('App\Models\Indicador');
     }
-
 }

@@ -9,8 +9,6 @@ class Actividad extends Model
 
     protected $table = 'actividades';
 
-    protected $primaryKey = 'id_actividad';
-
     protected $fillable = [
        'proyecto_id', 'nombre_actividad', 'fecha_inicio', 'fecha_final'
     ];
@@ -22,7 +20,7 @@ class Actividad extends Model
 
     public function proyecto()
     {
-        return $this->belongsTo('App\Models\Proyecto', 'proyecto_id');
+        return $this->belongsTo('App\Models\Proyecto');
     }
 
 }

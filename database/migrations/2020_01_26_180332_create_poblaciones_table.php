@@ -10,7 +10,7 @@ class CreatePoblacionesTable extends Migration
     public function up()
     {
         Schema::create('poblaciones', function (Blueprint $table) {
-            $table->bigIncrements('id_poblacion');
+            $table->bigIncrements('id');
 
             $table->bigInteger('clasificacion_id')->unsigned();
 
@@ -18,7 +18,7 @@ class CreatePoblacionesTable extends Migration
             $table->text('detalle');
 
             $table->foreign('clasificacion_id')
-                ->references('id_clasificacion')
+                ->references('id')
                 ->on('clasificaciones')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');

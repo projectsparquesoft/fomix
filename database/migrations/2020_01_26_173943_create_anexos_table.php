@@ -10,7 +10,7 @@ class CreateAnexosTable extends Migration
     public function up()
     {
         Schema::create('anexos', function (Blueprint $table) {
-            $table->bigIncrements('id_anexo');
+            $table->bigIncrements('id');
 
             $table->bigInteger('documento_id')->unsigned();
             $table->bigInteger('solicitud_id')->unsigned();
@@ -19,16 +19,17 @@ class CreateAnexosTable extends Migration
             $table->tinyInteger('status')->comment('documentos validos');
             
             $table->foreign('solicitud_id')
-                ->references('id_solicitud')
+                ->references('id')
                 ->on('solicitudes')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 
             $table->foreign('documento_id')
-                ->references('id_documento')
+                ->references('id')
                 ->on('documentos')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
+                
 
             $table->timestamps();
         });

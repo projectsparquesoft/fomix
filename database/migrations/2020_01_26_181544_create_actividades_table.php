@@ -10,7 +10,7 @@ class CreateActividadesTable extends Migration
     public function up()
     {
         Schema::create('actividades', function (Blueprint $table) {
-            $table->bigIncrements('id_actividad');
+            $table->bigIncrements('id');
 
             $table->bigInteger('proyecto_id')->unsigned();
 
@@ -19,7 +19,7 @@ class CreateActividadesTable extends Migration
             $table->date('fecha_final');
 
             $table->foreign('proyecto_id')
-                ->references('id_proyecto')
+                ->references('id')
                 ->on('proyectos')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');

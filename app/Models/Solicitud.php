@@ -3,38 +3,42 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Solicitud extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'solicitudes';
 
-    protected $primaryKey = 'id_solicitud';
-
     protected $fillable = [
-        'categoria_id', 'solicitante_id', 'archivo'
+        'categoria_id', 'solicitante_id', 'archivo', 'valor', 'status', 'descripcion'
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function proyecto()
     {
-        return $this->hasOne('App\Models\Proyecto', 'solicitud_id');
+        return $this->hasOne('App\Models\Proyecto');
     }
 
     public function solicitante()
     {
-        return $this->belongsTo('App\Models\Solicitante', 'solicitante_id');
+        return $this->belongsTo('App\Models\Solicitante');
     }
+
     public function categoria()
     {
-        return $this->belongsTo('App\Models\Categoria', 'categoria_id');
+        return $this->belongsTo('App\Models\Categoria');
     }
 
     public function historiales()
     {
-        return $this->hasMany('App\Models\Historial', 'solicitud_id');
+        return $this->hasMany('App\Models\Historial');
     }
 
     public function anexos()
@@ -42,21 +46,38 @@ class Solicitud extends Model
         return $this->hasMany('App\Models\Anexo', 'solicitud_id');
     }
 
+    public function presupuestos()
+    {
+        return $this->hasMany('App\Models\Presupuesto');
+    }
+
     public function radicados()
     {
-        return $this->belongsToMany('App\Models\Radicado', 'radicado_solicitud', 'solicitud_id', 'radicado_id');
+        return $this->belongsToMany('App\Models\Radicado');
+    }
+
+    public function indicadores()
+    {
+        return $this->belongsToMany('App\Models\Indicador');
+    }
+
+    public function poblaciones()
+    {
+        return $this->belongsToMany('App\Models\Poblacion');
     }
 
     public function documentos()
     {
-        return $this->belongsToMany('App\Models\Documento', 'anexos', 'solicitud_id', 'documento_id');
+        return $this->belongsToMany('App\Models\Documento', 'anexos');
     }
+
     public function estados()
     {
-        return $this->belongsToMany('App\Models\Estado', 'historiales', 'solicitud_id', 'estado_id');
+        return $this->belongsToMany('App\Models\Estado', 'historiales');
     }
+
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'historiales', 'solicitud_id', 'user_id');
+        return $this->belongsToMany('App\Models\User', 'historiales');
     }
 }

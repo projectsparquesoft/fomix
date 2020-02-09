@@ -8,8 +8,6 @@ class Departamento extends Model
 {
     protected $table = 'departamentos';
 
-    protected $primaryKey = 'id_departamento';
-
     protected $fillable = [
         'nombre_departamento',
     ];
@@ -20,6 +18,6 @@ class Departamento extends Model
 
     public function municipios()
     {
-        return $this->hasMany('App\Models\Municipio', 'departamento_id');
+        return $this->hasMany('App\Models\Municipio');
     }
 }

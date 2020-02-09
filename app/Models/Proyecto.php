@@ -8,10 +8,8 @@ class Proyecto extends Model
 {
     protected $table = 'proyectos';
 
-    protected $primaryKey = 'id_proyecto';
-
     protected $fillable = [
-       'solicitud_id', 'descripcion', 'antecedente', 'justificacion', 'metodologia', 'objetivo_general', 'objetivo_especifico', 'metas'
+        'solicitud_id', 'descripcion', 'titulo', 'fecha_inicio', 'fecha_final',
     ];
 
     protected $hidden = [
@@ -20,26 +18,21 @@ class Proyecto extends Model
 
     public function solicitud()
     {
-        return $this->belongsTo('App\Models\Solicitud', 'solicitud_id');
+        return $this->belongsTo('App\Models\Solicitud');
     }
+
     public function lineas()
     {
-        return $this->belongsToMany('App\Models\Lineas', 'linea_proyecto', 'proyecto_id', 'linea_id');
+        return $this->belongsToMany('App\Models\Lineas');
     }
+
     public function procesos()
     {
-        return $this->belongsToMany('App\Models\Proceso', 'proceso_proyecto', 'proyecto_id', 'proceso_id');
+        return $this->belongsToMany('App\Models\Proceso');
     }
-    public function poblaciones()
-    {
-        return $this->belongsToMany('App\Models\Poblacion', 'poblacion_proyecto', 'proyecto_id', 'poblacion_id');
-    }
-    public function presupuestos()
-    {
-        return $this->hasMany('App\Models\Presupuesto', 'proyecto_id');
-    }
+
     public function actividades()
     {
-        return $this->hasMany('App\Models\Actividad', 'proyecto_id');
+        return $this->hasMany('App\Models\Actividad');
     }
 }

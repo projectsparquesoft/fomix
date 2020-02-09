@@ -20,17 +20,18 @@ class CreateDependenciaEmpleadoTable extends Migration
             $table->text('motivo')->nullable()->comment('motivo de cambio');
 
             $table->foreign('empleado_id')
-                ->references('id_empleado')
+                ->references('id')
                 ->on('empleados')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 
             $table->foreign('dependencia_id')
-                ->references('id_dependencia')
+                ->references('id')
                 ->on('dependencias')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

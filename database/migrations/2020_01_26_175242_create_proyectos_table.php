@@ -10,20 +10,17 @@ class CreateProyectosTable extends Migration
     public function up()
     {
         Schema::create('proyectos', function (Blueprint $table) {
-            $table->bigIncrements('id_proyecto');
+            $table->bigIncrements('id');
 
             $table->bigInteger('solicitud_id')->unsigned();
 
+            $table->string('titulo', 255);
+            $table->date('fecha_inicio');
+            $table->date('fecha_final');
             $table->text('descripcion');
-            $table->text('antecedente');
-            $table->text('justificacion');
-            $table->text('metodologia');
-            $table->text('objetivo_general');
-            $table->text('objetivo_especifico');
-            $table->text('metas');
 
             $table->foreign('solicitud_id')
-                ->references('id_solicitud')
+                ->references('id')
                 ->on('solicitudes')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');

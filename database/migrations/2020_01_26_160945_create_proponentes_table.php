@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateProponentesTable extends Migration
 {
-    
+
     public function up()
     {
         Schema::create('proponentes', function (Blueprint $table) {
-            $table->bigIncrements('id_proponente');
+            $table->bigIncrements('id');
 
             $table->string('nombre_proponente', 255);
 
@@ -18,7 +18,6 @@ class CreateProponentesTable extends Migration
         });
     }
 
-    
     public function down()
     {
         Schema::dropIfExists('proponentes');

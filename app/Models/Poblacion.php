@@ -8,8 +8,6 @@ class Poblacion extends Model
 {
     protected $table = 'poblaciones';
 
-    protected $primaryKey = 'id_poblacion';
-
     protected $fillable = [
         'item', 'clasificacion_id', 'detalle',
     ];
@@ -18,13 +16,13 @@ class Poblacion extends Model
         'created_at', 'updated_at',
     ];
 
-    public function proyectos()
+    public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Proyecto', 'poblacion_proyecto', 'poblacion_id','proyecto_id');
+        return $this->belongsToMany('App\Models\Solicitud', 'poblacion_solicitud');
     }
 
     public function clasificacion()
     {
-        return $this->belongsTo('App\Models\Clasificacion', 'clasificacion_id');
+        return $this->belongsTo('App\Models\Clasificacion');
     }
 }

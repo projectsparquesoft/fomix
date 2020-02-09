@@ -4,24 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstadosTable extends Migration
+class CreateEjesTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('estados', function (Blueprint $table) {
+        Schema::create('ejes', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->string('nombre_estado', 150);
-
-            $table->integer('status');
-
+            $table->string('nombre_eje', 255);
+            $table->string('nombre_programa', 255);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('estados');
+        Schema::dropIfExists('ejes');
     }
 }

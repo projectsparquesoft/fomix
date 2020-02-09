@@ -9,12 +9,12 @@ class CreateHistorialesTable extends Migration
     public function up()
     {
         Schema::create('historiales', function (Blueprint $table) {
-            $table->bigIncrements('id_historial');
+            $table->bigIncrements('id');
 
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('solicitud_id')->unsigned();
             $table->bigInteger('estado_id')->unsigned();
-
+            $table->tinyInteger('status')->comment('Estado actual que lleva la solicitud');
             $table->text('descripcion')->nullable()->comment("motivo de cambio de estado");
 
             $table->foreign('user_id')
@@ -24,13 +24,13 @@ class CreateHistorialesTable extends Migration
                 ->onUpdate('CASCADE');
 
             $table->foreign('solicitud_id')
-                ->references('id_solicitud')
+                ->references('id')
                 ->on('solicitudes')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 
             $table->foreign('estado_id')
-                ->references('id_estado')
+                ->references('id')
                 ->on('estados')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');

@@ -17,12 +17,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             
             $table->foreign('empleado_id')
-                ->references('id_empleado')
+                ->references('id')
                 ->on('empleados')
                 ->onDelete('SET NULL')
                 ->onUpdate('CASCADE');
 
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

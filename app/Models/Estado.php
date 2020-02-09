@@ -8,10 +8,8 @@ class Estado extends Model
 {
     protected $table = 'estados';
 
-    protected $primaryKey = 'id_estado';
-
     protected $fillable = [
-       'nombre_estado'
+        'nombre_estado', 'status'
     ];
 
     protected $hidden = [
@@ -20,6 +18,6 @@ class Estado extends Model
 
     public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Solicitud', 'historiales',  'estado_id', 'solicitud_id');
+        return $this->belongsToMany('App\Models\Solicitud', 'historiales');
     }
 }

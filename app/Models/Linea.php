@@ -3,28 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Linea extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'lineas';
 
-    protected $primaryKey = 'id_linea';
-
     protected $fillable = [
-       'nombre_linea', 'descripcion','orden_linea', 'status'
+        'nombre_linea', 'descripcion', 'orden_linea', 'status',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function proyectos()
     {
-        return $this->belongsToMany('App\Models\Proyecto', 'linea_proyecto', 'linea_id','proyecto_id');
-    }
-    public function indicadores()
-    {
-        return $this->belongsToMany('App\Models\Indicador', 'indicador_linea', 'linea_id','indicador_id');
+        return $this->belongsToMany('App\Models\Proyecto', 'linea_proyecto');
     }
 
 }

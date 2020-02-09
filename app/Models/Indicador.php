@@ -8,19 +8,27 @@ class Indicador extends Model
 {
     protected $table = 'indicadores';
 
-    protected $primaryKey = 'id_indicador';
-
     protected $fillable = [
-        'nombre_indicador', 'orden_indicador', 'status',
+        'eje_id', 'nombre_indicador', 'meta', 'status',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
-    public function lineas()
+    public function eje()
     {
-        return $this->belongsToMany('App\Models\Linea', 'indicador_linea', 'indicador_id', 'linea_id');
+        return $this->belongsTo('App\Models\Eje');
+    }
+
+    public function periodos()
+    {
+        return $this->hasMany('App\Models\Periodo');
+    }
+
+    public function solicitudes()
+    {
+        return $this->belonsToMany('App\Models\Solicitud')->withTimestamps();
     }
 
 }

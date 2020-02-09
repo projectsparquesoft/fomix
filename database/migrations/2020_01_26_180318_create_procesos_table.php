@@ -10,9 +10,10 @@ class CreateProcesosTable extends Migration
     public function up()
     {
         Schema::create('procesos', function (Blueprint $table) {
-            $table->bigIncrements('id_proceso');
+            $table->bigIncrements('id');
 
             $table->string('nombre_proceso', 150);
+            $table->tinyInteger('status');
 
             $table->timestamps();
         });

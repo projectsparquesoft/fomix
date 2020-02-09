@@ -10,7 +10,7 @@ class CreateProcesoProyectoTable extends Migration
     public function up()
     {
         Schema::create('proceso_proyecto', function (Blueprint $table) {
-            $table->bigIncrements('id_proceso_proyecto');
+            $table->bigIncrements('id');
 
             $table->bigInteger('proceso_id')->unsigned();
             $table->bigInteger('proyecto_id')->unsigned();
@@ -19,13 +19,13 @@ class CreateProcesoProyectoTable extends Migration
             $table->text('descripcion')->comment('Descripcion del estado actual del proyecto');
 
             $table->foreign('proyecto_id')
-                ->references('id_proyecto')
+                ->references('id')
                 ->on('proyectos')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 
             $table->foreign('proceso_id')
-                ->references('id_proceso')
+                ->references('id')
                 ->on('procesos')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
