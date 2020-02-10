@@ -48,7 +48,7 @@ class PoblacionController extends Controller
      */
     public function store(PoblacionRequest $request)
     {
-        $poblaciones = new  poblacion();
+        $poblaciones = new  Poblacion();
         $poblaciones->clasificacion_id  = $request->clasificacion_id;
         $poblaciones->detalle = $request->detalle;
         $poblaciones->item=1;
@@ -87,9 +87,13 @@ class PoblacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PoblacionRequest $request, $id)
     {
-        //
+
+        if (request()->ajax()) {
+            poblacion::find($request->id_poblacion)->update($request->all());
+            return response()->json(['success' => 'POBLACION ACTUALIZADA CORRECTAMENTE']);
+        }
     }
 
     /**

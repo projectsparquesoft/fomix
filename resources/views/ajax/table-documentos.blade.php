@@ -13,8 +13,8 @@
             <td>{{$documento->categoria}}</td>
 
             <td>
-                <a href="" class="btn btn-info btn-md">  <i class="fas fa-pencil-alt"></i>Editar</a>
-                <a href="" class="btn btn-primary btn-md"> <i class="fas fa-folder"></i>Detalle</a>
+            <a data-toggle="modal" data-target="#editModals"  data-id="{{$documento->id_documento}}" data-tipo_documento="{{$documento->tipo_documento}}" data-categoria="{{$documento->categoria}}" class="btn btn-warning btn-md">
+                <i class="fas fa-pencil-alt"></i>Editar</a>
             </td>
             </tr>
         @endforeach

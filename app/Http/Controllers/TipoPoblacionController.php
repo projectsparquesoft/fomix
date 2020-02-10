@@ -85,7 +85,10 @@ class TipoPoblacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (request()->ajax()) {
+            Clasificacion::find($request->id_clasificacion)->update($request->all());
+            return response()->json(['success' => 'POBLACION ACTUALIZADA CORRECTAMENTE']);
+        }
     }
 
     /**

@@ -45,8 +45,9 @@ Route::resource('tipopoblacion', 'TipoPoblacionController', ['except' => [
 Route::resource('poblacion', 'PoblacionController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('documentos', 'DocumentoController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');

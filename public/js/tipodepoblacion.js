@@ -12,6 +12,16 @@ $(function(){
         //console.log('entre');
         save();
     });
+
+    // btn actualizar form edit 1
+    $('#btn_update').click(function (e) {
+        e.preventDefault();
+        update();
+    });
+    //funtion mostrar campos form edit 2
+    $('#editModals').on('show.bs.modal', function (e) {
+        showEdit(e, $(this));
+    });
 });
 
 const save = () => {
@@ -40,6 +50,40 @@ const save = () => {
     });
 
 }
+
+//actualizar-editform 3
+const update = () => {
+    let form = $('#form_update');
+    $.ajax({
+        data: form.serialize(),
+        url: form.attr('action'),
+        type: form.attr('method'),
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.success) {
+
+                success(data.success);
+                $('#form_update')[0].reset();
+                $('#editModals').modal('hide');
+                updateTable();
+            } else {
+                warning(data.warning);
+
+            }
+
+        },
+        error: function (data) {
+
+            if (data.status === 422) {
+                let errors = $.parseJSON(data.responseText);
+                addErrorMessage(errors);
+            }
+        }
+    });
+
+}
+
 
 /*Mostrar mensaje*/
 const Toast = Swal.mixin({
@@ -107,4 +151,18 @@ const updateTable = () => {
             }
         }
     });
+}
+
+/* Mostar informacion  en los campos del modal*/
+const showEdit = (e, context) => {
+    let button = $(e.relatedTarget);
+    let id = button.data('id');
+    let tipo_poblacion = button.data('tipo_poblacion');
+
+    let modal = context;
+    modal.find('.modal-body #id_clasificacion').val(id);
+    modal.find('.modal-body #tipo_poblacion').val(tipo_poblacion);
+
+
+
 }
