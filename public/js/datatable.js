@@ -1,11 +1,12 @@
 $(function () {
-   dataTableInit();
+    ajaxHeader();
+    dataTableInit();
 })
 
 const dataTableInit = () => {
     $('#tabla').DataTable({
         responsive: true,
-        lengthMenu: [[5,40,60,-1],[5,40,60,"Todo"]],
+        lengthMenu: [[10, 40, 60, -1], [10, 40, 60, "Todo"]],
         language: {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -31,4 +32,13 @@ const dataTableInit = () => {
             }
         }
     });
+}
+
+const ajaxHeader = () => {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
 }

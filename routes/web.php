@@ -2,7 +2,7 @@
 
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('auth.login2');
 });
 
 Auth::routes();
@@ -45,8 +45,9 @@ Route::resource('tipopoblacion', 'TipoPoblacionController', ['except' => [
 Route::resource('poblacion', 'PoblacionController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('documentos', 'DocumentoController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
