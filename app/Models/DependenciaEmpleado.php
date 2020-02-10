@@ -8,10 +8,8 @@ class DependenciaEmpleado extends Model
 {
     protected $table = 'dependencia_empleado';
 
-    protected $primaryKey = 'id_dependencia_empleado';
-
     protected $fillable = [
-       'empleado_id', 'dependencia_id', 'fecha_salida', 'status', 'motivo'
+        'empleado_id', 'dependencia_id', 'fecha_salida', 'status', 'motivo',
     ];
 
     protected $hidden = [
@@ -20,12 +18,12 @@ class DependenciaEmpleado extends Model
 
     public function empleado()
     {
-        return $this->belongsTo('App\Models\Empleado',  'empleado_id');
+        return $this->belongsTo('App\Models\Empleado');
     }
 
     public function dependencia()
     {
-        return $this->belongsTo('App\Models\Dependencia',  'dependencia_id');
+        return $this->belongsTo('App\Models\Dependencia');
     }
 
 }

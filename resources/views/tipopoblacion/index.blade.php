@@ -25,20 +25,25 @@
 
   <div class="card card" style="background:whitesmoke">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#proponentes">Crear Tipo de población <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Tipo de población <i class="fas fa-user-plus"></i></button>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
       </div>
     </div>
     <!-- /tabla -->
-  @include('ajax.table-tipodepoblacion')
+      <!-- /tabla -->
+      <div class="card-body table-responsive" id="id_table">
+
+        @include('ajax.table-tipodepoblacion')
+    </div>
+
     <!-- /fin tabla-->
     <div class="card-footer">
       Lista de los tipos de proponentes.
     </div>
   </div>
 </div>
-<form id="form_hidden_tipopoblacion" style="display:none" action="{{route('tipopoblacion.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
+<form id="form_hidden" style="display:none" action="{{route('tipopoblacion.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
 @include('modals.create-tipopoblacion')
 @include('modals.edit-tipopoblacion')
 @endsection

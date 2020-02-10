@@ -1,5 +1,5 @@
   <!----Modals edit-->
-  <div class="modal fade" id="editModals">
+  <div class="modal fade" id="modalEdit">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">
@@ -9,10 +9,11 @@
           </button>
         </div>
         <div class="modal-body"style="background:whitesmoke">
-            <form id="form_update" action="{{route('tipopoblacion.update', 'tipopoblacion')}}" method="POST">
+            <form id="form_edit" action="{{route('tipopoblacion.update', 'tipopoblacion')}}" method="POST">
                 @csrf
                 @method('PATCH')
-                <input type="hidden" name="id_clasificacion" id="id_clasificacion">
+                <input type="hidden" name="id_row" id="id_row">
+
                 <div class="form-row">
                     <div class="col-md-12">
                         <label for="">Nombre del Tipo de población:</label>
@@ -23,7 +24,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-          <button id="btn_update"  type="button" class="btn btn-dark">Actualizar <i class="fas fa-save"></i></button>
+          <button id="actualizar"  type="button" class="btn btn-dark">Actualizar <i class="fas fa-save"></i></button>
         </div>
       </div>
     </div>

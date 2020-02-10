@@ -10,7 +10,7 @@ class CreateDependenciasTable extends Migration
     public function up()
     {
         Schema::create('dependencias', function (Blueprint $table) {
-            $table->bigIncrements('id_dependencia');
+            $table->bigIncrements('id');
 
             $table->string('nombre_dependencia', 150);
             $table->text('descripcion')->comment('descripcion minima de las funciones de esta dependencia');

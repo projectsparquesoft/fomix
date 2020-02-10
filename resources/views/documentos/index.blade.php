@@ -10,29 +10,23 @@
 <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @stop
 
-@section('link')
-
-<div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Documentos</h1>
-  </div>
-</div>
-
-@endsection
 
 @section('content')
 <div class="container-fluid">
 
   <div class="card card" style="background:whitesmoke">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#documentos">Crear Documentos <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalCreate">Crear Documentos <i class="fas fa-user-plus"></i></button>
+            <!----Modals-->
+
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
       </div>
     </div>
     <!-- /tabla -->
-    <div class="card-body table-responsive" id="id_table_documentos">
-       @include('ajax.table-documentos')
+    <div class="card-body table-responsive" id="id_table">
+
+        @include('ajax.table-documentos')
     </div>
     <!-- /fin tabla-->
     <div class="card-footer">
@@ -40,12 +34,9 @@
     </div>
   </div>
 </div>
-
-<form id="form_hidden_documentos" style="display:none" action="{{route('documentos.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
-
+<form id="form_hidden" style="display:none" action="{{route('documentos.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
 @include('modals.create-documento')
 @include('modals.edit-documento')
-
 @endsection
 
 @section('extra-script')

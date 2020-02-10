@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Documento;
-use App\Models\categoria;
 use App\Http\Requests\DocumentoRequest;
+use App\Models\Documento;
 use Illuminate\Http\Request;
 
 class DocumentoController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -30,7 +24,6 @@ class DocumentoController extends Controller
         return view('documentos.index', compact('documentos'));
     }
 
-
     public function store(DocumentoRequest $request)
     {
         if (request()->ajax()) {
@@ -39,12 +32,12 @@ class DocumentoController extends Controller
         }
     }
 
-
     public function update(DocumentoRequest $request, $id)
     {
         if (request()->ajax()) {
-            Documento::find($request->id_documento)->update($request->all());
+            Documento::findOrFail($request->id_row)->update($request->all());
             return response()->json(['success' => 'DOCUMENTO ACTUALIZADO CORRECTAMENTE']);
+
         }
     }
 

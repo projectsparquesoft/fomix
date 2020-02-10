@@ -44,17 +44,12 @@ class DocumentoTableSeeder extends Seeder
          ]);
 
          Documento::create([
-            'tipo_documento' => 'Certificado antecedentes Disciplinarios (Procuraduria) de la organización y/o entidad',
+            'tipo_documento' => 'Certificado antecedentes Disciplinarios (Procuraduria) de la organización y/o entidad.',
             'categoria' => 1,
          ]);
 
          Documento::create([
-            'tipo_documento' => 'Fotocopia RUT actualizado.',
-            'categoria' => 1,
-         ]);
-
-         Documento::create([
-            'tipo_documento' => 'Certificado del Revisor Fistal.',
+            'tipo_documento' => 'Certificado del Revisor Fiscal.',
             'categoria' => 1,
          ]);
 
@@ -85,7 +80,7 @@ class DocumentoTableSeeder extends Seeder
 
          Documento::create([
             'tipo_documento' => 'Fotocopia del RUT actualizado.',
-            'categoria' => 3,
+            'categoria' => 4,
          ]);
 
          Documento::create([

@@ -10,7 +10,7 @@ class CreateLineaProyectoTable extends Migration
     public function up()
     {
         Schema::create('linea_proyecto', function (Blueprint $table) {
-            $table->bigIncrements('id_linea_proyecto');
+            $table->bigIncrements('id');
 
             $table->bigInteger('proyecto_id')->unsigned();
             $table->bigInteger('linea_id')->unsigned();
@@ -18,13 +18,13 @@ class CreateLineaProyectoTable extends Migration
             $table->tinyInteger('status')->comment('Vigente/No Vigente');
 
             $table->foreign('proyecto_id')
-                ->references('id_proyecto')
+                ->references('id')
                 ->on('proyectos')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 
             $table->foreign('linea_id')
-                ->references('id_linea')
+                ->references('id')
                 ->on('lineas')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');

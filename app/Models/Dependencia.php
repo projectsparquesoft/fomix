@@ -8,22 +8,19 @@ class Dependencia extends Model
 {
     protected $table = 'dependencias';
 
-    protected $primaryKey = 'id_dependencia';
-
     protected $fillable = [
-       'nombre_dependencia', 'descripcion'
+        'nombre_dependencia', 'descripcion',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
-
     public function empleados()
     {
-        return $this->belongsToMany('App\Models\Empleado', 'dependencia_empleado', 'dependencia_id', 'empleado_id');
+        return $this->belongsToMany('App\Models\Empleado');
     }
-    
+
     public function scopeSearch($query, $search)
     {
         return $query->where('nombre_dependencia', 'like', "%$search%")

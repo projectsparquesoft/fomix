@@ -3,20 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Empleado extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'empleados';
 
-    protected $primaryKey = 'id_empleado';
-
     protected $fillable = [
-        'nid', 'nombre', 'apellido', 'email', 'celular', 'is_jefe'
+        'nid', 'nombre', 'apellido', 'email', 'celular', 'is_jefe',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function user()
     {
@@ -25,17 +28,7 @@ class Empleado extends Model
 
     public function dependencias()
     {
-        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado', 'empleado_id', 'dependencia_id');
-    }
-
-    public function scopeSearch($query, $search)
-    {
-        return $query->where('nid', 'like', "%$search%")
-            ->orWhere('nombre', 'like', "%$search%")
-            ->orWhere('apellido', 'like', "%$search%")
-            ->orWhere('email', 'like', "%$search%")
-            ->orWhere('celular', 'like', "%$search%")
-            ->orWhere('is_jefe', 'like', "%$search%");
+        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado')->withTimestamps();
     }
 
 }

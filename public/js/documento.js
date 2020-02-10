@@ -1,68 +1,21 @@
 $(function () {
 
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('#guardarDoc').click(function (e) {
+    $('#guardar').click(function (e) {
         e.preventDefault();
-        //console.log('entre');
         save();
     });
 
-    // btn actualizar form
-    $('#btn_update').click(function (e) {
+    $('#actualizar').click(function (e) {
         e.preventDefault();
         update();
     });
 
-    $('#editModals').on('show.bs.modal', function (e) {
-        showEdit(e, $(this));
-    });
-
-
+    showEdit();
 });
-
-
-//actualizar-editform
-const update = () => {
-    let form = $('#form_update');
-    $.ajax({
-        data: form.serialize(),
-        url: form.attr('action'),
-        type: form.attr('method'),
-        dataType: 'json',
-        success: function (data) {
-
-            if (data.success) {
-
-                success(data.success);
-                $('#form_update')[0].reset();
-                $('#editModals').modal('hide');
-                updateTable();
-            } else {
-                warning(data.warning);
-
-            }
-
-        },
-        error: function (data) {
-
-            if (data.status === 422) {
-                let errors = $.parseJSON(data.responseText);
-                addErrorMessage(errors);
-            }
-        }
-    });
-
-}
 
 //guardar en el form
 const save = () => {
-    let form = $('#form_documentos');
+    let form = $('#form_create');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
@@ -73,7 +26,7 @@ const save = () => {
             if (data.success) {
 
                 success(data.success);
-                $('#form_documentos')[0].reset();
+                $('#form_create')[0].reset();
                 updateTable();
             } else {
                 warning(data.warning);
@@ -92,6 +45,35 @@ const save = () => {
 
 }
 
+//actualizar-editform
+const update = () => {
+    let form = $('#form_edit');
+    $.ajax({
+        data: form.serialize(),
+        url: form.attr('action'),
+        type: form.attr('method'),
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.success) {
+                success(data.success);
+                $('#modalEdit').modal('hide');
+                updateTable();
+            } else {
+                warning(data.warning);
+            }
+
+        },
+        error: function (data) {
+
+            if (data.status === 422) {
+                let errors = $.parseJSON(data.responseText);
+                addErrorMessage(errors);
+            }
+        }
+    });
+
+}
 
 /*Mostrar mensaje*/
 const Toast = Swal.mixin({
@@ -141,36 +123,37 @@ const showErrorMessage = (messages) => {
     });
 }
 
-
 /*recarga-actualizar tbla*/
 const updateTable = () => {
 
-    let form = $('#form_hidden_documentos');
+    let form = $('#form_hidden');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
         type: form.attr('method'),
         success: function (data) {
             if (data.warning) {
-
+                warning(data.warning);
             } else {
-                $('#id_table_documentos').html("");
-                $('#id_table_documentos').html(data);
+                $('#id_table').html("");
+                $('#id_table').html(data);
                 dataTableInit();
             }
         }
     });
 }
 
-/* Mostar informacion al modal*/
-const showEdit = (e, context) => {
-    let button = $(e.relatedTarget);
-    let id = button.data('id');
-    let tipo_documento = button.data('tipo_documento');
-    let categoria = button.data('categoria');
-    let modal = context;
+const showEdit = () => {
+    $('#modalEdit').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget)
+        let id = button.data('id');
+        let nombre = button.data('nombre');
+        let categoria = button.data('categoria');
+        let modal = $(this);
 
-    modal.find('.modal-body #id_documento').val(id);
-    modal.find('.modal-body #tipo_documento').val(tipo_documento);
-    modal.find('.modal-body #categoria').val(categoria);
+        modal.find('.modal-body #id_row').val(id);
+        modal.find('.modal-body #tipo_documento').val(nombre);
+        modal.find('.modal-body #categoria').val(categoria);
+
+    });
 }

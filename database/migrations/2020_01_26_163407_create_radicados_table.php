@@ -10,10 +10,11 @@ class CreateRadicadosTable extends Migration
     public function up()
     {
         Schema::create('radicados', function (Blueprint $table) {
-            $table->bigIncrements('id_radicado');
+            $table->bigIncrements('id');
 
             $table->bigInteger('codigo_radicado')->unsigned()->unique()->comment('radicado creado a partir del codigo + fecha de creacion');
             
+            $table->softDeletes();
             $table->timestamps();
         });
     }

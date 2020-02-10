@@ -3,24 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Documento extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'documentos';
 
-    protected $primaryKey = 'id_documento';
-
     protected $fillable = [
-       'tipo_documento', 'categoria'
+        'tipo_documento', 'categoria',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
+    protected $dates = ['deleted_at'];
 
     public function solicitudes()
     {
-        return $this->belongsToMany('App\Models\Solicitud', 'anexos',  'documento_id', 'solicitud_id');
+        return $this->belongsToMany('App\Models\Solicitud', 'anexos');
     }
 }

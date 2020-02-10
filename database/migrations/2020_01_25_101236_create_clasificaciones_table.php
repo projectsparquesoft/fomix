@@ -10,7 +10,7 @@ class CreateClasificacionesTable extends Migration
     public function up()
     {
         Schema::create('clasificaciones', function (Blueprint $table) {
-            $table->bigIncrements('id_clasificacion');
+            $table->bigIncrements('id');
 
             $table->string('tipo_poblacion');
 

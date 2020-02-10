@@ -10,9 +10,9 @@ class CreatePresupuestosTable extends Migration
     public function up()
     {
         Schema::create('presupuestos', function (Blueprint $table) {
-            $table->bigIncrements('id_presupuesto');
+            $table->bigIncrements('id');
 
-            $table->bigInteger('proyecto_id')->unsigned();
+            $table->bigInteger('solicitud_id')->unsigned();
 
             $table->integer('rubro');
             $table->integer('recurso_municipio');
@@ -20,9 +20,9 @@ class CreatePresupuestosTable extends Migration
             $table->integer('ministerio_cultura');
             $table->integer('ingreso_propio');
 
-            $table->foreign('proyecto_id')
-                ->references('id_proyecto')
-                ->on('proyectos')
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicitudes')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 

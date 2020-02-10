@@ -8,8 +8,6 @@ class Municipio extends Model
 {
     protected $table = 'municipios';
 
-    protected $primaryKey = 'id_municipio';
-
     protected $fillable = [
         'departamento_id',
         'nombre_municipio',
@@ -19,11 +17,12 @@ class Municipio extends Model
 
     public function departamento()
     {
-        return $this->belongsTo('App\Models\Departamento', 'departamento_id');
+        return $this->belongsTo('App\Models\Departamento');
     }
+
     public function solicitantes()
     {
-        return $this->hasMany('App\Models\Solicitante', 'municipio_id');
+        return $this->hasMany('App\Models\Solicitante');
     }
 
 }

@@ -1,22 +1,43 @@
-<table id="tabla" class="table table-bordered table-hover text-nowrap">
+<table id="tabla" class="table table-hover table-sm">
     <thead class="thead-right">
         <tr>
             <th>Item</th>
             <th>Clasificacion</th>
             <th>Detalle</th>
-            <th>Acciones</th>
+            <th class="text-center">Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($poblaciones as $poblacion)
             <tr>
-            <td>{{$poblacion->item}}</td>
-            <td>{{$poblacion->clasificacion_id}}</td>
-            <td>{{$poblacion->detalle}}</td>
+                <td>{{$loop->iteration}}</td>
             <td>
-                <a data-toggle="modal" data-target="#editModals"  data-id="{{$poblacion->id_poblacion}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}" class="btn btn-warning btn-md">
+                @if($poblacion->clasificacion_id == 1)
+                    <span class="badge bg-gradient-primary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                @endif
+
+                @if($poblacion->clasificacion_id == 2)
+                    <span class="badge bg-warning">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                @endif
+
+                @if($poblacion->clasificacion_id == 3)
+                <span class="badge bg-primary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                @endif
+
+                @if($poblacion->clasificacion_id == 4)
+                <span class="badge bg-dark">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                @endif
+
+                @if($poblacion->clasificacion_id > 4)
+                    <span class="badge bg-danger">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                 @endif
+
+            </td>
+            <td>{{$poblacion->detalle}}</td>
+            <td class="text-center">
+                <a data-toggle="modal" data-target="#modalEdit"  data-id="{{$poblacion->id}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}" class="btn btn-warning btn-sm">
                 <i class="fas fa-pencil-alt"></i>Editar</a>
-                <a href="" class="btn btn-dark btn-md disabled color-palette"> <i class="fas fa-folder"></i>Detalle</a>
+                <a href="" class="btn btn-dark btn-sm disabled color-palette"> <i class="fas fa-folder"></i>Detalle</a>
             </td>
             </tr>
         @endforeach

@@ -25,13 +25,13 @@
 
   <div class="card card" style="background:whitesmoke">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#poblacion">Crear Población <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Población <i class="fas fa-user-plus"></i></button>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
       </div>
     </div>
     <!-- tabla -->
-    <div class="card-body table-responsive" id="id_table_poblacion">
+    <div class="card-body table-responsive" id="id_table">
         @include('ajax.table-poblacion')
     </div>
     <!-- /fin tabla-->
@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<form id="form_hidden_poblacion" style="display:none" action="{{route('poblacion.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
+<form id="form_hidden" style="display:none" action="{{route('poblacion.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
 @include('modals.create-poblacion')
 @include('modals.edit-poblacion')
 @endsection

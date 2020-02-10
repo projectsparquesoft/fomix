@@ -25,25 +25,29 @@
 
   <div class="card card" style="background:whitesmoke">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#proponentes">Crear Líneas <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Líneas <i class="fas fa-user-plus"></i></button>
             <!----Modals-->
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
       </div>
     </div>
     <!-- /tabla -->
-   @include('ajax.table-lineas')
+    <div class="card-body table-responsive" id="id_table">
+        @include('ajax.table-lineas')
+    </div>
     <!-- /fin tabla-->
     <div class="card-footer">
       Listado de las Lineas.
     </div>
   </div>
 </div>
-<form id="form_hidden_lineas" style="display:none" action="{{route('lineas.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
+<form id="form_hidden" style="display:none" action="{{route('lineas.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
+@include('modals.create-lineas')
+@include('modals.edit-lineas')
 @endsection
 
-@section('extra-script')
 
+@section('extra-script')
 <!-- DataTables -->
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>

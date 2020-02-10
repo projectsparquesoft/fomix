@@ -8,8 +8,6 @@ class Clasificacion extends Model
 {
     protected $table = 'clasificaciones';
 
-    protected $primaryKey = 'id_clasificacion';
-
     protected $fillable = [
         'tipo_poblacion', 'status',
     ];
@@ -18,8 +16,10 @@ class Clasificacion extends Model
         'created_at', 'updated_at',
     ];
 
+    protected $casts = ['status' => 'boolean'];
+
     public function poblaciones()
     {
-        return $this->hasMany('App\Models\Poblacion', 'clasificacion_id');
+        return $this->hasMany('App\Models\Poblacion');
     }
 }

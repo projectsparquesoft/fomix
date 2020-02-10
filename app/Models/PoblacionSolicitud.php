@@ -4,18 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Historial extends Model
+class PoblacionSolicitud extends Model
 {
-    protected $table = 'historiales';
+    protected $table = 'poblacion_solicitud';
 
     protected $fillable = [
-        'user_id', 'solicitud_id', 'estado_id', 'descripcion', 'status',
+        'poblacion_id', 'solicitud_id', 'numero_persona', 'fuente_verificacion',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
 
+    public function poblacion()
+    {
+        return $this->belongsTo('App\Models\Poblacion');
+    }
+    
     public function solicitud()
     {
         return $this->belongsTo('App\Models\Solicitud');

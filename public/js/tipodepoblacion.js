@@ -1,44 +1,42 @@
-$(function(){
+$(function () {
 
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('#botontpoblacion').click(function (e) {
+    $('#guardar').click(function (e) {
         e.preventDefault();
-        //console.log('entre');
         save();
     });
 
-    // btn actualizar form edit 1
-    $('#btn_update').click(function (e) {
+
+    $('#actualizar').click(function (e) {
         e.preventDefault();
         update();
     });
-    //funtion mostrar campos form edit 2
-    $('#editModals').on('show.bs.modal', function (e) {
-        showEdit(e, $(this));
-    });
+
+    showEdit();
 });
 
+
+
+
+//guardar en el form
 const save = () => {
-    let form = $('#form_tipopoblacion');
+    let form = $('#form_create');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
         type: form.attr('method'),
         dataType: 'json',
         success: function (data) {
+
             if (data.success) {
+
                 success(data.success);
-                $('#form_tipopoblacion')[0].reset();
+                $('#form_create')[0].reset();
                 updateTable();
             } else {
                 warning(data.warning);
+
             }
+
         },
         error: function (data) {
 
@@ -51,9 +49,30 @@ const save = () => {
 
 }
 
-//actualizar-editform 3
+//FUNCION DE ESTADOS
+const changeStatus = (url) => {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.success) {
+                success(data.success);
+                updateTable();
+            } else {
+                warning(data.warning);
+            }
+
+        },
+    });
+}
+
+
+
+//actualizar-editform
 const update = () => {
-    let form = $('#form_update');
+    let form = $('#form_edit');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
@@ -62,14 +81,11 @@ const update = () => {
         success: function (data) {
 
             if (data.success) {
-
                 success(data.success);
-                $('#form_update')[0].reset();
-                $('#editModals').modal('hide');
+                $('#modalEdit').modal('hide');
                 updateTable();
             } else {
                 warning(data.warning);
-
             }
 
         },
@@ -83,7 +99,6 @@ const update = () => {
     });
 
 }
-
 
 /*Mostrar mensaje*/
 const Toast = Swal.mixin({
@@ -91,14 +106,15 @@ const Toast = Swal.mixin({
     position: 'top-end',
     showConfirmButton: false,
     timer: 3000
-  });
+});
 
 /*mensaje de guardado*/
 const success = (mensaje) => {
+
     Toast.fire({
         type: 'success',
         title: `${mensaje}`
-      })
+    })
 }
 
 /*mensaje de error*/
@@ -132,37 +148,38 @@ const showErrorMessage = (messages) => {
     });
 }
 
-
 /*recarga-actualizar tbla*/
 const updateTable = () => {
-    let form = $('#form_hidden_tipopoblacion');
+
+    let form = $('#form_hidden');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
         type: form.attr('method'),
         success: function (data) {
             if (data.warning) {
-               console.log(data.warning);
+                warning(data.warning);
             } else {
-               $('#id_table_tipopoblacion').html("");
-               $('#id_table_tipopoblacion').html(data);
-               dataTableInit();
-
+                $('#id_table').html("");
+                $('#id_table').html(data);
+                dataTableInit();
             }
         }
     });
 }
 
 /* Mostar informacion  en los campos del modal*/
-const showEdit = (e, context) => {
-    let button = $(e.relatedTarget);
-    let id = button.data('id');
-    let tipo_poblacion = button.data('tipo_poblacion');
 
-    let modal = context;
-    modal.find('.modal-body #id_clasificacion').val(id);
-    modal.find('.modal-body #tipo_poblacion').val(tipo_poblacion);
+const showEdit = () => {
+    $('#modalEdit').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget)
+        let id = button.data('id');
+        let tipo_poblacion = button.data('tipo_poblacion');
+        let modal = $(this);
+
+        modal.find('.modal-body #id_row').val(id);
+        modal.find('.modal-body #tipo_poblacion').val(tipo_poblacion);
 
 
-
+    });
 }

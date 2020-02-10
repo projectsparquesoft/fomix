@@ -4,17 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Historial extends Model
+class IndicadorSolicitud extends Model
 {
-    protected $table = 'historiales';
+    
+    protected $table = 'indicador_linea';
 
     protected $fillable = [
-        'user_id', 'solicitud_id', 'estado_id', 'descripcion', 'status',
+        'indicador_id', 'solicitud_id', 'status',
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
+
+    public function indicador()
+    {
+        return $this->belongsTo('App\Models\Indicador');
+    }
 
     public function solicitud()
     {

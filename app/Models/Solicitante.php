@@ -3,24 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Solicitante extends Model
 {
+    use SoftDeletes;
 
     protected $table = 'solicitantes';
-
-    protected $primaryKey = 'id_solicitante';
 
     protected $fillable = [
         'municipio_id',
         'persona_id',
         'proponente_id',
         'nid',
+        'nombre',
+        'apellido',
         'razon_social',
         'email',
         'direccion',
         'celular',
-        'telefono',
         'representante_legal',
     ];
 
@@ -28,9 +29,21 @@ class Solicitante extends Model
         'created_at', 'updated_at',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function setRazonSocialAttribute($value)
     {
         $this->attributes['razon_social'] = ucwords($value);
+    }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = ucwords($value);
+    }
+
+    public function setApellidoAttribute($value)
+    {
+        $this->attributes['apellido'] = ucwords($value);
     }
 
     public function setRepresentanteLegalAttribute($value)
@@ -40,30 +53,22 @@ class Solicitante extends Model
 
     public function municipio()
     {
-        return $this->belongsTo('App\Models\Municipio', 'muncipio_id');
+        return $this->belongsTo('App\Models\Municipio');
     }
 
     public function persona()
     {
-        return $this->belongsTo('App\Models\Persona', 'persona_id');
+        return $this->belongsTo('App\Models\Persona');
     }
 
     public function proponente()
     {
-        return $this->belongsTo('App\Models\proponente', 'proponente_id');
+        return $this->belongsTo('App\Models\proponente');
     }
 
     public function solicitudes()
     {
-        return $this->hasMany('App\Models\Solicitud', 'solicitante_id');
-    }
-
-    public function scopeSearch($query, $search)
-    {
-        return $query->where('razon_social', 'like', "%$search%")
-            ->orWhere('email', 'like', "%$search%")
-            ->orWhere('celular', 'like', "%$search%")
-            ->orWhere('representante_legal', 'like', "%$search%");
+        return $this->hasMany('App\Models\Solicitud');
     }
 
 }
