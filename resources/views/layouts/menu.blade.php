@@ -64,7 +64,7 @@
           </ul>
         </li>
 
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview {{activeMenu(['dependencias*', 'empleados.*'])}}">
           <a href="#" class="nav-link">
             <i class="fas fa-male nav-icon"></i>
             <p>
@@ -74,7 +74,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
+              <a href="javascript:void(0)" class="nav-link ">
                 <i class="fas fa-file nav-icon"></i>
                 <p>Proyectos</p>
               </a>
@@ -86,13 +86,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
+              <a href="javascript:void(0)" class="nav-link {{activeSubMenu('dependencias*')}}">
                 <i class="fas fa-user-friends nav-icon"></i>
                 <p>Dependencias</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
+            <a href="{{route('empleados.index')}}" class="nav-link {{activeSubMenu('empleados*')}}">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Empleados</p>
               </a>

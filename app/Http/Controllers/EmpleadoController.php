@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Empleado;
 use App\Http\Requests\EmpleadosRequest;
-
+use App\Models\Dependencia;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -16,35 +16,22 @@ class EmpleadoController extends Controller
 
     public function index(Request $request)
     {
-        $empleados = empleado::paginate(2);
-        if ($request->ajax()) {
-            $opcion = $request->opcion;
-            if ($opcion == 1) {
-                $buscar = $request->text_search;
+        $empleados = Empleado::all(['id', 'nombre', 'apellido', 'email']);
+        $dependencias = Dependencia::all(['id','nombre_dependencia']);
 
-                if ($buscar) {
-                    $empleados = empleado::search($request->text_search)->paginate(3);
-                    return response()->view('ajax.table-empleados', compact('empleados'));
-                } else {
-                    return response()->view('ajax.table-empleados', compact('empleados'));
-                }
-
+        if (request()->ajax()) {
+            $empleados = Empleado::all(['id', 'nombre', 'apellido', 'email']);
+            /*si los campos estan vacios mostrar mj de error, sino retornar vista. */
+            if (count($empleados) == 0) {
+                return response()->json(['warning' => 'ERROR EN EL SERVIDOR']);
+            } else {
+                return response()->view('ajax.table-empleados', compact('empleados'));
             }
-
-                if ($opcion == 2) {
-                    $empleados = empleado::search($request->text_search)->paginate(3);
-                    return response()->view('ajax.table-empleados', compact('empleados'));
-                }
         }
-                    return view('empleados.index', compact('empleados'));
+        return view('empleados.index', compact('empleados', 'dependencias'));
     }
 
-    public function create()
-    {
-
-    }
-
-
+    
     public function store(EmpleadosRequest $request)
     {
         if (request()->ajax()){

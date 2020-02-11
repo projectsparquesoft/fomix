@@ -21,6 +21,8 @@ class Empleado extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['name_complete'];
+
     public function user()
     {
         return $this->hasOne('App\User', 'empleado_id');
@@ -29,6 +31,21 @@ class Empleado extends Model
     public function dependencias()
     {
         return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado')->withTimestamps();
+    }
+
+    public function getNameCompleteAttribute()
+    {
+        return "{$this->nombre} {$this->apellido}";
+    }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = ucwords($value);
+    }
+
+    public function setApellidoAttribute($value)
+    {
+        $this->attributes['apellido'] = ucwords($value);
     }
 
 }

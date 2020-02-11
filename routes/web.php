@@ -19,7 +19,7 @@ Route::resource('dependencia', 'DependenciaController', ['except' => [
 ]]);
 
 Route::resource('empleados', 'EmpleadoController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'create', 'edit'
 ]]);
 
 Route::resource('solicitud', 'SolicitudController', ['except' => [
