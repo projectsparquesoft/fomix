@@ -141,16 +141,36 @@ const updateTable = () => {
     });
 }
 
+const changeStatus = (url) => {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.success) {
+                success(data.success);
+                updateTable();
+            } else {
+                warning(data.warning);
+            }
+
+        },
+    });
+}
+
 const showEdit = () => {
     $('#modalEdit').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget)
         let id = button.data('id');
         let nombre = button.data('nombre');
+        let eje = button.data('eje');
         let meta = button.data('meta');
         let modal = $(this);
 
         modal.find('.modal-body #id_row').val(id);
         modal.find('.modal-body #nombre_indicador').val(nombre);
+        modal.find('.modal-body #eje_id').val(eje);
         modal.find('.modal-body #meta').val(meta);
 
     });

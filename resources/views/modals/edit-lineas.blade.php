@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body" style="background:whitesmoke">
-            <form id="form_edit" action="{{route('lineas.update', 'lineas')}}" method="POST">
+            <form id="form_edit" action="{{route('lineas.update', 'lineas')}}" method="POST" onkeypress="return disableEnterKey(event);">
                 @csrf
                 @method('PATCH')
                 <input type="hidden" name="id_row" id="id_row">
@@ -26,7 +26,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i class="fas fa-times-circle"></i></button>
-          <button id="actualizar" type="button" class="btn btn-dark">Actualizar <i class="fas fa-save"></i></button>
+          <button id="actualizar" type="button" class="btn btn-dark">Actualizar <i class="fas fa-pencil-alt"></i></button>
         </div>
       </div>
     </div>

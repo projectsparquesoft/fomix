@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body" style="background:whitesmoke">
-          <form id="form_create" action="{{route('indicadores.store')}}" method="POST">
+          <form id="form_create" action="{{route('indicadores.store')}}" method="POST" onkeypress="return disableEnterKey(event);">
             @csrf
 
             <div class="form-row">
@@ -23,7 +23,7 @@
                 <select class="form-control" name="eje_id" id="eje_id">
                   <option value="">-- Escoger Opcion --</option>
                   @foreach ($ejes as $eje)
-                    <option value="{{$eje->id_eje}}">{{$eje->nombre_programa}}</option>
+                    <option value="{{$eje->id}}">{{$eje->nombre_programa}}</option>
                   @endforeach
                 </select>
               </div>

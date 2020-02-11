@@ -30,21 +30,41 @@ class IndicadorController extends Controller
     public function store(IndicadorRequest $request)
     {
         if (request()->ajax()) {
-            $indicadores = new Indicador();
-            $indicadores->nombre_indicador = $request->nombre_indicador;
-            $indicadores->orden_indicador = 1;
-            $indicadores->status = 1;
-            $exito = $indicadores->save();
+
+            $indicador = new Indicador();
+            $indicador->nombre_indicador = $request->nombre_indicador;
+            $indicador->eje_id = $request->eje_id;
+            $indicador->meta = $request->meta;
+            $indicador->status = 1;
+            $exito = $indicador->save();
 
             if ($exito) {
                 return response()->json(['success' => 'INDICADOR CREADO CON EXITO!']);
+            } else {
+                return response()->json(['warning' => 'ERROR AL GUARDAR DATOS!']);
             }
+
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(IndicadorRequest $request, $id)
     {
-        //
+        if (request()->ajax()) {
+            indicador::findOrFail($request->id_row)->update($request->all());
+            return response()->json(['success' => 'INDICADOR ACTUALIZADO CORRECTAMENTE']);
+        }
+    }
+
+    public function changeStatus($id)
+    {
+        $indicador = Indicador::findOrFail($id);
+
+        if ($indicador->status) {
+            $indicador->update(['status' => 0]);
+        } else {
+            $indicador->update(['status' => 1]);
+        }
+        return response()->json(['success' => 'ESTADO DE INDICADOR ACTUALIZADO CON EXITO!']);
     }
 
 }

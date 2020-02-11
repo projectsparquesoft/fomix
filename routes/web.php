@@ -35,7 +35,7 @@ Route::resource('presupuesto', 'PresupuestoController', ['except' => [
 ]]);
 
 Route::resource('proponente', 'ProponenteController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::resource('indicadores', 'IndicadorController', ['except' => [
@@ -43,11 +43,11 @@ Route::resource('indicadores', 'IndicadorController', ['except' => [
 ]]);
 
 Route::resource('lineas', 'Lineacontroller', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::resource('tipopoblacion', 'TipoPoblacionController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::resource('poblacion', 'PoblacionController', ['except' => [
@@ -57,8 +57,10 @@ Route::resource('poblacion', 'PoblacionController', ['except' => [
 Route::resource('documentos', 'DocumentoController', ['except' => [
     'destroy', 'show', 'create', 'edit'
 ]]);
+
 Route::get('tipopoblacion/estado/{id}', 'TipoPoblacionController@changeStatus')->name('tipopoblacion.status');
-Route::get('lineas/estado/{id}','Lineacontroller@changeLineas')->name('lineas.status');
+Route::get('indicador/estado/{id}', 'IndicadorController@changeStatus')->name('indicador.status');
+Route::get('lineas/estado/{id}','LineaController@changeLineas')->name('lineas.status');
 
 
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');

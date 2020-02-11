@@ -9,7 +9,7 @@
         </div>
         <div class="modal-body" style="background:whitesmoke">
 
-          <form id="form_edit" action="{{route('documentos.update', 'documento')}}" method="POST">
+          <form id="form_edit" action="{{route('documentos.update', 'documento')}}" method="POST" onkeypress="return disableEnterKey(event);">
 
             @csrf
             @method('PATCH')
@@ -20,7 +20,7 @@
 
               <div class="col-md-6 col-sm-12 col-xl-12">
                 <label for="">Nombre del Documento:</label>
-                <input type="text" name="tipo_documento" id="tipo_documento" class="form-control">
+                <input type="text" name="tipo_documento" id="tipo_documento" class="form-control" onkeypress="return disableEnterKey(event);">
               </div>
 
               <div class="col-md-6 col-sm-12 col-xl-12">
@@ -41,7 +41,7 @@
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i
               class="fas fa-times-circle"></i></button>
-          <button id="actualizar" type="button" class="btn btn-dark">Actualizar <i class="fas fa-create"></i></button>
+          <button id="actualizar" type="button" class="btn btn-dark">Actualizar <i class="fas fa-pencil-alt"></i></button>
         </div>
       </div>
     </div>

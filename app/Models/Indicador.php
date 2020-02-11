@@ -16,6 +16,8 @@ class Indicador extends Model
         'created_at', 'updated_at',
     ];
 
+    protected $casts = ['status'];
+
     public function eje()
     {
         return $this->belongsTo('App\Models\Eje');

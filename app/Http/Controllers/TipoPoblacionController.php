@@ -25,11 +25,6 @@ class TipoPoblacionController extends Controller
     }
 
 
-    public function create()
-    {
-
-    }
-
     public function store(TipoDePoblacionRequest $request)
     {
         $tipopoblaciones = new  Clasificacion();
@@ -42,17 +37,6 @@ class TipoPoblacionController extends Controller
     }
 
 
-    public function show($id)
-    {
-
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-
     public function update(Request $request, $id)
     {
         if (request()->ajax()) {
@@ -61,11 +45,6 @@ class TipoPoblacionController extends Controller
         }
     }
 
-
-    public function destroy($id)
-    {
-
-    }
 
     public function changeStatus($id)
     {

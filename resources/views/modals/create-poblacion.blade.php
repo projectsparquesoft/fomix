@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body" style="background:whitesmoke">
-            <form id="form_create" action="{{route('poblacion.store')}}" method="POST">
+            <form id="form_create" action="{{route('poblacion.store')}}" method="POST" onkeypress="return disableEnterKey(event);">
                 @csrf
                 <div class="form-row">
                     <div class="col-md-6">

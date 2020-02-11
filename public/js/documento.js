@@ -11,6 +11,7 @@ $(function () {
     });
 
     showEdit();
+
 });
 
 //guardar en el form

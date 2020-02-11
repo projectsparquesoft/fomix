@@ -12,6 +12,7 @@
             <tr>
                 <td>{{$loop->iteration}}</td>
             <td>
+
                 @if($poblacion->clasificacion_id == 1)
                     <span class="badge bg-gradient-primary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
@@ -21,16 +22,16 @@
                 @endif
 
                 @if($poblacion->clasificacion_id == 3)
-                <span class="badge bg-primary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                    <span class="badge bg-primary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
 
                 @if($poblacion->clasificacion_id == 4)
-                <span class="badge bg-dark">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                    <span class="badge bg-dark">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
 
                 @if($poblacion->clasificacion_id > 4)
                     <span class="badge bg-danger">{{$poblacion->clasificacion->tipo_poblacion}}</span>
-                 @endif
+                @endif
 
             </td>
             <td>{{$poblacion->detalle}}</td>
