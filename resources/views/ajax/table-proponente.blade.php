@@ -1,6 +1,7 @@
-<table id="tabla" class="table table-bordered table-hover text-nowrap">
-    <thead>
+<table id="tabla" class="table table-hover table-sm">
+    <thead class="thead-light">
         <tr>
+            <th>#</th>
             <th>Nombre del proponente</th>
             <th>Acciones</th>
         </tr>
@@ -8,10 +9,10 @@
     <tbody>
         @foreach ($proponentes as $proponente)
             <tr>
+            <td>{{$loop->iteration}}</td>
             <td>{{$proponente->nombre_proponente}}</td>
             <td>
-                <a href="" class="btn btn-info btn-md">  <i class="fas fa-pencil-alt"></i>Editar</a>
-                <a href="" class="btn btn-primary btn-md"> <i class="fas fa-folder"></i>Detalle</a>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$proponente->id}}" data-nombre_proponente="{{$proponente->nombre_proponente}}"  data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
             </td>
             </tr>
         @endforeach

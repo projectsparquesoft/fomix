@@ -8,14 +8,12 @@ use Illuminate\Http\Request;
 
 class PoblacionController extends Controller
 {
-
     public function index()
     {
-        $clasificaciones = clasificacion::all(['id','tipo_poblacion']);
-
+        $clasificaciones = Clasificacion::all(['id','tipo_poblacion']);
         $poblaciones = Poblacion::with('clasificacion')->get();
         if (request()->ajax()) {
-            $poblaciones = poblacion::all();
+            $poblaciones = Poblacion::all();
             /*si los campos estan vacios mostrar mj de error, sino retornar vista. */
             if (count($poblaciones) == 0) {
                 return response()->json(['warning' => 'Error en el servidor']);
@@ -26,25 +24,9 @@ class PoblacionController extends Controller
                 return view('poblacion.index', compact('poblaciones', 'clasificaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(PoblacionRequest $request)
     {
-        $poblaciones = new  Poblacion();
+        $poblaciones = new Poblacion();
         $poblaciones->clasificacion_id  = $request->clasificacion_id;
         $poblaciones->detalle = $request->detalle;
         $poblaciones->item=1;
@@ -54,53 +36,12 @@ class PoblacionController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(PoblacionRequest $request, $id)
     {
-
         if (request()->ajax()) {
             Poblacion::findOrFail($request->id_row)->update($request->all());
             return response()->json(['success' => 'POBLACION ACTUALIZADA CORRECTAMENTE']);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
 

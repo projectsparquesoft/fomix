@@ -51,13 +51,13 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{route('solicitante.index')}}" class="nav-link">
-                <i class="far fa-user nav-icon"></i>
+                <i class="fas fa-user nav-icon"></i>
                 <p>Solicitantes</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('solicitud.index')}}" class="nav-link">
-                <i class="far fa-file-alt nav-icon"></i>
+                <i class="fas fa-file-alt nav-icon"></i>
                 <p>Solicitudes</p>
               </a>
             </li>
@@ -75,31 +75,31 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link">
-                <i class="far fa-file nav-icon"></i>
+                <i class="fas fa-file nav-icon"></i>
                 <p>Proyectos</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link">
-                <i class="far fa-users-cog nav-icon"></i>
+                <i class="fas fa-users-cog nav-icon"></i>
                 <p>Atencion de Solicitudes</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link">
-                <i class="far fa-user-friends nav-icon"></i>
+                <i class="fas fa-user-friends nav-icon"></i>
                 <p>Dependencias</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link">
-                <i class="far fa-users nav-icon"></i>
+                <i class="fas fa-users nav-icon"></i>
                 <p>Empleados</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link">
-                <i class="far fa-exchange-alt nav-icon"></i>
+                <i class="fas fa-exchange-alt nav-icon"></i>
                 <p>Cambio de empleados</p>
               </a>
             </li>
@@ -118,7 +118,7 @@
 
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-chalkboard-teacher"></i>
                 <p>Atencion de Peticiones</p>
               </a>
             </li>
@@ -137,31 +137,31 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{route('proponente.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-user-plus"></i>
                 <p>Proponentes</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('indicadores.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fab fa-accusoft"></i>
                 <p>Indicadores</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('lineas.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-tasks"></i>
                 <p>Lineas</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('tipopoblacion.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-restroom"></i>
                 <p>Tipo de Población</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('poblacion.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-users"></i>
                 <p>Poblacion</p>
               </a>
             </li>
@@ -174,11 +174,6 @@
 
           </ul>
         </li>
-
-
-
-
-
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
