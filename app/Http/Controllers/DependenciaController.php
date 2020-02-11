@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\dependencia;
 use Illuminate\Http\Request;
-use App\Http\Requests\DependenciasCreateRequest;
+use App\Http\Requests\DependenciasRequest;
 
 class DependenciaController extends Controller
 {
@@ -16,23 +16,14 @@ class DependenciaController extends Controller
 
     public function index(Request $request)
     {
-        $dependencias = Dependencia::paginate(3);
+        $dependencias = Dependencia::all();
 
         if ($request->ajax()) {
-            $opcion = $request->opcion;
-            if ($opcion == 1) {
-                $buscar = $request->text_search;
-
-                if ($buscar) {
-                    $dependencias = Dependencia::search($request->text_search)->paginate(3);
-                    return response()->view('ajax.table-dependencias', compact('dependencias'));
-                } else {
-                    return response()->view('ajax.table-dependencias', compact('dependencias'));
-                }
-            }
-
-            if ($opcion == 2) {
-                $dependencias = Dependencia::search($request->text_search)->paginate(3);
+            $dependencias = Dependencia::all();
+            /*si los campos estan vacios mostrar mj de error, sino retornar vista. */
+            if (count($dependencias) == 0) {
+                return response()->json(['warning' => 'Error en el servidor']);
+            } else {
                 return response()->view('ajax.table-dependencias', compact('dependencias'));
             }
         }
@@ -45,21 +36,17 @@ class DependenciaController extends Controller
     }
 
 
-    public function store(DependenciasCreateRequest $request)
+    public function store(DependenciasRequest $request)
     {
-        if (request()->ajax()) {
-
             $dependencias = new Dependencia();
             $dependencias->nombre_dependencia = $request->get('nombre_dependencia');
             $dependencias->descripcion = $request->get('descripcion');
             $dependencias->save();
+            $exito = $dependencias->save();
 
-            if ($dependencias->save()) {
-                return response()->json(['success' => 'Dependencia Creada con Exito!']);
-            } else {
-                return response()->json(['warning' => 'Error al guardar!']);
+            if ($exito) {
+                return response()->json(['success' => 'DEPENDENCIA CREADA CON EXITO!']);
             }
-        }
     }
 
 
@@ -68,8 +55,11 @@ class DependenciaController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(DependenciasRequest $request, $id)
     {
-        //
+        if (request()->ajax()) {
+            Dependencia::findOrFail($request->id_row)->update($request->all());
+            return response()->json(['success' => 'DEPENDENCIA ACTUALIZADA CORRECTAMENTE']);
+        }
     }
 }

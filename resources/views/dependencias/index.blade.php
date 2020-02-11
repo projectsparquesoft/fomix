@@ -1,109 +1,63 @@
 @extends('layouts.main')
 
 
-@section('titulo', "Creacion de dependencias ")
+@section('titulo', "Dependencias")
 
-@section('css-extra')
-    <link rel="stylesheet" href="{{asset('plugins/sweetalert/sweetalert2.min.css')}}">
+@section('extra-css')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+@stop
+
+@section('link')
+
+<div class="row mb-2">
+  <div class="col-sm-12 text-center">
+    <h1>Modulo Dependencias</h1>
+  </div>
+</div>
+
 @endsection
 
-@section('title_module')
+@section('content')
+<div class="container-fluid">
 
-<div class="page-title-icon">
-    <i class="pe-7s-graph text-success">
-    </i>
-</div>
-<div>Dependencias
-    <div class="page-title-subheading">Modulo de Creación de Dependencias y Listado.
+  <div class="card card" style="background:whitesmoke">
+    <div class="card-header">
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Dependencia <i class="fas fa-user-plus"></i></button>
+            <!----Modals-->
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
     </div>
-</div>
-@endsection
-
-@section('link_module')
-<li class="nav-item">
-    <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-        <span>Listado de Dependencias</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-        <span>Creación de Depedencias</span>
-    </a>
-</li>
-
-
-@endsection
-
-@section('content_module')
-
-<!---TABLA DE LAS DEPENDENCIAS--->
-<div class="tab-pane tabs-animation fade {{!Route::is('dependencia.index') ?: 'show active'}}" id="tab-content-0" role="tabpanel">
-
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <div class="col-lg-12">
-                <div class="main-card mb-3 card">
-                    <div class="card-body"><h5 class="card-title">Listado de las Dependencias</h5>
-                        <div class="col">
-                            <button id="btnlistar" class="btn btn-primary" style="float:right;">Listar Nuevamente</button>
-
-                        </div>
-
-                        <!----BOTON DE BUSQUEDA--->
-                        <div class="col-md-6">
-                            <form id="form_search" action = "{{route('dependencia.index')}}" method="GET">
-                                @csrf
-                                <div class="input-group"><input type="text" class="form-control" name="text_search" id="text_search">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary" name="search" id="search"><li class="pe-7s-search"></li></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    <br>
-                        <div class="table-responsive" id="table">
-                            @include('ajax.table-dependencias')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- /tabla -->
+    <div class="card-body table-responsive" id="id_table">
+        @include('ajax.table-dependencias')
     </div>
-
-
-</div>
-<!---FORMULARIO DE CREACION DE DEPENDENCIAS--->
-<div class="tab-pane tabs-animation fade {{!Route::is('dependencia.create') ?: 'show active'}}" id="tab-content-1" role="tabpanel">
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <form id="form_dependencia" action="{{route('dependencia.store')}}" method="POST">
-                @csrf
-                <h4 class="card-title">Registro de dependencias</h4>
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <label for="nombre">Nombre de la dependencia</label>
-                            <input type="text" class="form-control" name="nombre_dependencia" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="descripcion">Descripción</label>
-                            <textarea name="descripcion"  placeholder="descripcion" class="form-control"></textarea>
-                        </div>
-                        <div class="col-md-4">
-                            <button id="btnsave" class="mt-5 btn btn-primary">GUARDAR</button>
-                        </div>
-                    </div>
-            </form>
-        </div>
+    <!-- /fin tabla-->
+    <div class="card-footer">
+      Listado de las dependencias.
     </div>
-
+  </div>
 </div>
-
+<form id="form_hidden" style="display:none" action="{{route('dependencia.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
+@include('modals.create-dependencias')
+@include('modals.edit-dependencias')
 @endsection
 
 
-@section('scripts-extra')
-    <script src="{{asset('plugins/sweetalert/sweetalert2.min.js')}}"></script>
-    <script src="{{asset('js/dependencia.js')}}"></script>
+@section('extra-script')
+<!-- DataTables -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
-@endsection
+<!--Data tables y script de lineas-->
+<script src="{{asset('js/datatable.js')}}"></script>
+<script src="{{asset('js/dependencia.js')}}"></script>
+
+@stop
+
 
