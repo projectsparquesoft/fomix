@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class IndicadorController extends Controller
 {
-
     public function index()
     {
         $indicadores = Indicador::all();

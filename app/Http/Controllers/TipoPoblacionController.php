@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Clasificacion;
 use Illuminate\Http\Request;
 use App\Http\Requests\TipoDePoblacionRequest;
@@ -10,7 +9,6 @@ class TipoPoblacionController extends Controller
 {
     public function index()
     {
-
         $tipopoblaciones = Clasificacion::all();
         if (request()->ajax()) {
             $tipopoblaciones = Clasificacion::all();
@@ -24,7 +22,6 @@ class TipoPoblacionController extends Controller
         return view('tipopoblacion.index', compact('tipopoblaciones'));
     }
 
-
     public function store(TipoDePoblacionRequest $request)
     {
         $tipopoblaciones = new  Clasificacion();
@@ -36,7 +33,6 @@ class TipoPoblacionController extends Controller
         }
     }
 
-
     public function update(Request $request, $id)
     {
         if (request()->ajax()) {
@@ -44,7 +40,6 @@ class TipoPoblacionController extends Controller
             return response()->json(['success' => 'POBLACION ACTUALIZADA CORRECTAMENTE']);
         }
     }
-
 
     public function changeStatus($id)
     {

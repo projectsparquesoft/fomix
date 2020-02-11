@@ -4,7 +4,7 @@
             <th>Item</th>
             <th>Clasificacion</th>
             <th>Detalle</th>
-            <th class="text-center">Acciones</th>
+            <th style="width:20%" class="text-center">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -38,7 +38,6 @@
             <td class="text-center">
                 <a data-toggle="modal" data-target="#modalEdit"  data-id="{{$poblacion->id}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}" class="btn btn-warning btn-sm">
                 <i class="fas fa-pencil-alt"></i>Editar</a>
-                <a href="" class="btn btn-dark btn-sm disabled color-palette"> <i class="fas fa-folder"></i>Detalle</a>
             </td>
             </tr>
         @endforeach

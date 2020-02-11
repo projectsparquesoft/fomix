@@ -144,6 +144,7 @@ const updateTable = () => {
     });
 }
 
+
 const showEdit = () => {
     $('#modalEdit').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget)
