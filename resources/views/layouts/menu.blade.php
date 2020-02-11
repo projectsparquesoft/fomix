@@ -126,7 +126,7 @@
         </li>
 
         <li
-          class="nav-item has-treeview {{activeMenu(['proponente*', 'indicadores.*', 'lineas.*', 'tipo_poblacion*', 'poblacion*', 'documentos*'])}}">
+          class="nav-item has-treeview {{activeMenu(['proponente*', 'indicadores.*', 'lineas.*', 'tipopoblacion*', 'poblacion*', 'documentos*'])}}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
