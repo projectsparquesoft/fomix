@@ -34,6 +34,8 @@ Route::resource('presupuesto', 'PresupuestoController', ['except' => [
     'destroy', 'show',
 ]]);
 
+// PARAMETROS
+
 Route::resource('proponente', 'ProponenteController', ['except' => [
     'destroy', 'show', 'create', 'edit'
 ]]);
@@ -51,18 +53,20 @@ Route::resource('tipopoblacion', 'TipoPoblacionController', ['except' => [
 ]]);
 
 Route::resource('poblacion', 'PoblacionController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::resource('documentos', 'DocumentoController', ['except' => [
     'destroy', 'show', 'create', 'edit'
 ]]);
 
+
+// ESTADOS
 Route::get('tipopoblacion/estado/{id}', 'TipoPoblacionController@changeStatus')->name('tipopoblacion.status');
 Route::get('indicador/estado/{id}', 'IndicadorController@changeStatus')->name('indicador.status');
 Route::get('lineas/estado/{id}','LineaController@changeLineas')->name('lineas.status');
 
 
+// SOLICITUDES VARIADAS 
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
-
 Route::post('solicitantes/search', 'SolicitanteController@action')->name('solicitante.search');

@@ -10,6 +10,16 @@
 <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @stop
 
+@section('link')
+
+<div class="row mb-2">
+  <div class="col-sm-12 text-center">
+    <h1>Modulo de Documentos</h1>
+  </div>
+</div>
+
+@endsection
+
 
 @section('content')
 <div class="container-fluid">

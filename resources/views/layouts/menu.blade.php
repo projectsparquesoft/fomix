@@ -126,7 +126,7 @@
         </li>
 
         <li
-          class="nav-item has-treeview {{activeMenu(['proponente*', 'indicador.*', 'linea.*', 'tipo_poblacion*', 'poblacion*', 'documentos*'])}}">
+          class="nav-item has-treeview {{activeMenu(['proponente*', 'indicadores.*', 'lineas.*', 'tipo_poblacion*', 'poblacion*', 'documentos*'])}}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
@@ -136,31 +136,31 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('proponente.index')}}" class="nav-link">
+              <a href="{{route('proponente.index')}}" class="nav-link {{activeSubMenu('proponente*')}}">
                 <i class="fas fa-user-plus"></i>
                 <p>Proponentes</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('indicadores.index')}}" class="nav-link">
+              <a href="{{route('indicadores.index')}}" class="nav-link {{activeSubMenu('indicadores*')}}">
                 <i class="fab fa-accusoft"></i>
                 <p>Indicadores</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('lineas.index')}}" class="nav-link">
+              <a href="{{route('lineas.index')}}" class="nav-link {{activeSubMenu('lineas*')}}">
                 <i class="fas fa-tasks"></i>
                 <p>Lineas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('tipopoblacion.index')}}" class="nav-link">
+              <a href="{{route('tipopoblacion.index')}}" class="nav-link {{activeSubMenu('tipopoblacion*')}}">
                 <i class="fas fa-restroom"></i>
                 <p>Tipo de Población</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('poblacion.index')}}" class="nav-link">
+              <a href="{{route('poblacion.index')}}" class="nav-link {{activeSubMenu('poblacion*')}}">
                 <i class="fas fa-users"></i>
                 <p>Poblacion</p>
               </a>

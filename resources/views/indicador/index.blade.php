@@ -11,6 +11,18 @@
 @stop
 
 
+@section('link')
+
+<div class="row mb-2">
+  <div class="col-sm-12 text-center">
+    <h1>Modulo de Indicadores</h1>
+  </div>
+</div>
+
+@endsection
+
+
+
 @section('content')
 <div class="container-fluid">
 
