@@ -87,19 +87,28 @@ class LineaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LineasRequest $request, $id)
     {
         //
+
+        if (request()->ajax()) {
+            Linea::findOrFail($request->id_row)->update($request->all());
+            return response()->json(['success' => 'LINEA ACTUALIZADA CORRECTAMENTE']);
+
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function changeLineas($id)
     {
-        //
+        $Lineas = Linea::findOrFail($id);
+
+        if ($Lineas->status) {
+            $Lineas->update(['status' => 0]);
+        } else {
+            $Lineas->update(['status' => 1]);
+        }
+        return response()->json(['success' => 'ESTADO DE LINEAS ACTUALIZADO CON EXITO!']);
     }
+
 }

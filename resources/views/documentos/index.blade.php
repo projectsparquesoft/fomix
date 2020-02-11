@@ -27,8 +27,6 @@
     <div class="card-body table-responsive" id="id_table">
 
         @include('ajax.table-documentos')
-
-        
     </div>
     <!-- /fin tabla-->
     <div class="card-footer">

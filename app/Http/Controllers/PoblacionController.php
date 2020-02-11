@@ -8,16 +8,12 @@ use Illuminate\Http\Request;
 
 class PoblacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $clasificaciones = clasificacion::all(['id_clasificacion','tipo_poblacion']);
+        $clasificaciones = clasificacion::all(['id','tipo_poblacion']);
 
-        $poblaciones = Poblacion::all();
+        $poblaciones = Poblacion::with('clasificacion')->get();
         if (request()->ajax()) {
             $poblaciones = poblacion::all();
             /*si los campos estan vacios mostrar mj de error, sino retornar vista. */
@@ -48,7 +44,7 @@ class PoblacionController extends Controller
      */
     public function store(PoblacionRequest $request)
     {
-        $poblaciones = new  poblacion();
+        $poblaciones = new  Poblacion();
         $poblaciones->clasificacion_id  = $request->clasificacion_id;
         $poblaciones->detalle = $request->detalle;
         $poblaciones->item=1;
@@ -87,9 +83,13 @@ class PoblacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PoblacionRequest $request, $id)
     {
-        //
+
+        if (request()->ajax()) {
+            Poblacion::findOrFail($request->id_row)->update($request->all());
+            return response()->json(['success' => 'POBLACION ACTUALIZADA CORRECTAMENTE']);
+        }
     }
 
     /**
@@ -103,3 +103,4 @@ class PoblacionController extends Controller
         //
     }
 }
+

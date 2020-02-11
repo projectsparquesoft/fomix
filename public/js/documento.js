@@ -13,6 +13,7 @@ $(function () {
     showEdit();
 });
 
+//guardar en el form
 const save = () => {
     let form = $('#form_create');
     $.ajax({
@@ -44,6 +45,7 @@ const save = () => {
 
 }
 
+//actualizar-editform
 const update = () => {
     let form = $('#form_edit');
     $.ajax({

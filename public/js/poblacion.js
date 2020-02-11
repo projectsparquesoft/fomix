@@ -1,34 +1,71 @@
-$(function(){
+$(function () {
 
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('#botonpoblacion').click(function (e) {
+    $('#guardar').click(function (e) {
         e.preventDefault();
-        //console.log('entre');
         save();
     });
+
+    $('#actualizar').click(function (e) {
+        e.preventDefault();
+        update();
+    });
+
+    showEdit();
 });
 
+
+
+
+//guardar en el form
 const save = () => {
-    let form = $('#form_poblacion');
+    let form = $('#form_create');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
         type: form.attr('method'),
         dataType: 'json',
         success: function (data) {
+
+            if (data.success) {
+
+                success(data.success);
+                $('#form_create')[0].reset();
+                updateTable();
+            } else {
+                warning(data.warning);
+
+            }
+
+        },
+        error: function (data) {
+
+            if (data.status === 422) {
+                let errors = $.parseJSON(data.responseText);
+                addErrorMessage(errors);
+            }
+        }
+    });
+
+}
+
+//actualizar-editform
+const update = () => {
+    let form = $('#form_edit');
+    $.ajax({
+        data: form.serialize(),
+        url: form.attr('action'),
+        type: form.attr('method'),
+        dataType: 'json',
+        success: function (data) {
+
             if (data.success) {
                 success(data.success);
-                $('#form_poblacion')[0].reset();
+                $('#modalEdit').modal('hide');
                 updateTable();
             } else {
                 warning(data.warning);
             }
+
         },
         error: function (data) {
 
@@ -47,14 +84,15 @@ const Toast = Swal.mixin({
     position: 'top-end',
     showConfirmButton: false,
     timer: 3000
-  });
+});
 
 /*mensaje de guardado*/
 const success = (mensaje) => {
+
     Toast.fire({
         type: 'success',
         title: `${mensaje}`
-      })
+    })
 }
 
 /*mensaje de error*/
@@ -88,23 +126,43 @@ const showErrorMessage = (messages) => {
     });
 }
 
-
 /*recarga-actualizar tbla*/
 const updateTable = () => {
-    let form = $('#form_hidden_poblacion');
+
+    let form = $('#form_hidden');
     $.ajax({
         data: form.serialize(),
         url: form.attr('action'),
         type: form.attr('method'),
         success: function (data) {
             if (data.warning) {
-               console.log(data.warning);
+                warning(data.warning);
             } else {
-               $('#id_table_poblacion').html("");
-               $('#id_table_poblacion').html(data);
-               dataTableInit();
-
+                $('#id_table').html("");
+                $('#id_table').html(data);
+                dataTableInit();
             }
         }
     });
+}
+
+
+/* Mostar informacion  en los campos del modal*/
+
+const showEdit = () => {
+    $('#modalEdit').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget)
+    let id = button.data('id');
+    let item = button.data('item');
+    let clasificacion_id = button.data('clasificacion_id');
+    let detalle = button.data('detalle');
+    let modal = $(this);
+
+    modal.find('.modal-body #id_row').val(id);
+    modal.find('.modal-body #item').val(item);
+    modal.find('.modal-body #clasificacion_id').val(clasificacion_id);
+    modal.find('.modal-body #detalle').val(detalle);
+
+    });
+
 }

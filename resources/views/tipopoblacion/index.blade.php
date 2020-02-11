@@ -25,74 +25,27 @@
 
   <div class="card card" style="background:whitesmoke">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#proponentes">Crear Tipo de población <i class="fas fa-user-plus"></i></button>
-            <!----Modals-->
-            <div class="modal fade" id="proponentes">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header" style="background:#fcd846">
-                      <h4 class="modal-title">Crear Tipo de población <i class="fas fa-user-plus"></i></h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body"style="background:whitesmoke">
-                        <form id="form_tipopoblacion" action="{{route('tipopoblacion.store')}}" method="POST">
-                            @csrf
-                            <div class="form-row">
-                                <div class="col-md-12">
-                                    <label for="">Nombre del Tipo de población:</label>
-                                    <input type="text" name="tipo_poblacion" class="form-control">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                      <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-                      <button id="botontpoblacion"  type="button" class="btn btn-dark">Guardar <i class="fas fa-save"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Tipo de población <i class="fas fa-user-plus"></i></button>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
       </div>
     </div>
     <!-- /tabla -->
-    <div class="card-body table-responsive" id="id_table_tipopoblacion">
-        <table id="tabla" class="table table-bordered table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th>Tipo de Población</th>
-                    <th>Estado</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($tipopoblaciones as $tipopoblacion)
-                    <tr>
-                    <td>{{$tipopoblacion->tipo_poblacion}}</td>
-                    <td>{{$tipopoblacion->status}}</td>
-                    <td class="text-center">
-                        <a href="" class="btn btn-warning btn-md">  <i class="fas fa-pencil-alt"></i>Editar</a>
-                        <a href="" class="btn btn-dark btn-md disabled color-palette"> <i class="fas fa-folder"></i>Detalle</a>
-                    </td>
-                    </tr>
-                @endforeach
-            </tbody>
+      <!-- /tabla -->
+      <div class="card-body table-responsive" id="id_table">
 
-        </table>
+        @include('ajax.table-tipodepoblacion')
     </div>
+
     <!-- /fin tabla-->
     <div class="card-footer">
       Lista de los tipos de proponentes.
     </div>
   </div>
 </div>
-<form id="form_hidden_tipopoblacion" style="display:none" action="{{route('tipopoblacion.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
-
+<form id="form_hidden" style="display:none" action="{{route('tipopoblacion.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
+@include('modals.create-tipopoblacion')
+@include('modals.edit-tipopoblacion')
 @endsection
 
 @section('extra-script')

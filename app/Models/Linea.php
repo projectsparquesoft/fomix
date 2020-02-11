@@ -21,6 +21,8 @@ class Linea extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $casts = ['status' => 'boolean'];
+
     public function proyectos()
     {
         return $this->belongsToMany('App\Models\Proyecto', 'linea_proyecto');

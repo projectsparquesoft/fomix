@@ -16,6 +16,8 @@ class Clasificacion extends Model
         'created_at', 'updated_at',
     ];
 
+    protected $casts = ['status' => 'boolean'];
+
     public function poblaciones()
     {
         return $this->hasMany('App\Models\Poblacion');
