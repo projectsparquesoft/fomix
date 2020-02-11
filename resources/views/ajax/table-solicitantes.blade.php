@@ -17,7 +17,7 @@
             <td>{{$solicitante->celular}}</td>
             <td>{{$solicitante->representante_legal}}</td>
             <td>
-                <a href="" class="btn btn-warning btn-md ">  <i class="fas fa-pencil-alt"></i>Editar</a>
+                <a href="" class="btn btn-warning btn-md"><i class="fas fa-pencil-alt"></i>Editar</a>
                 <a href="" class="btn btn-dark btn-md disabled color-palette"> <i class="fas fa-folder"></i>Detalle</a>
             </td>
         </tr>

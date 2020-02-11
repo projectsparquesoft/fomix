@@ -21,27 +21,35 @@ Route::resource('dependencia', 'DependenciaController', ['except' => [
 Route::resource('empleados', 'EmpleadoController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('solicitud', 'SolicitudController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('proyecto', 'proyectoController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('presupuesto', 'PresupuestoController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('proponente', 'ProponenteController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('indicadores', 'IndicadorController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'show', 'create', 'edit'
 ]]);
+
 Route::resource('lineas', 'Lineacontroller', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('tipopoblacion', 'TipoPoblacionController', ['except' => [
     'destroy', 'show',
 ]]);
+
 Route::resource('poblacion', 'PoblacionController', ['except' => [
     'destroy', 'show',
 ]]);
