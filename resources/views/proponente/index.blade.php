@@ -23,7 +23,7 @@
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card">
+  <div class="card card" style="background:whitesmoke" >
     <div class="card-header" style="background:whitesmoke">
       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Proponentes  <i class="fas fa-user-plus"></i></button>
             <!----Modals-->
