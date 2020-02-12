@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmpleadosRequest extends FormRequest
+class EmpleadoUpdateRequest extends FormRequest
 {
 
     public function authorize()
@@ -20,11 +20,9 @@ class EmpleadosRequest extends FormRequest
             'apellido' => 'required|min:3',
             'email' => 'required|min:3',
             'celular' => 'required|min:3',
-            'is_jefe' => 'required|integer',
-            'dependencia_id' => 'required|exists:dependencias,id',
         ];
     }
-    
+
     public function attributes()
     {
         return [
@@ -32,8 +30,6 @@ class EmpleadosRequest extends FormRequest
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'email' => 'Correo Electronico',
-            'is_jefe' => '¿Es Jefe?',
-            'dependencia_id' => 'Dependencia',
         ];
     }
 }

@@ -26,7 +26,9 @@
                 @endif
             </td>
             <td class="text-center">
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-email="{{$empleado->email}}" data-celular="{{$empleado->celular}}" data-jefe="{{$empleado->is_jefe}}" data-dependencia="{{$empleado->currentDependencia->first()->id}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-email="{{$empleado->email}}" data-celular="{{$empleado->celular}}"  data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-href="{{route('empleados.show', $empleado->id)}}" data-target="#modalShow" class="btn btn-warning btn-sm"> <i class="fas fa-eye"></i>Ver</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-dependencia="{{$empleado->currentDependencia->first()->id}}" data-target="#modalChange" class="btn btn-warning btn-sm"> <i class="fas fa-exchange-alt"></i>Cambio</button>   
             </td>
         </tr>
         @endforeach

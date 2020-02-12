@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeDependenciaRequest;
 use App\Http\Requests\EmpleadosRequest;
+use App\Http\Requests\EmpleadoUpdateRequest;
 use App\Models\Dependencia;
+use App\Models\DependenciaEmpleado;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -88,34 +91,17 @@ class EmpleadoController extends Controller
 
     public function show($id)
     {
-        //
+        if (request()->ajax()) {
+            $empleado = Empleado::where('id', $id)->with('currentDependencia', 'user')->first();
+            return response()->view('ajax.detail-empleado', compact('empleado'));
+        }
     }
 
-    public function update(EmpleadosRequest $request, $id)
+    public function update(EmpleadoUpdateRequest $request, $id)
     {
         if (request()->ajax()) {
-
-            $empleado = Empleado::findOrFail($request->id_row);
-
-            $empleado = $this->createObjectEmpleado($request, $empleado);
-
-            DB::beginTransaction();
-            try {
-
-                $empleado->save();
-                
-                $empleado->dependencias()->detach();
-                $empleado->dependencias()->attach($request->dependencia_id, ['status' => 1]);
-
-                DB::commit();
-
-                return response()->json(['success' => 'EMPLEADO CREADO CON EXITO!']);
-
-            } catch (\Exception $ex) {
-                DB::rollback();
-                return response()->json(['warning' => 'ERROR AL GUARDAR DATOS']);
-            }
-
+            Empleado::findOrFail($request->id_row)->update($request->all());
+            return response()->json(['success' => 'EMPLEADO ACTUALIZADO CON EXITO!']);
         }
 
     }
@@ -131,6 +117,29 @@ class EmpleadoController extends Controller
         }
 
         return response()->json(['success' => 'ESTADO DE EMPLEADO ACTUALIZADO CON EXITO!']);
+    }
+
+    public function storeChangeDependencia(ChangeDependenciaRequest $request)
+    {
+        if (request()->ajax()) {
+
+            $puesto = DependenciaEmpleado::where('empleado_id', $request->id_change)->orderBy('id', 'DESC')->first();
+
+            $puesto->fecha_salida = $request->fecha_salida;
+            $puesto->motivo = $request->motivo;
+            $puesto->save();
+
+            $empleado = Empleado::where('id', $request->id_change)->with('historyDependencias')->first();
+
+            foreach ($empleado->historyDependencias as $history) {
+                $empleado->dependencias()->updateExistingPivot($history->id, ['status' => 0]);
+            }
+
+            $empleado->dependencias()->attach($request->dependencia_change_id, ['status' => 1]);
+
+            return response()->json(['success' => 'CAMBIO DE EMPLEADO CON EXITO!']);
+
+        }
     }
 
 }

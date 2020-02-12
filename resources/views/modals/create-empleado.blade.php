@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body" style="background:whitesmoke">
 
-        <form id="form_edit" action="{{route('empleados.store')}}" method="POST"
+        <form id="form_create" action="{{route('empleados.store')}}" method="POST"
           onkeypress="return disableEnterKey(event);">
           @csrf
           <div class="form-row">
@@ -56,12 +56,12 @@
                 <div class="form-group clearfix">
 
                   <div class="icheck-primary d-inline">
-                    <input type="radio"  name="is_jefe" value="1">
+                    <input type="radio" id="jefe_si" name="is_jefe" value="1">
                     <label for="jefe_si">SI
                     </label>
                   </div>
                   <div class="icheck-primary d-inline">
-                    <input type="radio" name="is_jefe" value="0">
+                    <input type="radio" id="jefe_no" name="is_jefe" value="0">
                     <label for="jefe_no">NO
                     </label>
                   </div>

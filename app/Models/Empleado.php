@@ -30,9 +30,16 @@ class Empleado extends Model
         return $this->hasOne('App\User', 'empleado_id');
     }
 
+    public function historyDependencias()
+    {
+        return $this->hasMany('App\Models\DependenciaEmpleado');
+    }
+
     public function dependencias()
     {
-        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado')->withTimestamps();
+        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado')
+        ->withPivot('id')
+        ->withTimestamps();
     }
 
     public function currentDependencia()

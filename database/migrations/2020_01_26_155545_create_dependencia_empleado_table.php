@@ -10,7 +10,7 @@ class CreateDependenciaEmpleadoTable extends Migration
     public function up()
     {
         Schema::create('dependencia_empleado', function (Blueprint $table) {
-            $table->bigIncrements('id_dependencia_empleado');
+            $table->bigIncrements('id');
 
             $table->bigInteger('empleado_id')->unsigned();
             $table->bigInteger('dependencia_id')->unsigned();

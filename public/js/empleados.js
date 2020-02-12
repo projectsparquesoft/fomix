@@ -10,7 +10,14 @@ $(function () {
         update();
     });
 
+    $('#asignar').click(function (e) {
+        e.preventDefault();
+        changeDependencia();
+    });
+
     showEdit();
+    modalShow();
+    modalChange();
 });
 
 const save = () => {
@@ -43,6 +50,38 @@ const save = () => {
     });
 
 }
+
+const changeDependencia = () => {
+    let form = $('#form_change');
+    $.ajax({
+        data: form.serialize(),
+        url: form.attr('action'),
+        type: form.attr('method'),
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.success) {
+
+                success(data.success);
+                $('#modalChange').modal('hide');
+                updateTable();
+            } else {
+                warning(data.warning);
+
+            }
+
+        },
+        error: function (data) {
+
+            if (data.status === 422) {
+                let errors = $.parseJSON(data.responseText);
+                addErrorMessage(errors);
+            }
+        }
+    });
+
+}
+
 
 const update = () => {
     let form = $('#form_edit');
@@ -83,8 +122,6 @@ const showEdit = () => {
         let apellido = button.data('apellido');
         let email = button.data('email');
         let celular = button.data('celular');
-        let jefe = button.data('jefe');
-        let dependencia = button.data('dependencia');
 
         let modal = $(this);
 
@@ -95,12 +132,7 @@ const showEdit = () => {
         modal.find('.modal-body #email').val(email);
         modal.find('.modal-body #celular').val(celular);
 
-        if (jefe) {
-            $("input[name=is_jefe][value='1']").prop("checked", true);
-        } else {
-            $("input[name=is_jefe][value='0']").prop("checked", true);
-        }
-        modal.find('.modal-body #dependencia_id').val(dependencia);
+        //$("input[name=is_jefe][value='1']").prop("checked", true);
 
 
     });
@@ -121,6 +153,44 @@ const changeBoss = (url) => {
             }
 
         },
+    });
+}
+
+const modalShow = () => {
+    $('#modalShow').on('show.bs.modal', function (event) {
+
+        let button = $(event.relatedTarget)
+        let url = button.data('href')
+
+        let modal = $(this)
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                modal.find('.modal-body').html(data);
+            }
+        });
+    });
+
+
+    $('#modalShow').on('hide.bs.modal', function (e) {
+        $(this).find('.modal-body').html("");
+    });
+
+}
+
+const modalChange = () => {
+    $('#modalChange').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget)
+        let id = button.data('id');
+        let dependencia = button.data('dependencia');
+
+        let modal = $(this);
+
+        modal.find('.modal-body #id_change').val(id);
+        modal.find('.modal-body #dependencia_change_id').val(dependencia);
+
     });
 }
 

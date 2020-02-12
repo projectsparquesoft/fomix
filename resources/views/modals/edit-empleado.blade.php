@@ -9,8 +9,9 @@
         </div>
         <div class="modal-body" style="background:whitesmoke">
   
-          <form id="form_create" action="{{route('empleados.update', 'empleado')}}" method="POST"
+          <form id="form_edit" action="{{route('empleados.update', 'empleado')}}" method="POST"
             onkeypress="return disableEnterKey(event);">
+           
             @csrf
             @method('PATCH')
 
@@ -47,34 +48,7 @@
   
                 <hr>
   
-                <div class="col-md-8 col-sm-8">
-                  <label for="">Dependencia:</label>
-                  <select class="form-control" name="dependencia_id" id="dependencia_id">
-                    <option value="">-- Escoger Opcion --</option>
-                    @foreach ($dependencias as $dependencia)
-                      <option value="{{$dependencia->id}}">{{$dependencia->nombre_dependencia}}</option>
-                    @endforeach
-                  </select>
-                </div>
-  
-                <div class="col-md-4 col-sm-4" style="padding-top:10px; padding-left: 10px">
-                  <label for="">Jefe:</label>
-                  <div class="form-group clearfix">
-  
-                    <div class="icheck-primary d-inline">
-                      <input type="radio" id="jefe_si" name="is_jefe" value="1">
-                      <label for="jefe_si">SI
-                      </label>
-                    </div>
-                    <div class="icheck-primary d-inline">
-                      <input type="radio" id="jefe_no" name="is_jefe" value="0">
-                      <label for="jefe_no">NO
-                      </label>
-                    </div>
-                  </div>
-                </div>
-  
-  
+              
               </div>
   
   

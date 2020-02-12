@@ -54,6 +54,8 @@
 <form id="form_hidden" style="display:none" action="{{route('empleados.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
 @include('modals.create-empleado')
 @include('modals.edit-empleado')
+@include('modals.show-empleado')
+@include('modals.change-dependencia')
 @endsection
 
 @section('extra-script')
