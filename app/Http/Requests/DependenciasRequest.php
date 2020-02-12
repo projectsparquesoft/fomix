@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DependenciasCreateRequest extends FormRequest
+class DependenciasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,17 +29,6 @@ class DependenciasCreateRequest extends FormRequest
         ];
     }
 
-/*
-    public function messages()
-    {
-        return [
-            'nombre_dependencia.required' => 'Este campo es obligatorio',
-            'nombre_dependencia.min' => 'El nombre debe ser mínimo de 3 caracteres',
-            'descripcion.required' => 'Este campo es obligatorio',
-            'descripcion.min' => 'la descripcion debe ser mínimo de 5 caracteres'
-        ];
-    }
-*/
 
 public function attributes()
 {

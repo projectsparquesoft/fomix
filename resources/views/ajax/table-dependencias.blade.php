@@ -1,37 +1,23 @@
-<table class="mb-0 table table-hover">
-    <thead >
+<table id="tabla" class="table table-hover table-sm">
+    <thead class="thead-light">
         <tr>
-            <th>Nombre de la Dependencia</th>
+            <th>#</th>
+            <th>Nombre de la dependencia</th>
             <th>Descripción</th>
-            <th>Acciones</th>
+            <th class="text-center">Acciones</th>
         </tr>
     </thead>
-<tbody>
-    @if ($dependencias->count() > 0)
-
-    @foreach ($dependencias as $dependencia)
-        <tr>
-            <td>{{ $dependencia->nombre_dependencia }}</td>
-            <td>{{ $dependencia->descripcion}}</td>
-            <td class="text-center">
-                <a data-toggle="tooltip" title="" data-placement="bottom" class="btn-transition btn btn-outline-info"
-                   data-original-title="Editar"><i class="pe-7s-pen height-icon"></i></a>
-                <a data-toggle="tooltip" title="" data-placement="bottom" class="btn-transition btn btn-outline-info"
-                   data-original-title="Ver Detalle"><i class="pe-7s-note2 height-icon"></i></a>
-            </td>
-        </tr>
-    @endforeach
-    @else
-        <tr>
-            <td scope="row" colspan="5">Resultados no encontrados...</td>
-        </tr>
-
-        @endif
-</tbody>
+    <tbody>
+        @foreach ($dependencias as $dependencia)
+            <tr>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$dependencia->nombre_dependencia}}</td>
+                <td>{{$dependencia->descripcion}}</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$dependencia->id}}" data-nombre_dependencia="{{$dependencia->nombre_dependencia}}" data-descripcion="{{$dependencia->descripcion}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
 </table>
 
-<!--RENDER PAGINATION-->
-<hr>
-<nav aria-label="Page navigation example">
-    {!!$dependencias->render()!!}
-</nav>

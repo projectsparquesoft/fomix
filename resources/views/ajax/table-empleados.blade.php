@@ -17,16 +17,16 @@
             <td>{{$empleado->name_complete}}</td>
             <td>{{$empleado->email}}</td>
             <td>{{$empleado->celular}}</td>
-            <td>Dependencia Actual</td>
+            <td>{{$empleado->currentDependencia->first()->nombre_dependencia}}</td>
             <td>
                 @if($empleado->is_jefe)
-                    <button class="btn badge bg-gradient-primary sm" onclick="changeBoss('{{ route('empleado.status', $indicador->id) }}');">SI</button>
+                    <button class="btn badge bg-gradient-primary sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">SI</button>
                  @else
-                    <button class="btn badge bg-gradient-info sm" onclick="changeBoss('{{ route('empleado.status', $indicador->id) }}');">NO</button>
+                    <button class="btn badge bg-gradient-info sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">NO</button>
                 @endif
             </td>
             <td class="text-center">
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-apellido="{{$empleado->email}}" data-apellido="{{$empleado->celular}}" data-jefe="{{$empleado->is_jefe}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-email="{{$empleado->email}}" data-celular="{{$empleado->celular}}" data-jefe="{{$empleado->is_jefe}}" data-dependencia="{{$empleado->currentDependencia->first()->id}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
             </td>
         </tr>
         @endforeach

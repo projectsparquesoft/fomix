@@ -9,41 +9,41 @@
       </div>
       <div class="modal-body" style="background:whitesmoke">
 
-        <form id="form_create" action="{{route('empleados.store')}}" method="POST"
+        <form id="form_edit" action="{{route('empleados.store')}}" method="POST"
           onkeypress="return disableEnterKey(event);">
           @csrf
           <div class="form-row">
             <div class="row">
               <div class="col-md-4 col-sm-4">
                 <label for=""># Identificacion:</label>
-                <input type="number" name="nid" id="nid" class="form-control">
+                <input type="number" name="nid" class="form-control">
               </div>
 
               <div class="col-md-4 col-sm-4">
                 <label for="">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" class="form-control">
+                <input type="text" name="nombre" class="form-control">
               </div>
 
               <div class="col-md-4 col-sm-4">
                 <label for="">Apellido:</label>
-                <input type="text" name="apellido" id="apellido" class="form-control">
+                <input type="text" name="apellido"  class="form-control">
               </div>
 
               <div class="col-md-8 col-sm-8">
                 <label for="">Correo:</label>
-                <input type="email" name="email" id="email" class="form-control">
+                <input type="email" name="email" class="form-control">
               </div>
 
               <div class="col-md-4 col-sm-4">
                 <label for="">Celular:</label>
-                <input type="number" name="celular" id="celular" class="form-control">
+                <input type="number" name="celular" class="form-control">
               </div>
 
               <hr>
 
               <div class="col-md-8 col-sm-8">
                 <label for="">Dependencia:</label>
-                <select class="form-control" name="eje_id" id="eje_id">
+                <select class="form-control" name="dependencia_id">
                   <option value="">-- Escoger Opcion --</option>
                   @foreach ($dependencias as $dependencia)
                     <option value="{{$dependencia->id}}">{{$dependencia->nombre_dependencia}}</option>
@@ -51,16 +51,18 @@
                 </select>
               </div>
 
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-4 col-sm-4" style="padding-top:10px; padding-left: 10px">
+                <label for="">Jefe:</label>
                 <div class="form-group clearfix">
+
                   <div class="icheck-primary d-inline">
-                    <input type="radio" id="jefe_si" name="is_jefe" value="SI">
-                    <label for="jefe_si">
+                    <input type="radio"  name="is_jefe" value="1">
+                    <label for="jefe_si">SI
                     </label>
                   </div>
                   <div class="icheck-primary d-inline">
-                    <input type="radio" id="jefe_no" name="is_jefe" value="NO">
-                    <label for="jefe_no">
+                    <input type="radio" name="is_jefe" value="0">
+                    <label for="jefe_no">NO
                     </label>
                   </div>
                 </div>

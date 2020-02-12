@@ -21,10 +21,13 @@ class Dependencia extends Model
         return $this->belongsToMany('App\Models\Empleado');
     }
 
-    public function scopeSearch($query, $search)
+    public function setNombreDependenciaAttribute($value)
     {
-        return $query->where('nombre_dependencia', 'like', "%$search%")
-            ->orWhere('descripcion', 'like', "%$search%");
+        $this->attributes['nombre_dependencia'] = ucwords($value);
+    }
 
+    public function setDescripcionAttribute($value)
+    {
+        $this->attributes['descripcion'] = ucfirst($value);
     }
 }

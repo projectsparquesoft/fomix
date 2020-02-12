@@ -23,6 +23,8 @@ class Empleado extends Model
 
     protected $appends = ['name_complete'];
 
+    protected $casts = ['is_jefe' => 'boolean'];
+
     public function user()
     {
         return $this->hasOne('App\User', 'empleado_id');
@@ -31,6 +33,11 @@ class Empleado extends Model
     public function dependencias()
     {
         return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado')->withTimestamps();
+    }
+
+    public function currentDependencia()
+    {
+        return $this->belongsToMany('App\Models\Dependencia')->wherePivot('status', 1);
     }
 
     public function getNameCompleteAttribute()

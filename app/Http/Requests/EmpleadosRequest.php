@@ -6,13 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EmpleadosRequest extends FormRequest
 {
-    
+
     public function authorize()
     {
         return true;
     }
 
-    
     public function rules()
     {
         return [
@@ -21,17 +20,19 @@ class EmpleadosRequest extends FormRequest
             'apellido' => 'required|min:3',
             'email' => 'required|min:3',
             'celular' => 'required|min:3',
-            'is_jefe'=> 'required',
+            'is_jefe' => 'required|integer',
+            'dependencia_id' => 'required|exists:dependencias,id',
         ];
     }
     public function attributes()
     {
         return [
-            'nid' => 'Nit|Cedula',
+            'nid' => 'Numero Identificacion',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'email' => 'Correo Electronico',
-            'is_jefe' => 'Cargo'
+            'is_jefe' => '¿Es Jefe?',
+            'dependencia_id' => 'Dependencia',
         ];
-        }
+    }
 }

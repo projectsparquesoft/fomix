@@ -83,7 +83,8 @@ const showEdit = () => {
         let apellido = button.data('apellido');
         let email = button.data('email');
         let celular = button.data('celular');
-        let jefe = button.data('is_jefe');
+        let jefe = button.data('jefe');
+        let dependencia = button.data('dependencia');
 
         let modal = $(this);
 
@@ -93,7 +94,33 @@ const showEdit = () => {
         modal.find('.modal-body #apellido').val(apellido);
         modal.find('.modal-body #email').val(email);
         modal.find('.modal-body #celular').val(celular);
-        modal.find('.modal-body #jefe').val(jefe);
+
+        if (jefe) {
+            $("input[name=is_jefe][value='1']").prop("checked", true);
+        } else {
+            $("input[name=is_jefe][value='0']").prop("checked", true);
+        }
+        modal.find('.modal-body #dependencia_id').val(dependencia);
+
 
     });
 }
+
+const changeBoss = (url) => {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+            if (data.success) {
+                success(data.success);
+                updateTable();
+            } else {
+                warning(data.warning);
+            }
+
+        },
+    });
+}
+

@@ -65,6 +65,7 @@ Route::resource('documentos', 'DocumentoController', ['except' => [
 Route::get('tipopoblacion/estado/{id}', 'TipoPoblacionController@changeStatus')->name('tipopoblacion.status');
 Route::get('indicador/estado/{id}', 'IndicadorController@changeStatus')->name('indicador.status');
 Route::get('lineas/estado/{id}','LineaController@changeLineas')->name('lineas.status');
+Route::get('empleados/estado/{id}','EmpleadoController@changeBoss')->name('empleados.status');
 
 
 // SOLICITUDES VARIADAS 

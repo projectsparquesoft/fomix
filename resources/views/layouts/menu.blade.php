@@ -86,7 +86,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link {{activeSubMenu('dependencias*')}}">
+              <a href="{{route('dependencia.index')}}" class="nav-link {{activeSubMenu('dependencia*')}}">
                 <i class="fas fa-user-friends nav-icon"></i>
                 <p>Dependencias</p>
               </a>
