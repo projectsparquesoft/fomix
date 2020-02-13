@@ -125,14 +125,13 @@ class EmpleadoController extends Controller
 
             $puesto = DependenciaEmpleado::where('empleado_id', $request->id_change)->orderBy('id', 'DESC')->first();
 
-            $puesto->fecha_salida = $request->fecha_salida;
-            $puesto->motivo = $request->motivo;
-            $puesto->save();
-
-            $empleado = Empleado::where('id', $request->id_change)->with('historyDependencias')->first();
+            $empleado = Empleado::findOrFail($request->id_change);
 
             foreach ($empleado->historyDependencias as $history) {
-                $empleado->dependencias()->updateExistingPivot($history->id, ['status' => 0]);
+                if ($puesto->id == $history->id) {
+                    $empleado->dependencias()->updateExistingPivot($history->dependencia_id, ['status' => 0, 'motivo' => $request->motivo, 'fecha_salida' => $request->fecha_salida]);
+                }
+                $empleado->dependencias()->updateExistingPivot($history->dependencia_id, ['status' => 0]);
             }
 
             $empleado->dependencias()->attach($request->dependencia_change_id, ['status' => 1]);

@@ -37,14 +37,14 @@ class Empleado extends Model
 
     public function dependencias()
     {
-        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado')
-        ->withPivot('id')
-        ->withTimestamps();
+        return $this->belongsToMany('App\Models\Dependencia', 'dependencia_empleado', 'empleado_id', 'dependencia_id')
+            ->withPivot('id', 'motivo', 'fecha_salida', 'status')
+            ->withTimestamps();
     }
 
     public function currentDependencia()
     {
-        return $this->belongsToMany('App\Models\Dependencia')->wherePivot('status', 1);
+        return $this->belongsToMany('App\Models\Dependencia')->wherePivot('status', 1)->withPivot('id', 'motivo', 'fecha_salida', 'status');
     }
 
     public function getNameCompleteAttribute()

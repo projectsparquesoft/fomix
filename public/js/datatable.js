@@ -106,7 +106,6 @@ const showErrorMessage = (messages) => {
 
 /*recarga-actualizar tbla*/
 const updateTable = () => {
-
     let form = $('#form_hidden');
     $.ajax({
         data: form.serialize(),

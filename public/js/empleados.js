@@ -64,7 +64,9 @@ const changeDependencia = () => {
 
                 success(data.success);
                 $('#modalChange').modal('hide');
+                form[0].reset();
                 updateTable();
+
             } else {
                 warning(data.warning);
 
