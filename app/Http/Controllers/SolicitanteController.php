@@ -16,13 +16,12 @@ class SolicitanteController extends Controller
     {
         $this->middleware('auth');
     }
-
     public function index(Request $request)
     {
-        $solicitantes = Solicitante::all();
-        $personas = Persona::all(['id_persona', 'tipo_persona']);
-        $departamentos = Departamento::all(['id_departamento', 'nombre_departamento']);
-        $proponentes = Proponente::all(['id_proponente', 'nombre_proponente']);
+        $solicitantes = Solicitante::with('municipio.departamento')->get();
+        $personas = Persona::all(['id', 'tipo_persona']);
+        $departamentos = Departamento::all(['id', 'nombre_departamento']);
+        $proponentes = Proponente::all(['id', 'nombre_proponente']);
 
         if (request()->ajax()) {
             $solicitantes = Solicitante::all();
@@ -30,11 +29,9 @@ class SolicitanteController extends Controller
             if (count($solicitantes) == 0) {
                 return response()->json(['warning' => 'Error en el servidor']);
             } else {
-                return response()->view('ajax.table-solicitantes', compact('solicitantes'));
+                return response()->view('ajax.table-solicitantes', compact('solicitantes', 'personas', 'departamentos', 'proponentes'));
             }
         }
-
-
         return view('solicitante.index', compact('solicitantes', 'personas', 'departamentos', 'proponentes'));
     }
 
@@ -43,10 +40,19 @@ class SolicitanteController extends Controller
     {
 
         if (request()->ajax()) {
-            $solicitante = Solicitante::create($request->except(['departamento']));
+            $solicitante = Solicitante::create($request->except(['nombre_departamento']));
             if ($solicitante) {
                 return response()->json(['success' => 'SOLICITANTE CREADO CON EXITO!']);
             }
+        }
+    }
+
+    public function update(SolicitanteRequest $request, $id)
+    {
+        if (request()->ajax()) {
+            Solicitante::findOrFail($request->id_row)->update($request->all());
+            return response()->json(['success' => 'SOLICITANTE ACTUALIZADO CORRECTAMENTE']);
+
         }
     }
 }

@@ -15,16 +15,17 @@ class SolicitanteRequest extends FormRequest
     public function rules()
     {
         return [
-            'persona_id' => 'required|integer|exists:personas,id_persona',
+            'persona_id' => 'required|integer|exists:personas,id',
             'razon_social' => 'required',
-            'nid' => 'required|integer|unique:solicitantes,nid',
-            'municipio_id' => 'required|integer|exists:municipios,id_municipio',
+            'nid' => 'required|integer',
+            'municipio_id' => 'required|integer|exists:municipios,id',
             'email' => 'required|email',
             'direccion' => 'required|min:3',
-            'telefono' => 'integer|min:7|nullable',
             'celular' => 'integer|min:10|nullable',
-            'proponente_id' => 'required|integer|exists:proponentes,id_proponente',
+            'proponente_id' => 'required|integer|exists:proponentes,id',
             'representante_legal' => 'required|min:3',
+            'nombre' => 'required|min:3',
+            'apellido' => 'required|min:3',
         ];
     }
 
@@ -33,15 +34,15 @@ class SolicitanteRequest extends FormRequest
         return [
             'persona_id' => 'Tipo Persona',
             'razon_social' => 'Razon Social',
+            'nombre' => 'Nombres',
+            'apellido' => 'Apellidos',
             'nid' => 'CC/NIT',
             'municipio_id' => 'Municipio',
-            'email' => 'Email',
-            'first_name' => 'Nombres',
             'direccion' => 'Direccion',
-            'telefono' => 'Telefono',
             'celular' => 'Celular',
-            'proponente_id' => 'Tipo Proponente',
+            'email' => 'Email',
             'representante_legal' => 'Representante Legal',
+            'proponente_id' => 'Tipo Proponente',
         ];
     }
 }

@@ -14,7 +14,7 @@
                 <input type="hidden" name="id_row" id="id_row">
                 <div class="form-row">
                     <div class="col-md-12">
-                        <label for="">Nombre de la Línea:</label>
+                        <label for="">Nombre de la dependencia:</label>
                         <input type="text" name="nombre_dependencia" id="nombre_dependencia" class="form-control">
                     </div>
                     <div class="col-md-12">
