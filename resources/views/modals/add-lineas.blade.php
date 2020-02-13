@@ -8,11 +8,8 @@
           </button>
         </div>
         <div class="modal-body" style="background:whitesmoke">
-            <form id="form_create" action="{{route('lineas.store')}}" method="POST" onkeypress="return disableEnterKey(event);">
-                @csrf
                 <div class="form-row">
-
-                    <div class="col-md-12">
+                  <div class="col-md-12">
                         <div class="form-group">
                         <label>Líneas</label>
                             <select name="id_linea" class="form-control select2bs4 show-tick" style="width: 100%;" multiple data-placeholder="Escoger Líneas">
@@ -24,11 +21,9 @@
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i class="fas fa-times-circle"></i></button>
-          <button id="guardar" type="button" class="btn btn-dark">Guardar <i class="fas fa-save"></i></button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Añadir <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

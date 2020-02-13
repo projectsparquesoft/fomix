@@ -1,42 +1,131 @@
 <div class="modal fade" id="modalFormato">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" style="background:#fcd846">
-          <h4 class="modal-title">Añadir Formato <i class="fas fa-user-plus"></i></h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#fcd846">
+        <h4 class="modal-title">Añadir Formato <i class="fas fa-user-plus"></i></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background:whitesmoke">
+
+
+        <div class="card card" style="background:whitesmoke">
+          <div class="card-header">
+            <h3 class="card-title">Presentacion Proyecto</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            </div>
+          </div>
+          <!-- /tabla -->
+          <div class="card-body">
+
+            <div class="form-row">
+
+              <div class="col-md-12">
+                <label for="">Título</label>
+                <input type="text" class="form-control">
+              </div>
+    
+              <div class="col-md-6">
+                <label for="">Fecha de Inicio</label>
+                <input type="date" class="form-control">
+              </div>
+    
+              <div class="col-md-6">
+                <label for="">Fecha Final</label>
+                <input type="date" class="form-control">
+              </div>
+    
+              <div class="col-md-12">
+                <label for="descripcion"><strong>Descripción del proyecto:</strong></label>
+                <textarea class="form-control" name="descripcion"
+                  placeholder="(Describa en que consiste el proyecto, breve descripcion" class="form-control"></textarea>
+              </div>
+    
+            </div>
+    
+
+             
+          </div>
+          <!-- /fin tabla-->
+          <div class="card-footer">
+            Presentacion del proyecto, fechas, descripcion.
+          </div>
         </div>
-        <div class="modal-body" style="background:whitesmoke">
-                <div class="">
-                    <form id="form_create" action="{{route('proyecto.store')}}" method="POST" onkeypress="return disableEnterKey(event);">
-                        @csrf
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="">Título</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="descripcion" ><strong>Descripción del proyecto:</strong></label>
-                                <textarea class="form-control" name="descripcion" placeholder="(Describa en que consiste el proyecto, máximo 10 lineas)" class="form-control"></textarea>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="">Fecha de Inicio</label>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="">Fecha Final</label>
-                                <input type="date" class="form-control">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </form>
+
+        <div class="card card collapsed-card" style="background:whitesmoke">
+          <div class="card-header">
+            <h3 class="card-title">Cuerpo del Proyecto</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            </div>
+          </div>
+          <!-- /tabla -->
+          <div class="card-body">
+
+            <div class="form-row">
+
+              
+              <div class="col-md-12">
+                <label for="antecedentes"><strong>Antecedentes:</strong></label>
+                <textarea rows="5"  class="form-control" name="antecedentes"
+                  placeholder="(Describa en orden cronológico las acciones, que han precedido este proyecto y que fueron pertinentes para su formulación)" class="form-control"></textarea>
+              </div>
+
+              <div class="col-md-12">
+                <label for="justificacion"><strong>Justificacion:</strong></label>
+                <textarea rows="5"  class="form-control" name="justificacion"
+                  placeholder="(Argumente por qué es importante la realización del proyecto y la relación del Proyecto con el Plan de Desarrollo Departamental.)" class="form-control"></textarea>
+              </div>
+    
+
+              <div class="col-md-12">
+                <label for="metodologia"><strong>Metodologia:</strong></label>
+                <textarea rows="5"  class="form-control" name="metodologia"
+                  placeholder="(Describa detalladamente las acciones o actividades a seguir para el desarrollo del proyecto, de acuerdo con los objetivos y las metas)" class="form-control"></textarea>
+              </div>
+    
+
+              <div class="col-md-6">
+                <label for="objetivo_general"><strong>Objetivo General:</strong></label>
+                <textarea rows="5"  class="form-control" name="objetivo_general"
+                  placeholder="(Describa que se quiere lograr con el proyecto, es decir, cual es propósito que se pretende alcanzar, debe estar relacionado con la justificación)" class="form-control"></textarea>
+              </div>
+    
+
+              <div class="col-md-6">
+                <label for="objetivo_especifico"><strong>Objetivo Especifico:</strong></label>
+                <textarea rows="5"  class="form-control" name="objetivo_especifico"
+                  placeholder="(Corresponde a los propósitos más puntuales que contribuya a lograr el objetivo general, Señale tres objetivos específicos)." class="form-control"></textarea>
+              </div>
+
+              <div class="col-md-12">
+                <label for="metas"><strong>Meta:</strong></label>
+                <textarea rows="5"  class="form-control" name="objetivo_especifico"
+                  placeholder="(Estas deben ser cuantitativas (medibles); Son el resultado de lo que se quiere lograr y están relacionados con los objetivos formulados)." class="form-control"></textarea>
+              </div>
+            
+    
+    
+            </div>
+    
+
+             
+          </div>
+          <!-- /fin tabla-->
+          <div class="card-footer">
+            Antecedentes, Justificacion, Metodologia, Objetivo General, Objetivos Especificos, Metas.
+          </div>
         </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i class="fas fa-times-circle"></i></button>
-          <button id="guardar" type="button" class="btn btn-dark">Guardar <i class="fas fa-save"></i></button>
-        </div>
+
+
+    
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Añadir <i
+            class="fas fa-times-circle"></i></button>
       </div>
     </div>
+  </div>
 </div>

@@ -9,25 +9,28 @@
         </div>
         <div class="modal-body" style="background:whitesmoke">
 
-            <form id="form_create" action="{{route('solicitud.store')}}" method="POST" onkeypress="return disableEnterKey(event);" enctype="multipart/form-data">
-                @csrf
                 <div class="form-row">
+
                     <div class="col-md-6">
                         <label for="">Categoria:</label>
                         <select name="categoria_id" id="" class="form-control">
+                          <option selected>-- Escoger Opcion --</option>
                             @foreach ($categorias as $categoria)
                             <option value="{{$categoria->id}}">{{$categoria->tipo_solicitud}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="">Solicitante:</label>
-                        <select name="solicitante_id" id="" class="form-control">
-                        @foreach ($solicitantes as $solicitante)
-                        <option value="{{$solicitante->id}}">{{$solicitante->razon_social}}</option>
-                        @endforeach
-                        </select>
 
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="">Solicitante:</label>
+                        <select name="solicitante_id" id="" class="form-control select2" style="width: 100%;">
+                          <option selected>-- Escoger Opcion --</option>
+                          @foreach ($solicitantes as $solicitante)
+                        <option value="{{$solicitante->id}}">@if($solicitante->razon_social) {{$solicitante->razon_social}} ({{$solicitante->name_complete}})</span> @else {{$solicitante->name_complete}}@endif</option>
+                          @endforeach
+                        </select>
+                      </div>
                     </div>
                     <div class="col-md-6">
                         <label for="">Descripción:</label>
@@ -41,8 +44,7 @@
             </form>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i class="fas fa-times-circle"></i></button>
-      {{--<button id="guardar" type="button" class="btn btn-dark">Guardar <i class="fas fa-save"></i></button>--}}
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Añadir <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

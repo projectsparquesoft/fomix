@@ -16,7 +16,7 @@ class SolicitanteRequest extends FormRequest
     {
         return [
             'persona_id' => 'required|integer|exists:personas,id',
-            'razon_social' => 'required',
+            'razon_social' => 'nullable|min:3',
             'nid' => 'required|integer',
             'municipio_id' => 'required|integer|exists:municipios,id',
             'email' => 'required|email',

@@ -29,7 +29,14 @@ class Solicitante extends Model
         'created_at', 'updated_at',
     ];
 
+    protected $appends = ['name_complete'];
+
     protected $dates = ['deleted_at'];
+
+    public function getNameCompleteAttribute()
+    {
+        return "{$this->nombre} {$this->apellido}";
+    }
 
     public function setRazonSocialAttribute($value)
     {

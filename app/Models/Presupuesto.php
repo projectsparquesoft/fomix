@@ -21,8 +21,8 @@ class Presupuesto extends Model
         'created_at', 'updated_at',
     ];
 
-    public function solicitud()
+    public function proyecto()
     {
-        return $this->belongsTo('App\Models\Solicitud');
+        return $this->belongsTo('App\Models\Proyecto');
     }
 }

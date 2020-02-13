@@ -14,21 +14,17 @@ use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $poblaciones= Poblacion::with('clasificacion:id,tipo_poblacion')->get(['id', 'item', 'clasificacion_id', 'detalle']);
         $categorias = Categoria::all(['id','tipo_solicitud']);
         $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
-        $solicitantes = solicitante::all(['id','razon_social']);
-        $solicitudes = solicitud::with('categoria', 'solicitante')->get();
+        $solicitantes = Solicitante::all(['id','razon_social', 'nombre', 'apellido']);
+        $solicitudes = Solicitud::with('categoria', 'solicitante')->get();
 
         if (request()->ajax()) {
-        $solicitudes = solicitud::all();
+        $solicitudes = Solicitud::all();
         if (count($solicitudes) == 0) {
             return response()->json(['warning' => 'Error en el servidor']);
         } else {
