@@ -15,7 +15,7 @@ class MunicipioController extends Controller
     public function changeMunicipalities($id)
     {
         if (request()->ajax()) {
-            $departament = Departamento::with('municipios')->where('id_departamento', $id)->first();
+            $departament = Departamento::with('municipios')->where('id', $id)->first();
             return response()->json($departament->municipios);
         }
     }

@@ -5,6 +5,7 @@ use App\Models\solicitud;
 use App\Models\categoria;
 use App\Models\solicitante;
 use App\Models\linea;
+use App\Models\Poblacion;
 
 use App\Http\Requests\SolicitudRequest;
 
@@ -20,11 +21,22 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all(['id_categoria','tipo_solicitud']);
-        $solicitantes = solicitante::all(['id_solicitante','razon_social']);
-        $lineas = Linea::all(['id_linea','nombre_linea','descripcion']);
-        $solicitud = solicitud::all();
-        return view('solicitud.index', compact('categorias', 'solicitud', 'solicitantes', 'lineas'));
+        $poblaciones= Poblacion::with('clasificacion:id,tipo_poblacion')->get(['id', 'item', 'clasificacion_id', 'detalle']);
+        $categorias = Categoria::all(['id','tipo_solicitud']);
+        $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
+        $solicitantes = solicitante::all(['id','razon_social']);
+        $solicitudes = solicitud::with('categoria', 'solicitante')->get();
+
+        if (request()->ajax()) {
+        $solicitudes = solicitud::all();
+        if (count($solicitudes) == 0) {
+            return response()->json(['warning' => 'Error en el servidor']);
+        } else {
+            return response()->view('ajax.table-solicitudes', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones'));
+        }
+
+        }
+        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones'));
     }
 
     /**
@@ -45,20 +57,20 @@ class SolicitudController extends Controller
      */
     public function store(SolicitudRequest $request)
     {
-
         if ($request->file('archivo')) {
             $file = $request->file('archivo');
             $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/', $name);
+            $file->move(public_path().'/imagenes', $name);
         }
         $solicitud = new Solicitud();
         $solicitud->categoria_id=$request->get('categoria_id');
         $solicitud->solicitante_id=$request->get('solicitante_id');
         $solicitud->archivo= $name;
-        $solicitud->save();
 
-        return redirect()->route('solicitud.index');
-
+        $exito = $solicitud->save();
+        if ($exito) {
+           return response()->json(['success' =>'SOLICITUD CREADA CORRECTAMENTE' ]);
+        }
 
     }
 
