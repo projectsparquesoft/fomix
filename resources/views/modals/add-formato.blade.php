@@ -28,6 +28,14 @@
                                 <label for="">Fecha Final</label>
                                 <input type="date" class="form-control">
                             </div>
+                            <div class="col-md-12">
+                                <label for="">Proponentes:</label>
+                                <select name="proponente_id" id="" class="form-control">
+                                    @foreach ($proponentes as $proponente)
+                                <option value="{{$proponente->id}}">{{$proponente->nombre_proponente}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </form>
                 </div>

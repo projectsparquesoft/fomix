@@ -32,7 +32,6 @@
                                         <td><input type="text" class="form-control"></td>
                                         <td><input type="text" class="form-control"></td>
                                 </tr>
-
                                 @endforeach
                             </tbody>
                         </table>

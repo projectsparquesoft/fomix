@@ -6,10 +6,10 @@ use App\Models\categoria;
 use App\Models\solicitante;
 use App\Models\linea;
 use App\Models\Poblacion;
-
+use App\Models\Proponente;
+use App\Models\Actividad;
+use App\Models\Presupuesto;
 use App\Http\Requests\SolicitudRequest;
-
-
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
@@ -21,6 +21,9 @@ class SolicitudController extends Controller
      */
     public function index()
     {
+        $presupuestos = presupuesto::all(['id', 'solicitud_id', 'rubro', 'recurso_municipio', 'fondo_mixto', 'ministerio_cultura', 'ingreso_propio']);
+        $actividades = Actividad::all(['id', 'proyecto_id', 'nombre_actividad', 'fecha_inicio', 'fecha_final']);
+        $proponentes = Proponente::all(['id', 'nombre_proponente']);
         $poblaciones= Poblacion::with('clasificacion:id,tipo_poblacion')->get(['id', 'item', 'clasificacion_id', 'detalle']);
         $categorias = Categoria::all(['id','tipo_solicitud']);
         $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
@@ -32,11 +35,11 @@ class SolicitudController extends Controller
         if (count($solicitudes) == 0) {
             return response()->json(['warning' => 'Error en el servidor']);
         } else {
-            return response()->view('ajax.table-solicitudes', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones'));
+            return response()->view('ajax.table-solicitudes', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'proponentes', 'actividades','presupuestos'));
         }
 
         }
-        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones'));
+        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'proponentes', 'actividades', 'presupuestos'));
     }
 
     /**
