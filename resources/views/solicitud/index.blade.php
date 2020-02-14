@@ -54,6 +54,9 @@
 </div>
 <form id="form_hidden" style="display:none" action="{{route('solicitud.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
 
+<form id="form_create" action="{{route('solicitud.store')}}" method="POST" onkeypress="return disableEnterKey(event);" enctype="multipart/form-data">
+  @csrf
+
 @include('modals.create-solicitudes')
 @include('modals.add-lineas')
 @include('modals.add-formato')
@@ -61,6 +64,9 @@
 @include('modals.add-actividades')
 @include('modals.add-presupuesto')
 @include('modals.add-documentos')
+</form>
+
+<input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>
 
 
  {{--@include('modals.edit-solicitante')--}}
@@ -74,26 +80,18 @@
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
-<!--Data tables y script de lineas-->
-<script src="{{asset('js/datatable.js')}}"></script>
-<script src="{{asset('js/solicitud.js')}}"></script>
-<script src="{{asset('js/add-actividades.js')}}"></script>
-
 <!---select-->
 <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
+
+
+<!--Data tables y script de lineas-->
+<script src="{{asset('js/datatable.js')}}"></script>
 <script>
-
-    $(function () {
-      //Initialize Select2 Elements
-      $('.select2').select2()
-
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      })
-
-    })
-  </script>
+  let poblaciones = $('#list_poblaciones').val();
+  poblaciones = JSON.parse(poblaciones);
+  let tr = 0;
+</script>
+<script src="{{asset('js/solicitud.js')}}"></script>
 
 @stop
 

@@ -1,40 +1,37 @@
-<table class="mb-0 table table-hover">
-    <thead>
+<table id="tabla" class="table table-hover table-sm">
+    <thead class="thead-light">
         <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Nid|CC</th>
-            <th>Acciones</th>
-
+            <th>#</th>
+            <th>Empleado</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Dependencia</th>
+            <th>Jefe</th>
+            <th>Accion</th>
         </tr>
     </thead>
     <tbody>
-        @if ($empleados->count() > 0)
-
         @foreach ($empleados as $empleado)
-            <tr>
-                <td>{{$empleado->nombre}}</td>
-                <td>{{$empleado->apellido}}</td>
-                <td>{{$empleado->nid}}</td>
-                <td class="text-center">
-                    <a data-toggle="tooltip" title="" data-placement="bottom" class="btn-transition btn btn-outline-info"
-                       data-original-title="Editar"><i class="pe-7s-pen height-icon"></i></a>
-                    <a data-toggle="tooltip" title="" data-placement="bottom" class="btn-transition btn btn-outline-info"
-                       data-original-title="Ver Detalle"><i class="pe-7s-note2 height-icon"></i></a>
-                </td>
-            </tr>
-        @endforeach
-        @else
         <tr>
-            <td scope="row" colspan="5">Resultados no encontrados...</td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$empleado->name_complete}}</td>
+            <td>{{$empleado->email}}</td>
+            <td>{{$empleado->celular}}</td>
+            <td>{{$empleado->currentDependencia->first()->nombre_dependencia}}</td>
+            <td>
+                @if($empleado->is_jefe)
+                    <button class="btn badge bg-gradient-primary sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">SI</button>
+                 @else
+                    <button class="btn badge bg-gradient-info sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">NO</button>
+                @endif
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-email="{{$empleado->email}}" data-celular="{{$empleado->celular}}"  data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-href="{{route('empleados.show', $empleado->id)}}" data-target="#modalShow" class="btn btn-warning btn-sm"> <i class="fas fa-eye"></i>Ver</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-dependencia="{{$empleado->currentDependencia->first()->id}}" data-target="#modalChange" class="btn btn-warning btn-sm"> <i class="fas fa-exchange-alt"></i>Cambio</button>   
+            </td>
         </tr>
-
-        @endif
+        @endforeach
     </tbody>
-    </table>
-        <!--RENDER PAGINATION-->
-<hr>
-<nav aria-label="Page navigation example">
-    {!!$empleados->render()!!}
-</nav>
 
+</table>

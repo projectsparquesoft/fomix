@@ -15,12 +15,12 @@
 
               <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                 <label for="">Nombre del Indicador:</label>
-                <input type="text" name="nombre_indicador"  id="nombre_indicador" class="form-control">
+                <input type="text" name="nombre_indicador" class="form-control">
               </div>
 
               <div class="col-lg-8 col-md-8 col-sm-12 col-xl-12">
                 <label for="">Eje:</label>
-                <select class="form-control" name="eje_id" id="eje_id">
+                <select class="form-control" name="eje_id">
                   <option value="">-- Escoger Opcion --</option>
                   @foreach ($ejes as $eje)
                     <option value="{{$eje->id}}">{{$eje->nombre_programa}}</option>
@@ -30,7 +30,7 @@
 
               <div class="col-lg-4 col-md-4 col-sm-12 col-xl-12">
                 <label for="">Meta:</label>
-                <input type="number" name="meta" id="meta" class="form-control">
+                <input type="number" name="meta" class="form-control">
               </div>
 
             </div>

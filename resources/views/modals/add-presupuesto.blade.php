@@ -8,8 +8,6 @@
           </button>
         </div>
         <div class="modal-body" style="background:whitesmoke">
-            <form id="form_create" action="" method="POST" onkeypress="return disableEnterKey(event);">
-                @csrf
                     <div class="form-row">
                         <div class="col-md-10 col-sm-10"><h6 style="float:left"><b> PRESUPUESTO DE EGRESOS</b> (Gastos)</h6> <h6 style="float:right"><b> INGRESOS </b>(Fuentes de Financiación)</h6>  </div>
                         <div class="col-md-2 col-sm-2">
@@ -20,64 +18,61 @@
                                 <label for="">Rubro</label>
                                 <input type="number" class="form-control">
                             </div>
+
                             <div class="col-md-4">
                                 <label for="">Recursos del Municipio</label>
                                 <input type="number" class="form-control">
                             </div>
+
                             <div class="col-md-4">
                                 <label for="">Fondo Mixto</label>
                                 <input type="number" class="form-control">
                             </div>
+
                             <div class="col-md-6">
                                 <label for="">Ministerio de Cultura</label>
                                 <input type="number" class="form-control">
                             </div>
+
                             <div class="col-md-6">
                                 <label for="">Ingresos Propios</label>
                                 <input type="number" class="form-control">
                             </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+
+
                             <div class="table-responsive">
-                            <table id="tabla" class="table table-hover table-sm ">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Rubro</th>
-                                        <th>Recursos_Municipio</th>
-                                        <th>Fondo Mixto</th>
-                                        <th>Ministerio_Cultura</th>
-                                        <th>Ingresos Propios</th>
-                                        <th style="width:20%" class="text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($presupuestos as $presupuesto)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$presupuesto->rubro}}</td>
-                                        <td>{{$presupuesto->recurso_municipio}}</td>
-                                        <td>{{$presupuesto->fondo_mixto}}</td>
-                                        <td>{{$presupuesto->ministerio_cultura}}</td>
-                                        <td>{{$presupuesto->ingreso_propio}}</td>
+                                <br>
+                                <table id="tabla" class="table table-hover table-sm">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Rubro</th>
+                                            <th>Recursos_Municipio</th>
+                                            <th>Fondo Mixto</th>
+                                            <th>Ministerio_Cultura</th>
+                                            <th>Ingresos Propios</th>
+                                            <th style="width:20%" class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>1</td>
+                                        <td>$10000</td>
+                                        <td>$10000</td>
+                                        <td>$10000</td>
+                                        <td>$10000</td>
+                                        <td>$10000</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  data-target="#modalEdit" ><i class="fas fa-pencil-alt"></i></button>
                                             <button type="button" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i></button>
                                         </td>
-                                    </tr>
-
-                                    @endforeach
-                                </tbody>
-                         </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
-            </form>
+
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i class="fas fa-times-circle"></i></button>
-          <button id="guardar" type="button" class="btn btn-dark">Guardar <i class="fas fa-save"></i></button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

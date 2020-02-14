@@ -4,17 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Presupuesto extends Model
+class FuenteProyecto extends Model
 {
-    protected $table = 'presupuestos';
+    protected $table = 'fuente_proyecto';
 
     protected $fillable = [
-        'solicitud_id',
-        'rubro',
-        'recurso_municipio',
-        'fondo_mixto',
-        'ministerio_cultura',
-        'ingreso_propio',
+        'proyecto_id', 'fuente_id',
     ];
 
     protected $hidden = [
@@ -25,4 +20,10 @@ class Presupuesto extends Model
     {
         return $this->belongsTo('App\Models\Proyecto');
     }
+
+    public function fuente()
+    {
+        return $this->belongsTo('App\Models\Fuente');
+    }
+
 }

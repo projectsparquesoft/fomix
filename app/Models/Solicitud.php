@@ -46,11 +46,6 @@ class Solicitud extends Model
         return $this->hasMany('App\Models\Anexo', 'solicitud_id');
     }
 
-    public function presupuestos()
-    {
-        return $this->hasMany('App\Models\Presupuesto');
-    }
-
     public function radicados()
     {
         return $this->belongsToMany('App\Models\Radicado');

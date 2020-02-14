@@ -22,4 +22,6 @@ class Clasificacion extends Model
     {
         return $this->hasMany('App\Models\Poblacion');
     }
+
+   
 }

@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="departamento"><strong>Departamento:</strong></label>
-                            <select name="nombre_departamento"  class="form-control departamento" required>
+                            <select name="nombre_departamento"  class="form-control departamento select2" required>
                                 <option value="">---Escoger Departamento---</option>
                                 @foreach ($departamentos as $departamento)
                                     <option value="{{$departamento->id}}">{{$departamento->nombre_departamento }}</option>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="municipio" ><strong>Municipio:</strong></label>
-                            <select name="municipio_id"  class="form-control municipio" required>
+                            <select name="municipio_id"  class="form-control municipio select2" required>
                                 <option value="">---Escoger Municipio---</option>
                             </select>
                         </div>
@@ -68,7 +68,7 @@
                             <label for="representante" ><strong>Representante Legal:</strong></label>
                             <input name="representante_legal"  placeholder="Representante Legal" type="text"  class="form-control" required>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <label for="proponente" ><strong>Tipo de Proponente:</strong></label>
                             <select name="proponente_id"  class="form-control" required>
                             <option value="">---Escoger Tipo de Proponente---</option>

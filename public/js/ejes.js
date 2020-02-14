@@ -75,73 +75,7 @@ const update = () => {
 
 }
 
-/*Mostrar mensaje*/
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-});
 
-/*mensaje de guardado*/
-const success = (mensaje) => {
-
-    Toast.fire({
-        type: 'success',
-        title: `${mensaje}`
-    })
-}
-
-/*mensaje de error*/
-const warning = (mensaje) => {
-    Toast.fire({
-        type: 'error',
-        title: `${mensaje}`
-    })
-}
-
-
-const addErrorMessage = (errors) => {
-    let messages = "";
-    $.each(errors, function (key, value) {
-
-        if ($.isPlainObject(value)) {
-            $.each(value, function (key, value) {
-                messages = messages + "<li><span class='font-bold text-danger'>" + value + "</span></li><br/>";
-            });
-        }
-    });
-    showErrorMessage(messages);
-}
-
-
-const showErrorMessage = (messages) => {
-    Swal.fire({
-        title: "<strong>Error: Datos Incorrectos</strong>!",
-        icon: 'error',
-        html: messages
-    });
-}
-
-/*recarga-actualizar tbla*/
-const updateTable = () => {
-
-    let form = $('#form_hidden');
-    $.ajax({
-        data: form.serialize(),
-        url: form.attr('action'),
-        type: form.attr('method'),
-        success: function (data) {
-            if (data.warning) {
-                warning(data.warning);
-            } else {
-                $('#id_table').html("");
-                $('#id_table').html(data);
-                dataTableInit();
-            }
-        }
-    });
-}
 
 const showEdit = () => {
     $('#modalEdit').on('show.bs.modal', function (event) {

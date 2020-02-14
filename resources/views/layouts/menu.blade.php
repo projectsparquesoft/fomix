@@ -18,17 +18,6 @@
     </div>
 
     @php
-      function activeMenu(array $urls)
-      {
-        foreach ($urls as $url)
-        {
-          if (Route::is($url)){
-            return 'menu-open';
-            break;
-          }
-        }
-      }
-
       function activeSubMenu($url)
       {
       return Route::is($url) ? 'active' : '';
@@ -74,7 +63,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
+              <a href="javascript:void(0)" class="nav-link ">
                 <i class="fas fa-file nav-icon"></i>
                 <p>Proyectos</p>
               </a>
@@ -85,24 +74,7 @@
                 <p>Atencion de Solicitudes</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{route('dependencia.index')}}" class="nav-link">
-                <i class="fas fa-user-friends nav-icon"></i>
-                <p>Dependencias</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                <i class="fas fa-users nav-icon"></i>
-                <p>Empleados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                <i class="fas fa-exchange-alt nav-icon"></i>
-                <p>Cambio de empleados</p>
-              </a>
-            </li>
+
           </ul>
         </li>
 
@@ -126,7 +98,7 @@
         </li>
 
         <li
-          class="nav-item has-treeview {{activeMenu(['proponente.*', 'indicadores.*', 'lineas.*', 'tipopoblacion.*', 'poblacion.*', 'documentos.*', 'ejes.*'])}}">
+          class="nav-item has-treeview">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
@@ -177,6 +149,25 @@
                   <p>Ejes</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('dependencia.index')}}" class="nav-link {{activeSubMenu('dependencia*')}}">
+                    <i class="fas fa-user-friends nav-icon"></i>
+                    <p>Dependencias</p>
+                  </a>
+              </li>
+
+            <li class="nav-item">
+            <a href="{{route('empleados.index')}}" class="nav-link {{activeSubMenu('empleados*')}}">
+                <i class="fas fa-users nav-icon"></i>
+                <p>Empleados</p>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('fuente_verificacion.index')}}" class="nav-link {{activeSubMenu('fuente_verificacion*')}}">
+                    <i class="fab fa-artstation"></i>
+                    <p>Fuente de Verificación</p>
+                  </a>
+                </li>
 
           </ul>
         </li>

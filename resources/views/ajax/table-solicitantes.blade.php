@@ -12,8 +12,8 @@
         @foreach ($solicitantes as $solicitante)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$solicitante->nombre}}</td>
-                <td>{{$solicitante->razon_social}}</td>
+                <td>{{$solicitante->name_complete}}</td>
+            <td>@if($solicitante->razon_social) <span class="badge bg-gradient-fuchsia"> {{$solicitante->razon_social}} </span> @else <span class="badge bg-gradient-success">Persona Natural</span>@endif</td>
                 <td>{{$solicitante->representante_legal}}</td>
                 <td class="text-center">
                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEdit" data-id="{{$solicitante->id}}"   data-persona_id="{{$solicitante->persona_id}}"  data-proponente_id="{{$solicitante->proponente_id}}"

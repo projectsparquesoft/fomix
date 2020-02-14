@@ -10,6 +10,25 @@ $(function () {
         update();
     });
 
+    //Initialize Select2 Elements
+    $('.select2').select2();
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    });
+
+    $('.clasificaciones').change(function (e) {
+        clearSelectPoblaciones();
+        changePoblaciones(this.value);
+    });
+
+    
+    $('#btnAddPoblacion').click(function (e) {
+        e.preventDefault();
+        addItemsPoblacion(tr);
+    });
+
     showEdit();
 });
 
@@ -30,6 +49,8 @@ const save = () => {
 
                 success(data.success);
                 $('#form_create')[0].reset();
+                $(".select2").val("");
+                $(".select2").select2();
                 updateTable();
             } else {
                 warning(data.warning);
@@ -78,91 +99,68 @@ const update = () => {
 
 }
 
-/*Mostrar mensaje*/
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-});
 
-/*mensaje de guardado*/
-const success = (mensaje) => {
-
-    Toast.fire({
-        type: 'success',
-        title: `${mensaje}`
-    })
+// Utilizar este codigo para departamentos
+const clearSelectPoblaciones = () => {
+    $('.poblaciones').find('option:not(:first)').remove();
 }
 
-/*mensaje de error*/
-const warning = (mensaje) => {
-    Toast.fire({
-        type: 'error',
-        title: `${mensaje}`
-    })
-}
-
-
-const addErrorMessage = (errors) => {
-    let messages = "";
-    $.each(errors, function (key, value) {
-
-        if ($.isPlainObject(value)) {
-            $.each(value, function (key, value) {
-                messages = messages + "<li><span class='font-bold text-danger'>" + value + "</span></li><br/>";
-            });
+const changePoblaciones = (value) => {
+    for (let p of poblaciones) {
+        if (p.clasificacion_id == value) {
+            $(".poblaciones").append('<option value="' + p.id + '">' + p.detalle + '</option>');
+            $(".poblaciones").val(p.id);
         }
-    });
-    showErrorMessage(messages);
+    }
+    $(".poblaciones").val('0');
 }
-
-
-const showErrorMessage = (messages) => {
-    Swal.fire({
-        title: "<strong>Error: Datos Incorrectos</strong>!",
-        icon: 'error',
-        html: messages
-    });
-}
-
-/*recarga-actualizar tbla*/
-const updateTable = () => {
-
-    let form = $('#form_hidden');
-    $.ajax({
-        data: form.serialize(),
-        url: form.attr('action'),
-        type: form.attr('method'),
-        success: function (data) {
-            if (data.warning) {
-                warning(data.warning);
-            } else {
-                $('#id_table').html("");
-                $('#id_table').html(data);
-                dataTableInit();
-            }
-        }
-    });
-}
-
 
 /* Mostar informacion  en los campos del modal*/
 
 const showEdit = () => {
     $('#modalEdit').on('show.bs.modal', function (event) {
-    let button = $(event.relatedTarget)
-    let id = button.data('id');
-    let item = button.data('item');
-    let clasificacion_id = button.data('clasificacion_id');
-    let detalle = button.data('detalle');
-    let modal = $(this);
+        let button = $(event.relatedTarget)
+        let id = button.data('id');
+        let item = button.data('item');
+        let clasificacion_id = button.data('clasificacion_id');
+        let detalle = button.data('detalle');
+        let modal = $(this);
 
-    modal.find('.modal-body #id_row').val(id);
-    modal.find('.modal-body #item').val(item);
-    modal.find('.modal-body #clasificacion_id').val(clasificacion_id);
-    modal.find('.modal-body #detalle').val(detalle);
+        modal.find('.modal-body #id_row').val(id);
+        modal.find('.modal-body #item').val(item);
+        modal.find('.modal-body #clasificacion_id').val(clasificacion_id);
+        modal.find('.modal-body #detalle').val(detalle);
 
     });
 
+}
+
+const addItemsPoblacion = (tr) => {
+
+    let clasificacion = $('#clasificacion_id-999').val();
+    let poblacion = $('#poblacion_id-999').val();
+    let total = $('#total-999').val();
+
+    if (validatedItemsPoblacion(clasificacion, poblacion, total)) {
+        if (tr != 0) {
+            deleteItem(tr);
+            addTable(tr, product, amount, price);
+        } else {
+            x++;
+            addTable(x, product, amount, price);
+        }
+        form[0].reset();
+        $('#id_product-999').val('');
+        $('#id_product-999').selectpicker('refresh');
+        $('#modalProduct').modal('hide');
+    } else {
+        warning('POR FAVOR ESCOGER TODAS LAS OPCIONES DISPONIBLES')
+    }
+
+
+}
+
+const deleteItemPoblacion = (value) => {
+    $("#item_poblacion_" + value).remove();
+    $('#clone_poblacion-' + value).remove();
 }

@@ -76,36 +76,18 @@ const update = () => {
 }
 
 
+
 const showEdit = () => {
     $('#modalEdit').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget)
         let id = button.data('id');
-        let nombre_linea = button.data('nombre_linea');
-        let descripcion = button.data('descripcion');
+        let fuente_verificacion = button.data('fuente_verificacion');
         let modal = $(this);
 
         modal.find('.modal-body #id_row').val(id);
-        modal.find('.modal-body #nombre_linea').val(nombre_linea);
-        modal.find('.modal-body #descripcion').val(descripcion);
+        modal.find('.modal-body #fuente_verificacion').val(fuente_verificacion);
 
     });
 }
 
-//FUNCION DE ESTADOS
-const changeLinea = (url) => {
-    $.ajax({
-        url: url,
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
 
-            if (data.success) {
-                success(data.success);
-                updateTable();
-            } else {
-                warning(data.warning);
-            }
-
-        },
-    });
-}

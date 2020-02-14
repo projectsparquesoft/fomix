@@ -18,7 +18,13 @@ class CreateProyectosTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_final');
             $table->text('descripcion');
-
+            $table->text('antecedentes')->nullable();
+            $table->text('justificacion')->nullable();
+            $table->text('metodologia')->nullable();
+            $table->text('objetivo_general')->nullable();
+            $table->text('objetivo_especifico')->nullable();
+            $table->text('metas')->nullable();
+            
             $table->foreign('solicitud_id')
                 ->references('id')
                 ->on('solicitudes')

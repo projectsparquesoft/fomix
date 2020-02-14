@@ -1,12 +1,6 @@
 let municipio = 0;
 $(function () {
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     $('.departamento').change(function (e) {
         clearSelectMunicipalities();
         changeMunicipalities(this.value);
@@ -21,33 +15,11 @@ $(function () {
         update();
     });
 
+    //Initialize Select2 Elements
+    $('.select2').select2();
+
     showEdit();
 });
-
-/*Mostrar mensaje*/
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-  });
-
-/*mensaje de guardado*/
-const success = (mensaje) => {
-    Toast.fire({
-        type: 'success',
-        title: `${mensaje}`
-      })
-}
-
-/*mensaje de error*/
-const warning = (mensaje) => {
-    Toast.fire({
-        type: 'error',
-        title: `${mensaje}`
-    })
-}
-
 
 
 const clearSelectMunicipalities = () => {
@@ -72,7 +44,7 @@ const addMunicipalities = (data) => {
 
     for (let i = 0; i < data.length; i++) {
 
-        $(".municipio").append('<option value="' + data[i].id+ '">' + data[i].nombre_municipio + '</option>');
+        $(".municipio").append('<option value="' + data[i].id + '">' + data[i].nombre_municipio + '</option>');
         $(".municipio").val(data[i].id);
 
     }
@@ -119,25 +91,6 @@ const save = () => {
 
 }
 
-/*recarga-actualizar tabla*/
-const updateTable = () => {
-
-    let form = $('#form_hidden');
-    $.ajax({
-        data: form.serialize(),
-        url: form.attr('action'),
-        type: form.attr('method'),
-        success: function (data) {
-            if (data.warning) {
-                warning(data.warning);
-            } else {
-                $('#id_table').html("");
-                $('#id_table').html(data);
-                dataTableInit();
-            }
-        }
-    });
-}
 
 
 const showEdit = () => {
@@ -163,6 +116,7 @@ const showEdit = () => {
 
         modal.find('.modal-body #id_row').val(id);
         modal.find('.modal-body #id_departamento').val(id_departamento);
+        $("#id_departamento").select2();
         modal.find('.modal-body #persona_id').val(persona_id);
         modal.find('.modal-body #proponente_id').val(proponente_id);
         modal.find('.modal-body #nid').val(nid);
@@ -173,7 +127,6 @@ const showEdit = () => {
         modal.find('.modal-body #direccion').val(direccion);
         modal.find('.modal-body #celular').val(celular);
         modal.find('.modal-body #representante_legal').val(representante_legal);
-
 
     });
 
@@ -211,29 +164,4 @@ const update = () => {
     });
 
 }
-
-const addErrorMessage = (errors) => {
-    let messages = "";
-    $.each(errors, function (key, value) {
-
-        if ($.isPlainObject(value)) {
-            $.each(value, function (key, value) {
-                messages = messages + "<li><span class='font-bold text-danger'>" + value + "</span></li><br/>";
-            });
-        }
-    });
-    showErrorMessage(messages);
-}
-
-
-const showErrorMessage = (messages) => {
-
-    Swal.fire({
-        title: "<strong>Error: Datos Incorrectos</strong>!",
-        icon: 'error',
-        html: messages
-    });
-}
-
-
 

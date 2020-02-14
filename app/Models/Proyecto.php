@@ -9,7 +9,17 @@ class Proyecto extends Model
     protected $table = 'proyectos';
 
     protected $fillable = [
-        'solicitud_id', 'descripcion', 'titulo', 'fecha_inicio', 'fecha_final',
+        'solicitud_id',
+        'descripcion',
+        'titulo',
+        'fecha_inicio',
+        'fecha_final',
+        'antecedentes',
+        'justificacion',
+        'metodologia',
+        'objetivo_general',
+        'objetivo_especifico',
+        'metas',
     ];
 
     protected $hidden = [
@@ -31,8 +41,18 @@ class Proyecto extends Model
         return $this->belongsToMany('App\Models\Proceso');
     }
 
+    public function fuentes()
+    {
+        return $this->belongsToMany('App\Models\Fuente')->withTimestamps();
+    }
+
     public function actividades()
     {
         return $this->hasMany('App\Models\Actividad');
+    }
+
+    public function presupuestos()
+    {
+        return $this->hasMany('App\Models\Presupuesto');
     }
 }
