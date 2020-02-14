@@ -96,8 +96,10 @@
   clasificaciones = JSON.parse(clasificaciones);
 
   let tr_poblacion = 0;
+  let tr_actividad = 0;
   let x_poblacion = 0;
-  
+  let x_actividad = 0;
+
 </script>
 <script src="{{asset('js/solicitud.js')}}"></script>
 
