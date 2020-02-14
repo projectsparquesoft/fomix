@@ -54,7 +54,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($presupuestos as $presupuesto)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$presupuesto->rubro}}</td>
+                                        <td>{{$presupuesto->recurso_municipio}}</td>
+                                        <td>{{$presupuesto->fondo_mixto}}</td>
+                                        <td>{{$presupuesto->ministerio_cultura}}</td>
+                                        <td>{{$presupuesto->ingreso_propio}}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  data-target="#modalEdit" ><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
 
+                                    @endforeach
                                 </tbody>
                          </table>
                         </div>

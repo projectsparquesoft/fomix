@@ -34,6 +34,8 @@
       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDocumentos">Añadir Documentos <i class="fas fa-file-invoice"></i></button>
+
 
             <!----Modals-->
       <div class="card-tools">
@@ -58,9 +60,7 @@
 @include('modals.add-poblacion')
 @include('modals.add-actividades')
 @include('modals.add-presupuesto')
-
-
-
+@include('modals.add-documentos')
 
 
  {{--@include('modals.edit-solicitante')--}}
@@ -77,6 +77,8 @@
 <!--Data tables y script de lineas-->
 <script src="{{asset('js/datatable.js')}}"></script>
 <script src="{{asset('js/solicitud.js')}}"></script>
+<script src="{{asset('js/add-actividades.js')}}"></script>
+
 <!---select-->
 <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <script>

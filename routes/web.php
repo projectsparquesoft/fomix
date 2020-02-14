@@ -59,6 +59,9 @@ Route::resource('poblacion', 'PoblacionController', ['except' => [
 Route::resource('documentos', 'DocumentoController', ['except' => [
     'destroy', 'show', 'create', 'edit'
 ]]);
+Route::resource('ejes', 'EjeController', ['except' => [
+    'destroy', 'show', 'create', 'edit'
+]]);
 
 
 // ESTADOS
@@ -67,6 +70,6 @@ Route::get('indicador/estado/{id}', 'IndicadorController@changeStatus')->name('i
 Route::get('lineas/estado/{id}','LineaController@changeLineas')->name('lineas.status');
 
 
-// SOLICITUDES VARIADAS 
+// SOLICITUDES VARIADAS
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
 Route::post('solicitantes/search', 'SolicitanteController@action')->name('solicitante.search');

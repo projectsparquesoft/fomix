@@ -126,7 +126,7 @@
         </li>
 
         <li
-          class="nav-item has-treeview {{activeMenu(['proponente*', 'indicadores.*', 'lineas.*', 'tipopoblacion*', 'poblacion*', 'documentos*'])}}">
+          class="nav-item has-treeview {{activeMenu(['proponente.*', 'indicadores.*', 'lineas.*', 'tipopoblacion.*', 'poblacion.*', 'documentos.*', 'ejes.*'])}}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
@@ -171,6 +171,12 @@
                 <p>Documentos</p>
               </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('ejes.index')}}" class="nav-link {{activeSubMenu('ejes*')}}">
+                    <i class="fas fa-check-double"></i>
+                  <p>Ejes</p>
+                </a>
+              </li>
 
           </ul>
         </li>

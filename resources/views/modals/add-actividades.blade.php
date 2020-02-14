@@ -13,19 +13,19 @@
                     <div class="form-row">
                         <div class="col-md-10 col-sm-10"></div>
                         <div class="col-md-2 col-sm-2">
-                            <button style="float:right" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
+                            <button style="float:right" id="añadir" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                         </div>
                             <div class="col-md-12">
                                 <label for="">Actividades</label>
-                                <textarea name="nombre_actividad" class="form-control"></textarea>
+                                <textarea name="nombre_actividad" class="form-control" id="nombre_actividad"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Fecha de Inicio</label>
-                                <input type="date" class="form-control" name="fecha_inicio">
+                                <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Fecha de Finalización</label>
-                                <input type="date" class="form-control" name="fecha_final">
+                                <input type="date" class="form-control" name="fecha_final" id="fecha_final">
                             </div>
                             <br>
                             <br>

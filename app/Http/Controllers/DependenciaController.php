@@ -16,7 +16,7 @@ class DependenciaController extends Controller
 
     public function index(Request $request)
     {
-        $dependencias = Dependencia::all();
+            $dependencias = Dependencia::all();
 
         if ($request->ajax()) {
             $dependencias = Dependencia::all();
@@ -41,7 +41,6 @@ class DependenciaController extends Controller
             $dependencias = new Dependencia();
             $dependencias->nombre_dependencia = $request->get('nombre_dependencia');
             $dependencias->descripcion = $request->get('descripcion');
-            $dependencias->save();
             $exito = $dependencias->save();
 
             if ($exito) {

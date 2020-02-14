@@ -9,6 +9,7 @@ use App\Models\Poblacion;
 use App\Models\Proponente;
 use App\Models\Actividad;
 use App\Models\Presupuesto;
+use App\Models\Documento;
 use App\Http\Requests\SolicitudRequest;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class SolicitudController extends Controller
      */
     public function index()
     {
+        $documentos = Documento::all(['id', 'tipo_documento']);
         $presupuestos = presupuesto::all(['id', 'solicitud_id', 'rubro', 'recurso_municipio', 'fondo_mixto', 'ministerio_cultura', 'ingreso_propio']);
         $actividades = Actividad::all(['id', 'proyecto_id', 'nombre_actividad', 'fecha_inicio', 'fecha_final']);
         $proponentes = Proponente::all(['id', 'nombre_proponente']);
@@ -35,11 +37,11 @@ class SolicitudController extends Controller
         if (count($solicitudes) == 0) {
             return response()->json(['warning' => 'Error en el servidor']);
         } else {
-            return response()->view('ajax.table-solicitudes', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'proponentes', 'actividades','presupuestos'));
+            return response()->view('ajax.table-solicitudes', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'proponentes', 'actividades','presupuestos', 'documentos'));
         }
 
         }
-        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'proponentes', 'actividades', 'presupuestos'));
+        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'proponentes', 'actividades', 'presupuestos', 'documentos'));
     }
 
     /**
