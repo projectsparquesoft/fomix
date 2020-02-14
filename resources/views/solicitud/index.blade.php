@@ -68,6 +68,7 @@
 
 <input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>
 
+<input id="list_clasificaciones" type="hidden" value='@json($clasificaciones)'>
 
  {{--@include('modals.edit-solicitante')--}}
 @endsection
@@ -87,9 +88,16 @@
 <!--Data tables y script de lineas-->
 <script src="{{asset('js/datatable.js')}}"></script>
 <script>
+
   let poblaciones = $('#list_poblaciones').val();
+  let clasificaciones = $('#list_clasificaciones').val();
+
   poblaciones = JSON.parse(poblaciones);
-  let tr = 0;
+  clasificaciones = JSON.parse(clasificaciones);
+
+  let tr_poblacion = 0;
+  let x_poblacion = 0;
+  
 </script>
 <script src="{{asset('js/solicitud.js')}}"></script>
 

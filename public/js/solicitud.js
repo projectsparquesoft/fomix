@@ -23,10 +23,10 @@ $(function () {
         changePoblaciones(this.value);
     });
 
-    
+
     $('#btnAddPoblacion').click(function (e) {
         e.preventDefault();
-        addItemsPoblacion(tr);
+        addItemsPoblacion(tr_poblacion);
     });
 
     showEdit();
@@ -141,18 +141,22 @@ const addItemsPoblacion = (tr) => {
     let poblacion = $('#poblacion_id-999').val();
     let total = $('#total-999').val();
 
-    if (validatedItemsPoblacion(clasificacion, poblacion, total)) {
+    let items = [clasificacion, poblacion, total];
+
+    if (validatedItems(items)) {
         if (tr != 0) {
-            deleteItem(tr);
-            addTable(tr, product, amount, price);
+            deleteItemPoblacion(tr);
+            addTablePoblacion(tr, clasificacion, poblacion, total);
+            tr_poblacion = 0;
         } else {
-            x++;
-            addTable(x, product, amount, price);
+            x_poblacion++;
+            addTablePoblacion(x_poblacion, clasificacion, poblacion, total);
         }
-        form[0].reset();
-        $('#id_product-999').val('');
-        $('#id_product-999').selectpicker('refresh');
-        $('#modalProduct').modal('hide');
+
+        $('#clasificacion_id-999').val('0');
+        $('#poblacion_id-999').val('0');
+        $('#total-999').val('');
+
     } else {
         warning('POR FAVOR ESCOGER TODAS LAS OPCIONES DISPONIBLES')
     }
@@ -160,7 +164,80 @@ const addItemsPoblacion = (tr) => {
 
 }
 
+
+const addTablePoblacion = (x, clasificacion, poblacion, total) => {
+
+    let name_poblacion = namePoblacion(poblacion);
+    let name_clasificacion = nameClasificacion(clasificacion);
+
+    let htmlTags = '<tr id="item_poblacion_' + x + '">' +
+        '<td>' + x + '</td>' +
+        '<td class="text-center">' + name_clasificacion + '</td>' +
+        '<td class="text-center">' + name_poblacion + '</td>' +
+        '<td class="text-center">' + total + '</td>' +
+        '<td class="text-center">' +
+        '<button type="button" class="btn btn-warning btn-sm" onclick="addFormPoblacion(' + clasificacion + ',' + poblacion + ',' + total + ',' + x + ')" ><i class="fas fa-pencil-alt"></i></button>' +
+        '<button type="button" class="btn btn-danger btn-sm" onclick="deleteItemPoblacion(' + x + ')"><i class="fas fa-trash-alt"></i></button>' +
+        '</td>' +
+        '</tr>';
+
+    $('#table_poblacion tbody').append(htmlTags);
+
+    $('#clonar_poblacion').append(cloneInputsPoblacion(x, poblacion, total));
+
+}
+
+const cloneInputsPoblacion = (x, poblacion, total) => {
+
+    return "<div id='clone_poblacion-" + x + "'>" +
+        "<input type='hidden' name='id_poblacion[]' id='id_poblacion-" + x + "' value=" + poblacion + ">" +
+        "<input type='hidden' name='total[]' id='total-" + x + "' value=" + total + ">" +
+        "</div>";
+}
+
+const addFormPoblacion = (clasificacion, poblacion, total, tr) => {
+    $('#clasificacion_id-999').val(clasificacion);
+    changePoblaciones(clasificacion)
+    $('#poblacion_id-999').val(poblacion);
+    $('#total-999').val(total);
+    tr_poblacion = tr;
+}
+
+const namePoblacion = (poblacion) => {
+
+    for (let p of poblaciones) {
+        if (p.id == poblacion) {
+            return p.detalle;
+        }
+    }
+
+}
+
+const nameClasificacion = (clasificacion) => {
+
+    for (let c of clasificaciones) {
+        if (c.id == clasificacion) {
+            return c.tipo_poblacion;
+        }
+    }
+
+}
+
+
 const deleteItemPoblacion = (value) => {
     $("#item_poblacion_" + value).remove();
     $('#clone_poblacion-' + value).remove();
+}
+
+const validatedItems = (items) => {
+
+    for (let index = 0; index < items.length; index++) {
+
+        if (items[index] == '') {
+            return false;
+        }
+
+    }
+
+    return true;
 }
