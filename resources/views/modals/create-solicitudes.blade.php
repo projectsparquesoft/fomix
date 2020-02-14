@@ -32,16 +32,18 @@
                         </select>
                       </div>
                     </div>
+
                     <div class="col-md-6">
                         <label for="">Descripción:</label>
                         <textarea name="descripcion" class="form-control"></textarea>
                     </div>
+
                     <div class="col-md-6">
                         <label for="">Archivo:</label>
                         <input name="archivo" type="file" class="form-control">
                     </div>
                 </div>
-            </form>
+            
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Añadir <i class="fas fa-times-circle"></i></button>

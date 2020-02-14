@@ -10,7 +10,7 @@
       <div class="modal-body" style="background:whitesmoke">
 
 
-        <div class="card card" style="background:whitesmoke">
+        <div class="card card">
           <div class="card-header">
             <h3 class="card-title">Presentacion Proyecto</h3>
             <div class="card-tools">
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="card card collapsed-card" style="background:whitesmoke">
+        <div class="card card collapsed-card">
           <div class="card-header">
             <h3 class="card-title">Cuerpo del Proyecto</h3>
             <div class="card-tools">

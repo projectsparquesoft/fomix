@@ -1,115 +1,84 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\solicitud;
-use App\Models\categoria;
-use App\Models\solicitante;
-use App\Models\linea;
-use App\Models\Poblacion;
 
 use App\Http\Requests\SolicitudRequest;
-
-
+use App\Models\categoria;
+use App\Models\Clasificacion;
+use App\Models\linea;
+use App\Models\Poblacion;
+use App\Models\solicitante;
+use App\Models\solicitud;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
 {
-    
+
     public function index()
     {
-        $poblaciones= Poblacion::with('clasificacion:id,tipo_poblacion')->get(['id', 'item', 'clasificacion_id', 'detalle']);
-        $categorias = Categoria::all(['id','tipo_solicitud']);
+        $clasificaciones = Clasificacion::with('poblaciones:id,clasificacion_id,detalle')->get(['id', 'tipo_poblacion']);
+        $poblaciones = Poblacion::all(['id', 'detalle', 'clasificacion_id']);
+        $categorias = Categoria::all(['id', 'tipo_solicitud']);
         $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
-        $solicitantes = Solicitante::all(['id','razon_social', 'nombre', 'apellido']);
+        $solicitantes = Solicitante::all(['id', 'razon_social', 'nombre', 'apellido']);
         $solicitudes = Solicitud::with('categoria', 'solicitante')->get();
 
         if (request()->ajax()) {
-        $solicitudes = Solicitud::all();
-        if (count($solicitudes) == 0) {
-            return response()->json(['warning' => 'Error en el servidor']);
-        } else {
-            return response()->view('ajax.table-solicitudes', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones'));
-        }
+            $solicitudes = Solicitud::all();
+            if (count($solicitudes) == 0) {
+                return response()->json(['warning' => 'Error en el servidor']);
+            } else {
+                return response()->view('ajax.table-solicitudes', compact('solicitudes'));
+            }
 
         }
-        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones'));
+        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'clasificaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(SolicitudRequest $request)
     {
         if ($request->file('archivo')) {
             $file = $request->file('archivo');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/imagenes', $name);
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/imagenes', $name);
         }
         $solicitud = new Solicitud();
-        $solicitud->categoria_id=$request->get('categoria_id');
-        $solicitud->solicitante_id=$request->get('solicitante_id');
-        $solicitud->archivo= $name;
+        $solicitud->categoria_id = $request->get('categoria_id');
+        $solicitud->solicitante_id = $request->get('solicitante_id');
+        $solicitud->archivo = $name;
 
         $exito = $solicitud->save();
         if ($exito) {
-           return response()->json(['success' =>'SOLICITUD CREADA CORRECTAMENTE' ]);
+            return response()->json(['success' => 'SOLICITUD CREADA CORRECTAMENTE']);
         }
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
