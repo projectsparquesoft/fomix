@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SolicitudRequest;
 use App\Models\categoria;
 use App\Models\Clasificacion;
+use App\Models\Fuente;
 use App\Models\linea;
 use App\Models\Poblacion;
 use App\Models\solicitante;
@@ -22,6 +23,7 @@ class SolicitudController extends Controller
         $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
         $solicitantes = Solicitante::all(['id', 'razon_social', 'nombre', 'apellido']);
         $solicitudes = Solicitud::with('categoria', 'solicitante')->get();
+        $fuentes = Fuente::all();
 
         if (request()->ajax()) {
             $solicitudes = Solicitud::all();
@@ -32,7 +34,7 @@ class SolicitudController extends Controller
             }
 
         }
-        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'clasificaciones'));
+        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'clasificaciones', 'fuentes'));
     }
 
     

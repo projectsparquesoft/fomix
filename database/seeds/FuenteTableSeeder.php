@@ -10,8 +10,23 @@ class FuenteTableSeeder extends Seeder
     public function run()
     {
         Fuente::create([
-            'nombre_estado'=> 'Recepcion Entrada',
-            'status' => 1,
+            'fuente_verificacion'=> 'Entrevistas Semiestructuradas Individuales y Grupales con Productores.',
+        ]);
+
+        Fuente::create([
+            'fuente_verificacion'=> 'Informe de Monitoreo Externo Final del Proyecto.',
+        ]);
+
+        Fuente::create([
+            'fuente_verificacion'=> 'Lista de asistencia.',
+        ]);
+
+        Fuente::create([
+            'fuente_verificacion'=> 'Diarios de campo.',
+        ]);
+
+        Fuente::create([
+            'fuente_verificacion'=> 'Fotografias/videos/Planillas.',
         ]);
 
     }

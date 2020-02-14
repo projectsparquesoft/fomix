@@ -12,13 +12,13 @@
 
                   <div class="col-md-10 col-sm-10"></div>
                       <div class="col-md-2 col-sm-2">
-                            <button style="float:right" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
+                            <button style="float:right" id="btnAddPoblacion" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                       </div>
 
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Tipo de Poblacion:</label>
-                      <select name="clasificacion_id" id="" class="form-control clasificaciones">
+                      <select name="clasificacion_id" id="clasificacion_id-999" class="form-control clasificaciones">
                         <option selected>-- Escoger Opcion --</option>
                         @foreach ($clasificaciones as $clasificacion)
                       <option value="{{$clasificacion->id}}">{{$clasificacion->tipo_poblacion}}</option>
@@ -30,7 +30,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Poblacion:</label>
-                      <select name="poblacion_id" id="" class="form-control poblaciones">
+                      <select name="poblacion_id" id="poblacion_id-999" class="form-control poblaciones">
                         <option value="0" selected>-- Escoger Opcion --</option>
                         
                       </select>
@@ -40,7 +40,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Total:</label>
-                      <input type="number" class="form-control" name="total">
+                      <input type="number" class="form-control" name="total" id="total-999">
                     </div>
                   </div>
 
@@ -48,19 +48,20 @@
                     <div class="form-group">
                     <label>Fuente Verificacion</label>
                         <select name="fuente_verificacion" class="form-control select2bs4 show-tick" style="width: 100%;" multiple data-placeholder="Escoger Fuente Verificacion">
-                            <option value="">---Escoger Opcion---</option>
-                                <option  value="1">Videos</option>
-                                <option  value="1">Fotografias</option>
-                                <option  value="1">Encuestas</option>
-
+                            @foreach ($fuentes as $fuente)
+                              <option  value="{{$fuente->id}}">{{$fuente->fuente_verificacion}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
 
+                <div id="clonar_poblacion"></div>
+	
+
                   <br>
 
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-hover table-sm ">
+                        <table id="tabla" class="table table-hover table-sm " id="table_poblacion">
                             <thead class="thead-light">
                                 <tr>
                                     <th>#</th>

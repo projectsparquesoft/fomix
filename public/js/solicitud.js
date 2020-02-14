@@ -1,7 +1,3 @@
-let poblaciones = $('#list_poblaciones').val();
-poblaciones = JSON.parse(poblaciones);
-
-
 $(function () {
 
     $('#guardar').click(function (e) {
@@ -25,6 +21,12 @@ $(function () {
     $('.clasificaciones').change(function (e) {
         clearSelectPoblaciones();
         changePoblaciones(this.value);
+    });
+
+    
+    $('#btnAddPoblacion').click(function (e) {
+        e.preventDefault();
+        addItemsPoblacion(tr);
     });
 
     showEdit();
@@ -113,8 +115,6 @@ const changePoblaciones = (value) => {
     $(".poblaciones").val('0');
 }
 
-
-
 /* Mostar informacion  en los campos del modal*/
 
 const showEdit = () => {
@@ -133,4 +133,34 @@ const showEdit = () => {
 
     });
 
+}
+
+const addItemsPoblacion = (tr) => {
+
+    let clasificacion = $('#clasificacion_id-999').val();
+    let poblacion = $('#poblacion_id-999').val();
+    let total = $('#total-999').val();
+
+    if (validatedItemsPoblacion(clasificacion, poblacion, total)) {
+        if (tr != 0) {
+            deleteItem(tr);
+            addTable(tr, product, amount, price);
+        } else {
+            x++;
+            addTable(x, product, amount, price);
+        }
+        form[0].reset();
+        $('#id_product-999').val('');
+        $('#id_product-999').selectpicker('refresh');
+        $('#modalProduct').modal('hide');
+    } else {
+        warning('POR FAVOR ESCOGER TODAS LAS OPCIONES DISPONIBLES')
+    }
+
+
+}
+
+const deleteItemPoblacion = (value) => {
+    $("#item_poblacion_" + value).remove();
+    $('#clone_poblacion-' + value).remove();
 }

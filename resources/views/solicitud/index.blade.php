@@ -86,6 +86,11 @@
 
 <!--Data tables y script de lineas-->
 <script src="{{asset('js/datatable.js')}}"></script>
+<script>
+  let poblaciones = $('#list_poblaciones').val();
+  poblaciones = JSON.parse(poblaciones);
+  let tr = 0;
+</script>
 <script src="{{asset('js/solicitud.js')}}"></script>
 
 @stop
