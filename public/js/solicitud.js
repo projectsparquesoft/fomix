@@ -1,3 +1,7 @@
+let poblaciones = $('#list_poblaciones').val();
+poblaciones = JSON.parse(poblaciones);
+
+
 $(function () {
 
     $('#guardar').click(function (e) {
@@ -16,6 +20,11 @@ $(function () {
     //Initialize Select2 Elements
     $('.select2bs4').select2({
         theme: 'bootstrap4'
+    });
+
+    $('.clasificaciones').change(function (e) {
+        clearSelectPoblaciones();
+        changePoblaciones(this.value);
     });
 
     showEdit();
@@ -87,6 +96,23 @@ const update = () => {
     });
 
 }
+
+
+// Utilizar este codigo para departamentos
+const clearSelectPoblaciones = () => {
+    $('.poblaciones').find('option:not(:first)').remove();
+}
+
+const changePoblaciones = (value) => {
+    for (let p of poblaciones) {
+        if (p.clasificacion_id == value) {
+            $(".poblaciones").append('<option value="' + p.id + '">' + p.detalle + '</option>');
+            $(".poblaciones").val(p.id);
+        }
+    }
+    $(".poblaciones").val('0');
+}
+
 
 
 /* Mostar informacion  en los campos del modal*/

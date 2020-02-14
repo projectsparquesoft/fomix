@@ -66,6 +66,9 @@
 
 </form>
 
+<input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>
+
+
  {{--@include('modals.edit-solicitante')--}}
 @endsection
 

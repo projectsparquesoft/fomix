@@ -17,7 +17,7 @@ class SolicitudController extends Controller
     public function index()
     {
         $clasificaciones = Clasificacion::with('poblaciones:id,clasificacion_id,detalle')->get(['id', 'tipo_poblacion']);
-        $poblaciones = Poblacion::all(['id', 'detalle', 'clasificacion_id']);
+        $poblaciones = Poblacion::get(['id', 'detalle', 'clasificacion_id']);
         $categorias = Categoria::all(['id', 'tipo_solicitud']);
         $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
         $solicitantes = Solicitante::all(['id', 'razon_social', 'nombre', 'apellido']);

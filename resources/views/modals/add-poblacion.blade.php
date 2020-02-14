@@ -18,7 +18,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Tipo de Poblacion:</label>
-                      <select name="clasificacion_id" id="" class="form-control">
+                      <select name="clasificacion_id" id="" class="form-control clasificaciones">
                         <option selected>-- Escoger Opcion --</option>
                         @foreach ($clasificaciones as $clasificacion)
                       <option value="{{$clasificacion->id}}">{{$clasificacion->tipo_poblacion}}</option>
@@ -30,8 +30,8 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Poblacion:</label>
-                      <select name="poblacion_id" id="" class="form-control">
-                        <option selected>-- Escoger Opcion --</option>
+                      <select name="poblacion_id" id="" class="form-control poblaciones">
+                        <option value="0" selected>-- Escoger Opcion --</option>
                         
                       </select>
                     </div>
@@ -89,14 +89,12 @@
 
 
 
-                    <input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>
-
+                   
                 </div>
             
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar <i class="fas fa-times-circle"></i></button>
-          <button id="guardar" type="button" class="btn btn-dark">Guardar <i class="fas fa-save"></i></button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

@@ -51,6 +51,7 @@
 @endsection
 
 
+
 @section('extra-script')
 <!-- DataTables -->
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>

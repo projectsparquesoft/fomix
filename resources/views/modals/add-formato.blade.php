@@ -123,8 +123,7 @@
     
       </div>
       <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Añadir <i
-            class="fas fa-times-circle"></i></button>
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
       </div>
     </div>
   </div>

@@ -41,6 +41,11 @@ class Proyecto extends Model
         return $this->belongsToMany('App\Models\Proceso');
     }
 
+    public function fuentes()
+    {
+        return $this->belongsToMany('App\Models\Fuente')->withTimestamps();
+    }
+
     public function actividades()
     {
         return $this->hasMany('App\Models\Actividad');
