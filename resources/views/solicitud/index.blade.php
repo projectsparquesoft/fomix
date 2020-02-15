@@ -97,8 +97,10 @@
 
   let tr_poblacion = 0;
   let tr_actividad = 0;
+  let tr_presupuesto = 0;
   let x_poblacion = 0;
   let x_actividad = 0;
+  let x_presupuesto = 0;
 
 </script>
 <script src="{{asset('js/solicitud.js')}}"></script>

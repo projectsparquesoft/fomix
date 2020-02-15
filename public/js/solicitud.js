@@ -23,7 +23,6 @@ $(function () {
         changePoblaciones(this.value);
     });
 
-
     $('#btnAddPoblacion').click(function (e) {
         e.preventDefault();
         addItemsPoblacion(tr_poblacion);
@@ -34,9 +33,14 @@ $(function () {
         addItemsActividad(tr_actividad);
     });
 
+    $('#btnAddPresupuesto').click(function (e) {
+        e.preventDefault();
+        addItemsPresupuesto(tr_presupuesto);
+    });
+
+
     showEdit();
 });
-
 
 //guardar en el form
 const save = () => {
@@ -168,7 +172,6 @@ const addItemsPoblacion = (tr) => {
 const addItemsActividad = (tr) => {
 
     let actividad = $.trim($("#nombre_actividad-999").val());
-    console.log(actividad);
     let fecha_ini = $('#fecha_inicio-999').val();
     let fecha_fin = $('#fecha_final-999').val();
 
@@ -194,6 +197,37 @@ const addItemsActividad = (tr) => {
 
 }
 
+const addItemsPresupuesto = (tr) => {
+
+    let rubro = $("#rubro-999").val();
+    let recurso_municipio = $('#recurso_municipio-999').val();
+    let fondo_mixto = $('#fondo_mixto-999').val();
+    let ministerio_cultura = $('#ministerio_cultura-999').val();
+    let ingreso_propio = $('#ingreso_propio-999').val();
+
+    let items = [rubro, recurso_municipio, fondo_mixto, ministerio_cultura, ingreso_propio];
+
+    if (validatedItems(items)) {
+        if (tr != 0) {
+            deleteItemPresupuesto(tr);
+            addTablePresupuesto(tr, rubro, recurso_municipio, fondo_mixto, ministerio_cultura, ingreso_propio);
+            tr_presupuesto = 0;
+        } else {
+            x_presupuesto++;
+            addTablePresupuesto(x_presupuesto, rubro, recurso_municipio, fondo_mixto, ministerio_cultura, ingreso_propio);
+        }
+
+        $("#rubro-999").val('');
+        $('#recurso_municipio-999').val('');
+        $('#fondo_mixto-999').val('');
+        $('#ministerio_cultura-999').val('');
+        $('#ingreso_propio-999').val('');
+
+    } else {
+        warning('POR FAVOR ESCOGER TODAS LAS OPCIONES DISPONIBLES')
+    }
+
+}
 
 const addTablePoblacion = (x, clasificacion, poblacion, total) => {
 
@@ -235,6 +269,26 @@ const addTableActividad = (x, actividad, fecha_ini, fecha_fin) => {
 
 }
 
+const addTablePresupuesto = (x, rubro, recurso_municipio, fondo_mixto, ministerio_cultura, ingreso_propio) => {
+    let htmlTags = '<tr id="item_presupuesto_' + x + '">' +
+        '<td>' + x + '</td>' +
+        '<td class="text-center">' + formatterPeso.format(rubro) + '</td>' +
+        '<td class="text-center">' + formatterPeso.format(recurso_municipio) + '</td>' +
+        '<td class="text-center">' + formatterPeso.format(fondo_mixto) + '</td>' +
+        '<td class="text-center">' + formatterPeso.format(ministerio_cultura) + '</td>' +
+        '<td class="text-center">' + formatterPeso.format(ingreso_propio) + '</td>' +
+        '<td class="text-center">' +
+        '<button type="button" class="btn btn-warning btn-sm" onclick="addFormPresupuesto(' + x + ')" ><i class="fas fa-pencil-alt"></i></button>' +
+        '<button type="button" class="btn btn-danger btn-sm" onclick="deleteItemPresupuesto(' + x + ')"><i class="fas fa-trash-alt"></i></button>' +
+        '</td>' +
+        '</tr>';
+
+    $('#table_presupuesto tbody').append(htmlTags);
+
+    $('#clonar_presupuesto').append(cloneInputsPresupuesto(x, rubro, recurso_municipio, fondo_mixto, ministerio_cultura, ingreso_propio));
+
+}
+
 const cloneInputsPoblacion = (x, poblacion, total) => {
 
     return "<div id='clone_poblacion-" + x + "'>" +
@@ -251,6 +305,17 @@ const cloneInputsActividad = (x, actividad, fecha_ini, fecha_fin) => {
         "</div>";
 }
 
+const cloneInputsPresupuesto = (x, rubro, recurso_municipio, fondo_mixto, ministerio_cultura, ingreso_propio) => {
+
+    return "<div id='clone_presupuesto-" + x + "'>" +
+        "<input type='hidden' name='rubro[]' id='rubro-" + x + "' value=" + rubro + ">" +
+        "<input type='hidden' name='recurso_municipio[]' id='recurso_municipio-" + x + "' value=" + recurso_municipio + ">" +
+        "<input type='hidden' name='fondo_mixto[]' id='fondo_mixto-" + x + "' value=" + fondo_mixto + ">" +
+        "<input type='hidden' name='ministerio_cultura[]' id='ministerio_cultura-" + x + "' value=" + ministerio_cultura + ">" +
+        "<input type='hidden' name='ingreso_propio[]' id='ingreso_propio-" + x + "' value=" + ingreso_propio + ">" +
+        "</div>";
+}
+
 const addFormPoblacion = (clasificacion, poblacion, total, tr) => {
     $('#clasificacion_id-999').val(clasificacion);
     changePoblaciones(clasificacion)
@@ -262,7 +327,6 @@ const addFormPoblacion = (clasificacion, poblacion, total, tr) => {
 const addFormActividad = (x) => {
 
     let nombre_actividad = $.trim($('#nombre_actividad-' + x).val());
-    console.log(nombre_actividad);
     let fecha_ini = $('#fecha_inicio-' + x).val();
     let fecha_final = $('#fecha_final-' + x).val();
 
@@ -271,6 +335,24 @@ const addFormActividad = (x) => {
     $('#fecha_final-999').val(fecha_final);
 
     tr_actividad = x;
+}
+
+const addFormPresupuesto = (x) => {
+
+    let rubro = $("#rubro-" + x).val();
+    let recurso_municipio = $('#recurso_municipio-' + x).val();
+    let fondo_mixto = $('#fondo_mixto-' + x).val();
+    let ministerio_cultura = $('#ministerio_cultura-' + x).val();
+    let ingreso_propio = $('#ingreso_propio-' + x).val();
+
+
+    $("#rubro-999").val(rubro);
+    $('#recurso_municipio-999').val(recurso_municipio);
+    $('#fondo_mixto-999').val(fondo_mixto);
+    $('#ministerio_cultura-999').val(ministerio_cultura);
+    $('#ingreso_propio-999').val(ingreso_propio);
+
+    tr_presupuesto = x;
 }
 
 const namePoblacion = (poblacion) => {
@@ -303,6 +385,11 @@ const deleteItemActividad = (value) => {
     $('#clone_actividad-' + value).remove();
 }
 
+const deleteItemPresupuesto = (value) => {
+    $("#item_presupuesto_" + value).remove();
+    $('#clone_presupuesto-' + value).remove();
+}
+
 const validatedItems = (items) => {
 
     for (let index = 0; index < items.length; index++) {
@@ -316,4 +403,9 @@ const validatedItems = (items) => {
     return true;
 }
 
+const formatterPeso = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+})
 
