@@ -74,7 +74,7 @@
                 <p>Atencion de Solicitudes</p>
               </a>
             </li>
-            
+
           </ul>
         </li>
 
@@ -144,17 +144,30 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('dependencia.index')}}" class="nav-link {{activeSubMenu('dependencia*')}}">
-                <i class="fas fa-user-friends nav-icon"></i>
-                <p>Dependencias</p>
-              </a>
-            </li>
+                <a href="{{route('ejes.index')}}" class="nav-link {{activeSubMenu('ejes*')}}">
+                    <i class="fas fa-check-double"></i>
+                  <p>Ejes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('dependencia.index')}}" class="nav-link {{activeSubMenu('dependencia*')}}">
+                    <i class="fas fa-user-friends nav-icon"></i>
+                    <p>Dependencias</p>
+                  </a>
+              </li>
+
             <li class="nav-item">
             <a href="{{route('empleados.index')}}" class="nav-link {{activeSubMenu('empleados*')}}">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Empleados</p>
               </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('fuente_verificacion.index')}}" class="nav-link {{activeSubMenu('fuente_verificacion*')}}">
+                    <i class="fab fa-artstation"></i>
+                    <p>Fuente de Verificación</p>
+                  </a>
+                </li>
 
           </ul>
         </li>

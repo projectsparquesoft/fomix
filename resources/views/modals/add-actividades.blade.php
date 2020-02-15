@@ -14,7 +14,7 @@
                             <div class="col-md-2 col-sm-2">
                                 <button style="float:right" type="button" id="btnAddActividad" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                             </div>
-                        
+
                             <div class="col-md-12">
                                 <label for="">Actividades</label>
                                 <textarea name="nombre_actividad" id="nombre_actividad-999" class="form-control"></textarea>
@@ -51,7 +51,7 @@
                             </tbody>
                         </table>
                     </div>
-        
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>

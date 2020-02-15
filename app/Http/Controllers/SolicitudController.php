@@ -10,13 +10,15 @@ use App\Models\linea;
 use App\Models\Poblacion;
 use App\Models\solicitante;
 use App\Models\solicitud;
+use App\Models\Documento;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
 {
 
     public function index()
-    {
+    {   
+        $documentos = Documento::all(['id', 'tipo_documento', 'categoria']);
         $clasificaciones = Clasificacion::with('poblaciones:id,clasificacion_id,detalle')->get(['id', 'tipo_poblacion']);
         $poblaciones = Poblacion::get(['id', 'detalle', 'clasificacion_id']);
         $categorias = Categoria::all(['id', 'tipo_solicitud']);
@@ -34,16 +36,11 @@ class SolicitudController extends Controller
             }
 
         }
-        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'clasificaciones', 'fuentes'));
+        return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'clasificaciones', 'fuentes', 'documentos'));
     }
 
-    
-    public function create()
-    {
-        //
-    }
 
-    
+
     public function store(SolicitudRequest $request)
     {
         if ($request->file('archivo')) {
@@ -63,26 +60,16 @@ class SolicitudController extends Controller
 
     }
 
-    
+
     public function show($id)
     {
         //
     }
 
-    
-    public function edit($id)
-    {
-        //
-    }
-
-    
     public function update(Request $request, $id)
     {
         //
     }
 
-    public function destroy($id)
-    {
-        //
-    }
+   
 }

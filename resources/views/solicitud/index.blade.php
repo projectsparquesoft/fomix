@@ -28,12 +28,15 @@
 
   <div class="card card" style="background:whitesmoke">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Añadir Solicitud <i class="fas fa-file-alt nav-icon"></i></button>
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalAddLineas">Añadir Líneas <i class="fas fa-tasks"></i></button>
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalFormato">Añadir Formato <i class="fas fa-file nav-icon"></i></button>
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalCreate">Añadir Solicitud <i class="fas fa-file-alt nav-icon"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalAddLineas">Añadir Líneas <i class="fas fa-tasks"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalFormato">Añadir Formato <i class="fas fa-file nav-icon"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
+      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalDocumentos">Añadir Documentos <i class="fas fa-file-invoice"></i></button>
+      <button type="button" class="btn btn-success btn-sm">Guardar<i class="fas fa-save"></i></button>
+
 
             <!----Modals-->
       <div class="card-tools">
@@ -61,9 +64,7 @@
 @include('modals.add-poblacion')
 @include('modals.add-actividades')
 @include('modals.add-presupuesto')
-
-
-
+@include('modals.add-documentos')
 </form>
 
 <input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>

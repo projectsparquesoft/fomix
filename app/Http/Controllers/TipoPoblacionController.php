@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\TipoDePoblacionRequest;
 use App\Models\Clasificacion;
 use Illuminate\Http\Request;
-use App\Http\Requests\TipoDePoblacionRequest;
 
 class TipoPoblacionController extends Controller
 {
@@ -24,7 +25,7 @@ class TipoPoblacionController extends Controller
 
     public function store(TipoDePoblacionRequest $request)
     {
-        $tipopoblaciones = new  Clasificacion();
+        $tipopoblaciones = new Clasificacion();
         $tipopoblaciones->tipo_poblacion = $request->tipo_poblacion;
         $tipopoblaciones->status = 1;
         $exito = $tipopoblaciones->save();

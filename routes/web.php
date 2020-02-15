@@ -22,9 +22,6 @@ Route::resource('proyecto', 'proyectoController', ['except' => [
     'destroy', 'show',
 ]]);
 
-Route::resource('presupuesto', 'PresupuestoController', ['except' => [
-    'destroy', 'show',
-]]);
 
 // PARAMETROS
 
@@ -51,12 +48,19 @@ Route::resource('poblacion', 'PoblacionController', ['except' => [
 Route::resource('documentos', 'DocumentoController', ['except' => [
     'destroy', 'show', 'create', 'edit'
 ]]);
+Route::resource('ejes', 'EjeController', ['except' => [
+    'destroy', 'show', 'create', 'edit'
+]]);
 
 Route::resource('dependencia', 'DependenciaController', ['except' => [
     'destroy', 'show', 'create', 'edit'
 ]]);
 
 Route::resource('empleados', 'EmpleadoController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
+
+Route::resource('fuente_verificacion', 'FuenteVerificacionController', ['except' => [
     'destroy', 'create', 'edit'
 ]]);
 
@@ -69,7 +73,7 @@ Route::get('lineas/estado/{id}','LineaController@changeLineas')->name('lineas.st
 Route::get('empleados/estado/{id}','EmpleadoController@changeBoss')->name('empleados.status');
 
 
-// SOLICITUDES VARIADAS 
+// SOLICITUDES VARIADAS
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
 Route::post('solicitantes/search', 'SolicitanteController@action')->name('solicitante.search');
 Route::post('empleados/change', 'EmpleadoController@storeChangeDependencia')->name('empleados.change');
