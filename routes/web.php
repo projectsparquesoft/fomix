@@ -83,7 +83,7 @@ Route::post('validate/formato', 'SolicitudController@validateFormato')->name('va
 Route::post('validate/poblacion', 'SolicitudController@validatePoblacion')->name('validate.poblacion');
 Route::post('validate/actividad', 'SolicitudController@validateActividad')->name('validate.actividad');
 Route::post('validate/presupuesto', 'SolicitudController@validatePresupuesto')->name('validate.presupuesto');
-Route::post('validate/documento', 'SolicitudController@validateDocumento')->name('validate.documento');
+//Route::post('validate/documento', 'SolicitudController@validateDocumento')->name('validate.documento');
 
 
 

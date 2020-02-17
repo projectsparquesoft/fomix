@@ -33,7 +33,6 @@
       <button id="btn-poblacion" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
       <button id="btn-actividades" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
       <button id="btn-presupuesto" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
-      <button id="btn-documentos" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalDocumentos">Añadir Documentos <i class="fas fa-file-invoice"></i></button>
       <button id="btn-guardar-solicitud" style="display:none;" type="button" class="btn btn-success btn-sm">Guardar<i class="fas fa-save"></i></button>
 
             <!----Modals-->
@@ -60,14 +59,14 @@
  <input type="hidden" name="form_poblacion" id="form_poblacion" value="0">
  <input type="hidden" name="form_actividad" id="form_actividad" value="0">
  <input type="hidden" name="form_presupuesto" id="form_presupuesto" value="0">
- <input type="hidden" name="form_documento" id="form_documento" value="0">
+ {{--<input type="hidden" name="form_documento" id="form_documento" value="0">--}}
 
   @include('modals.create-solicitudes')
   @include('modals.add-formato')
   @include('modals.add-poblacion')
   @include('modals.add-actividades')
   @include('modals.add-presupuesto')
-  @include('modals.add-documentos')
+  {{--@include('modals.add-documentos')--}}
 </form>
 
 <input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>
@@ -85,13 +84,11 @@
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-
 <!---select-->
 <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
-
-
 <!--Data tables y script de lineas-->
 <script src="{{asset('js/datatable.js')}}"></script>
+
 <script>
 
   let poblaciones = $('#list_poblaciones').val();
@@ -111,6 +108,7 @@
   let x_presupuesto = 0;
 
 </script>
+
 <script src="{{asset('js/solicitud.js')}}"></script>
 
 @stop

@@ -38,7 +38,7 @@ $(function () {
         addItemsPresupuesto(tr_presupuesto);
     });
 
-    showEdit();
+   
 });
 
 //guardar en el form
@@ -578,6 +578,48 @@ const validateActividad = (url) => {
 
 }
 
+
+const validatePresupuesto = (url) => {
+
+    if ($("#table_presupuesto_empty").val() == 1 || $("#clonar_presupuesto").html() == "") {
+
+        let data = new FormData();
+        //data.append("_token", $('#token').val());
+        data.append("nombre_actividad", $('#nombre_actividad-999').val());
+        data.append("fecha_inicio", $('#fecha_inicio-999').val());
+        data.append("fecha_final", $('#fecha_final-999').val());
+
+        $.ajax({
+            data: data,
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data.success) {
+                    if ($("#clonar_presupuesto").html() != "") {
+                        $('#form_presupuesto').val("1");
+                        $('#modalPresupuesto').modal('hide');
+                    } else {
+                        warning("POR FAVOR AGREGUE UN REGISTRO A LA TABLA");
+                    }
+                }
+            },
+            error: function (data) {
+                if (data.status === 422) {
+                    let errors = $.parseJSON(data.responseText);
+                    addErrorMessage(errors);
+                }
+            }
+        });
+
+    } else {
+        $('#modalPresupuesto').modal('hide');
+    }
+
+}
 
 
 
