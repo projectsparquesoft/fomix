@@ -2,7 +2,7 @@
 
 
 Route::get('/', function () {
-    return view('auth.login2');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -77,4 +77,14 @@ Route::get('empleados/estado/{id}','EmpleadoController@changeBoss')->name('emple
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
 Route::post('solicitantes/search', 'SolicitanteController@action')->name('solicitante.search');
 Route::post('empleados/change', 'EmpleadoController@storeChangeDependencia')->name('empleados.change');
+// VALIDACIONES
+Route::post('validate/solicitud', 'SolicitudController@validateSolicitud')->name('validate.solicitud');
+Route::post('validate/formato', 'SolicitudController@validateFormato')->name('validate.formato');
+Route::post('validate/poblacion', 'SolicitudController@validatePoblacion')->name('validate.poblacion');
+Route::post('validate/actividad', 'SolicitudController@validateActividad')->name('validate.actividad');
+Route::post('validate/presupuesto', 'SolicitudController@validatePresupuesto')->name('validate.presupuesto');
+Route::post('validate/documento', 'SolicitudController@validateDocumento')->name('validate.documento');
+
+
+
 

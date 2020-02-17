@@ -12,6 +12,7 @@ class FuenteVerificacionController extends Controller
     {
         $this->middleware('auth');
     }
+    
     public function index(Request $request)
     {
         $fuentes = Fuente::all();

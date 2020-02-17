@@ -1,5 +1,5 @@
   <!----Modals edit-->
-  <div class="modal fade" id="modalShow">
+  <div class="modal fade" id="modalShow" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">

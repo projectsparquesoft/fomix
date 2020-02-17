@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalActividades">
+<div class="modal fade" id="modalActividades" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">
@@ -40,8 +40,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Actividades</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Fecha de Finalización</th>
+                                    <th>Inicio</th>
+                                    <th>Finalización</th>
                                     <th style="width:20%" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -52,9 +52,12 @@
                         </table>
                     </div>
 
+                    <input type="hidden" id="table_actividad_empty" value="1">
+
+
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-dark" onclick="validateActividad('{{route('validate.actividad')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

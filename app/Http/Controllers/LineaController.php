@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class LineaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $lineas = Linea::all();

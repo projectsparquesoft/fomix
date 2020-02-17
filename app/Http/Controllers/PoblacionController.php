@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class PoblacionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $clasificaciones = Clasificacion::all(['id','tipo_poblacion']);

@@ -6,35 +6,25 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DependenciasRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
             'nombre_dependencia' => 'required|min:3',
-            'descripcion' => 'required|min:5'
+            'descripcion' => 'required|min:5',
         ];
     }
 
-
-public function attributes()
-{
-    return [
-        'nombre_dependencia' => 'Nombre de la Dependencia',
-        'descripcion' => 'Descripción'
-    ];
-}
+    public function attributes()
+    {
+        return [
+            'nombre_dependencia' => 'Nombre de la Dependencia',
+            'descripcion' => 'Descripción',
+        ];
+    }
 }
