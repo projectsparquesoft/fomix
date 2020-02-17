@@ -19,7 +19,7 @@
                     <div class="form-group">
                       <label for="">Tipo de Poblacion:</label>
                       <select name="clasificacion_id" id="clasificacion_id-999" class="form-control clasificaciones">
-                        <option selected>-- Escoger Opcion --</option>
+                        <option selected value="0">-- Escoger Opcion --</option>
                         @foreach ($clasificaciones as $clasificacion)
                       <option value="{{$clasificacion->id}}">{{$clasificacion->tipo_poblacion}}</option>
                         @endforeach
@@ -61,7 +61,7 @@
                   <br>
 
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-hover table-sm " id="table_poblacion">
+                        <table class="table table-hover table-sm " id="table_poblacion">
                             <thead class="thead-light">
                                 <tr>
                                     <th>#</th>
@@ -73,17 +73,6 @@
                             </thead>
                             <tbody>
                             
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Etaria (Edad)</td>
-                                        <td>Niños de 4 a 8 años</td>
-                                        <td>100</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  data-target="#modalEdit" ><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i></button>
-                                        </td>
-                                    </tr>
-                                
                             </tbody>
                         </table>
                     </div>
