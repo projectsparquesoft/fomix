@@ -61,7 +61,6 @@ const save = (form, formData) => {
                 success(data.success);
                 clearFormData();
                 updateTable();
-                popovers();
             } else {
                 warning(data.warning);
             }
@@ -653,9 +652,9 @@ const clearFormData = () => {
 }
 
 const popovers = () => {
-    $('.btn_show_detail').popover();
-    $('.btn_document_detail').popover();
-    $('.btn_gerencia_detail').popover();
+    $('.show-details').popover();
+    $('.add-documents').popover();
+    $('.send-gerencia').popover();
 }
 
 const modalShow = () => {
@@ -681,6 +680,10 @@ const modalShow = () => {
 
 }
 
+
+const popoverShow = (context) => {
+    $('#' + context.id).popover();
+}
 
 
 

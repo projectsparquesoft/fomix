@@ -24,9 +24,9 @@
             <td>{{$solicitud->descripcion}}</td>
             <td>{{$solicitud->archivo}}</td>
             <td class="text-center">
-            <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-warning btn-sm btn_show_detail" data-toggle="modal" data-href="{{route('solicitud.show', $solicitud->id)}}" data-target="#modalShow" data-content="Ver detalle de solicitud" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-eye"></i></button>
-                <button type="button" id="btn_document_detail-{{$solicitud->id}}" class="btn btn-success btn-sm btn_document_detail" data-content="Anexar Documentos" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-file-alt"></i></button>
-                <button type="button" id="btn_gerencia_detail-{{$solicitud->id}}" class="btn btn-info btn-sm btn_gerencia_detail" data-content="Enviar a Gerencia" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-share-square"></i></button>
+                <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-warning btn-sm show-details" data-toggle="modal" data-href="{{route('solicitud.show', $solicitud->id)}}" data-target="#modalShow" data-content="Ver detalle de solicitud" rel="popover" data-placement="top" data-trigger="hover" onmouseover="popoverShow(this)"><i class="fas fa-eye"></i></button>  
+                @if ($solicitud->categoria->tipo_solicitud == 'Proyecto')<button type="button" id="btn_document_detail-{{$solicitud->id}}" class="btn btn-success btn-sm add-documents" data-content="Anexar Documentos" rel="popover" data-placement="top" data-trigger="hover" onmouseover="popoverShow(this)"><i class="fas fa-file-alt"></i></button> @endif
+                <button type="button" id="btn_gerencia_detail-{{$solicitud->id}}" class="btn btn-info btn-sm send-gerencia" data-content="Enviar a Gerencia" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-share-square" onmouseover="popoverShow(this)"></i></button>
             </td>
         </tr>
 

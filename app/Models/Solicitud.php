@@ -51,6 +51,11 @@ class Solicitud extends Model
         return $this->belongsToMany('App\Models\Radicado')->withTimestamps();
     }
 
+    public function radicadoCurrent()
+    {
+        return $this->belongsToMany('App\Models\Radicado')->wherePivot('status',1);   
+    }
+
     public function indicadores()
     {
         return $this->belongsToMany('App\Models\Indicador');
@@ -58,7 +63,9 @@ class Solicitud extends Model
 
     public function poblaciones()
     {
-        return $this->belongsToMany('App\Models\Poblacion')->withTimestamps();
+        return $this->belongsToMany('App\Models\Poblacion')
+        ->withPivot('numero_persona')
+        ->withTimestamps();
     }
 
     public function documentos()

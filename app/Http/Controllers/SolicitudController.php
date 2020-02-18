@@ -204,10 +204,21 @@ class SolicitudController extends Controller
     public function show($id)
     {
         if (request()->ajax()) {
+
             $solicitud = Solicitud::where('id', $id)->with('solicitante:id,nombre,apellido,razon_social,persona_id',
                 'solicitante.persona:id,tipo_persona',
                 'categoria:id,tipo_solicitud'
             )->first();
+
+            if ($solicitud->categoria->tipo_solicitud == 'Proyecto') {
+
+                $solicitud = Solicitud::where('id', $id)->with('solicitante:id,nombre,apellido,razon_social,persona_id',
+                    'solicitante.persona:id,tipo_persona',
+                    'categoria:id,tipo_solicitud',
+                    'proyecto.actividades', 'proyecto.presupuestos', 'radicadoCurrent', 'poblaciones.clasificacion', 'documentos'
+                )->first();
+
+            }
             return response()->view('ajax.detail-solicitud', compact('solicitud'));
         }
     }
