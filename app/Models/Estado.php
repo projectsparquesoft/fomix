@@ -9,7 +9,7 @@ class Estado extends Model
     protected $table = 'estados';
 
     protected $fillable = [
-        'nombre_estado', 'status'
+        'nombre_estado', 'status',
     ];
 
     protected $hidden = [
@@ -19,5 +19,10 @@ class Estado extends Model
     public function solicitudes()
     {
         return $this->belongsToMany('App\Models\Solicitud', 'historiales');
+    }
+
+    public function scopeEstado($query, $estado)
+    {
+        return $query->where('nombre_estado', $estado);
     }
 }

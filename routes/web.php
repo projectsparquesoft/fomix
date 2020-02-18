@@ -15,7 +15,7 @@ Route::resource('solicitante', 'SolicitanteController', ['except' => [
 ]]);
 
 Route::resource('solicitud', 'SolicitudController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'create', 'edit'
 ]]);
 
 Route::resource('proyecto', 'proyectoController', ['except' => [

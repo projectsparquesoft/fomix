@@ -17,9 +17,9 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">Tipo de Poblacion:</label>
-                      <select name="clasificacion_id" id="clasificacion_id-999" class="form-control clasificaciones">
-                        <option selected value="0">-- Escoger Opcion --</option>
+                      <label for="clasificacion_id-999">Tipo de Poblacion:</label>
+                      <select  id="clasificacion_id-999" class="form-control clasificaciones">
+                        <option  value="0">-- Escoger Opcion --</option>
                         @foreach ($clasificaciones as $clasificacion)
                       <option value="{{$clasificacion->id}}">{{$clasificacion->tipo_poblacion}}</option>
                         @endforeach
@@ -29,9 +29,9 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">Poblacion:</label>
-                      <select name="poblacion_id" id="poblacion_id-999" class="form-control poblaciones">
-                        <option value="0" selected>-- Escoger Opcion --</option>
+                      <label for="poblacion_id-999">Poblacion:</label>
+                      <select id="poblacion_id-999" class="form-control poblaciones">
+                        <option value="0">-- Escoger Opcion --</option>
                         
                       </select>
                     </div>
@@ -39,7 +39,7 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">Total:</label>
+                      <label for="total-999">Total:</label>
                       <input type="number" class="form-control" name="total" id="total-999">
                     </div>
                   </div>
@@ -47,7 +47,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                     <label>Fuente Verificacion</label>
-                        <select name="fuente_verificacion" id="fuente_verificacion" class="form-control select2bs4 show-tick" style="width: 100%;" multiple data-placeholder="Escoger Fuente Verificacion">
+                        <select name="fuente_verificacion[]" id="fuente_verificacion" class="form-control select2bs4 show-tick" style="width: 100%;" multiple>
                             @foreach ($fuentes as $fuente)
                               <option  value="{{$fuente->id}}">{{$fuente->fuente_verificacion}}</option>
                             @endforeach
@@ -79,9 +79,6 @@
 
                     <input type="hidden" id="table_poblacion_empty" value="1">
 
-
-
-                   
                 </div>
             
         </div>

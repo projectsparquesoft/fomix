@@ -9,7 +9,7 @@ class PoblacionSolicitud extends Model
     protected $table = 'poblacion_solicitud';
 
     protected $fillable = [
-        'poblacion_id', 'solicitud_id', 'numero_persona', 'fuente_verificacion',
+        'poblacion_id', 'solicitud_id', 'numero_persona',
     ];
 
     protected $hidden = [
@@ -20,7 +20,7 @@ class PoblacionSolicitud extends Model
     {
         return $this->belongsTo('App\Models\Poblacion');
     }
-    
+
     public function solicitud()
     {
         return $this->belongsTo('App\Models\Solicitud');

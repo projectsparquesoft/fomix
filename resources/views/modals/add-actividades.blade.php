@@ -16,16 +16,16 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="">Actividades</label>
-                                <textarea name="nombre_actividad" id="nombre_actividad-999" class="form-control"></textarea>
+                                <label for="nombre_actividad-999">Actividades</label>
+                                <textarea  id="nombre_actividad-999" class="form-control"></textarea>
                             </div>
                             <div class="col-md-6">
-                                <label for="">Fecha de Inicio</label>
-                                <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio-999">
+                                <label for="fecha_inicio-999">Fecha de Inicio</label>
+                                <input type="date" class="form-control" id="fecha_inicio-999">
                             </div>
                             <div class="col-md-6">
-                                <label for="">Fecha de Finalización</label>
-                                <input type="date" class="form-control" name="fecha_final" id="fecha_final-999">
+                                <label for="fecha_final-999">Fecha de Finalización</label>
+                                <input type="date" class="form-control" id="fecha_final-999">
                             </div>
 
                     </div>

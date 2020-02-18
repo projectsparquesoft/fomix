@@ -33,12 +33,12 @@ class Proyecto extends Model
 
     public function lineas()
     {
-        return $this->belongsToMany('App\Models\Lineas');
+        return $this->belongsToMany('App\Models\Linea')->withTimestamps();
     }
 
     public function procesos()
     {
-        return $this->belongsToMany('App\Models\Proceso');
+        return $this->belongsToMany('App\Models\Proceso')->withTimestamps();
     }
 
     public function fuentes()

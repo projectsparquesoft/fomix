@@ -9,7 +9,7 @@ class Presupuesto extends Model
     protected $table = 'presupuestos';
 
     protected $fillable = [
-        'solicitud_id',
+        'proyecto_id',
         'rubro',
         'recurso_municipio',
         'fondo_mixto',

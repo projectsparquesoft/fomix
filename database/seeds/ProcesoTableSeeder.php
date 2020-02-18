@@ -38,5 +38,15 @@ class ProcesoTableSeeder extends Seeder
             'status' => 1,
         ]);
 
+        Proceso::create([
+            'nombre_proceso' => 'Proceso de Aprobacion',
+            'status' => 1,
+        ]);
+
+        Proceso::create([
+            'nombre_proceso' => 'Proceso de Validacion',
+            'status' => 1,
+        ]);
+
     }
 }

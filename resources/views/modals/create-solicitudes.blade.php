@@ -14,7 +14,7 @@
                     <div class="col-md-6">
                         <label for="">Categoria:</label>
                         <select name="categoria_id" id="categoria_id" class="form-control" onchange="changeSolicitud(this.value)">
-                          <option selected>-- Escoger Opcion --</option>
+                          <option value="" selected>-- Escoger Opcion --</option>
                             @foreach ($categorias as $categoria)
                             <option value="{{$categoria->id}}">{{$categoria->tipo_solicitud}}</option>
                             @endforeach
@@ -25,7 +25,7 @@
                       <div class="form-group">
                         <label for="">Solicitante:</label>
                         <select name="solicitante_id" id="solicitante_id"  class="form-control select2" style="width: 100%;">
-                          <option selected>-- Escoger Opcion --</option>
+                          <option value="" selected>-- Escoger Opcion --</option>
                           @foreach ($solicitantes as $solicitante)
                         <option value="{{$solicitante->id}}">@if($solicitante->razon_social) {{$solicitante->razon_social}} ({{$solicitante->name_complete}})</span> @else {{$solicitante->name_complete}}@endif</option>
                           @endforeach

@@ -48,7 +48,7 @@ class Solicitud extends Model
 
     public function radicados()
     {
-        return $this->belongsToMany('App\Models\Radicado');
+        return $this->belongsToMany('App\Models\Radicado')->withTimestamps();
     }
 
     public function indicadores()
@@ -58,7 +58,7 @@ class Solicitud extends Model
 
     public function poblaciones()
     {
-        return $this->belongsToMany('App\Models\Poblacion');
+        return $this->belongsToMany('App\Models\Poblacion')->withTimestamps();
     }
 
     public function documentos()
@@ -68,7 +68,7 @@ class Solicitud extends Model
 
     public function estados()
     {
-        return $this->belongsToMany('App\Models\Estado', 'historiales');
+        return $this->belongsToMany('App\Models\Estado', 'historiales')->withTimestamps();
     }
 
     public function users()
