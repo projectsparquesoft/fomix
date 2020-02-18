@@ -61,6 +61,8 @@ class SolicitudController extends Controller
 
         if (request()->ajax()) {
 
+            $name = "";
+
             $solicitud = new Solicitud;
 
             $solicitud = $this->createObjectSolicitud($request, $solicitud);
@@ -70,15 +72,25 @@ class SolicitudController extends Controller
 
                 $solicitud->save();
 
+                if ($request->file('archivo_solicitud')) {
+                    $file = $request->file('archivo_solicitud');
+                    $name = time() . $file->getClientOriginalName();
+                    $file->move(public_path() . '/documentos/solicitudes', $name);
+                    $solicitud->archivo = $name;
+                    $solicitud->save();
+                }
+
                 if ($solicitud->categoria->tipo_solicitud == 'Proyecto') {
                     $this->storeProyecto($request, $solicitud);
                 }
 
-                $total = $request->total;
-                $poblaciones = $request->id_poblacion;
+                if ($request->total) {
+                    $total = $request->total;
+                    $poblaciones = $request->id_poblacion;
 
-                for ($i = 0; $i < count($total); $i++) {
-                    $solicitud->poblaciones()->attach($poblaciones[$i], ['numero_persona' => $total[$i]]);
+                    for ($i = 0; $i < count($total); $i++) {
+                        $solicitud->poblaciones()->attach($poblaciones[$i], ['numero_persona' => $total[$i]]);
+                    }
                 }
 
                 $estado = Estado::estado('Recepcion Entrada')->first();
@@ -97,6 +109,8 @@ class SolicitudController extends Controller
 
             } catch (\Exception $ex) {
                 DB::rollback();
+                \File::delete(public_path() . '/documentos/solicitudes/' . $name);
+                dd($ex);
                 return response()->json(['warning' => 'ERROR AL GUARDAR DATOS']);
             }
 
@@ -109,14 +123,6 @@ class SolicitudController extends Controller
 
         $solicitud->categoria_id = $request->categoria_id;
         $solicitud->solicitante_id = $request->solicitante_id;
-
-        if ($request->file('archivo_solicitud')) {
-            $file = $request->file('archivo_solicitud');
-            $name = time() . $file->getClientOriginalName();
-            $file->move(public_path() . '/documentos/solicitudes', $name);
-            $solicitud->archivo = $name;
-        }
-
         $solicitud->status = 1;
         $solicitud->descripcion = $request->descripcion_solicitud;
 
@@ -198,7 +204,10 @@ class SolicitudController extends Controller
     public function show($id)
     {
         if (request()->ajax()) {
-            $solicitud = Solicitud::where('id', $id)->first();
+            $solicitud = Solicitud::where('id', $id)->with('solicitante:id,nombre,apellido,razon_social,persona_id',
+                'solicitante.persona:id,tipo_persona',
+                'categoria:id,tipo_solicitud'
+            )->first();
             return response()->view('ajax.detail-solicitud', compact('solicitud'));
         }
     }

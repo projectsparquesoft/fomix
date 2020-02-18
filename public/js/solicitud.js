@@ -60,10 +60,10 @@ const save = (form, formData) => {
 
                 success(data.success);
                 clearFormData();
-                //updateTable();
+                updateTable();
+                popovers();
             } else {
                 warning(data.warning);
-
             }
 
         },
