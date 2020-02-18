@@ -653,9 +653,9 @@ const clearFormData = () => {
 }
 
 const popovers = () => {
-    $('#btn_show_detail').popover();
-    $('#btn_document_detail').popover();
-    $('#btn_gerencia_detail').popover();
+    $('.btn_show_detail').popover();
+    $('.btn_document_detail').popover();
+    $('.btn_gerencia_detail').popover();
 }
 
 const modalShow = () => {

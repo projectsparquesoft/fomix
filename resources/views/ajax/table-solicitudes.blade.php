@@ -24,9 +24,9 @@
             <td>{{$solicitud->descripcion}}</td>
             <td>{{$solicitud->archivo}}</td>
             <td class="text-center">
-                <button type="button" id="btn_show_detail" class="btn btn-warning btn-sm" data-toggle="modal" data-href="{{route('solicitud.show', $solicitud->id)}}" data-target="#modalShow" data-content="Ver detalle de solicitud" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-eye"></i></button>
-                <button type="button" id="btn_document_detail" class="btn btn-success btn-sm" data-content="Anexar Documentos" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-file-alt"></i></button>
-                <button type="button" id="btn_gerencia_detail" class="btn btn-info btn-sm" data-content="Enviar a Gerencia" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-share-square"></i></button>
+            <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-warning btn-sm btn_show_detail" data-toggle="modal" data-href="{{route('solicitud.show', $solicitud->id)}}" data-target="#modalShow" data-content="Ver detalle de solicitud" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-eye"></i></button>
+                <button type="button" id="btn_document_detail-{{$solicitud->id}}" class="btn btn-success btn-sm btn_document_detail" data-content="Anexar Documentos" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-file-alt"></i></button>
+                <button type="button" id="btn_gerencia_detail-{{$solicitud->id}}" class="btn btn-info btn-sm btn_gerencia_detail" data-content="Enviar a Gerencia" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-share-square"></i></button>
             </td>
         </tr>
 
