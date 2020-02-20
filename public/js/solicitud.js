@@ -1,45 +1,10 @@
 $(function () {
 
     clearFormData();
-    popovers();
     modalShow();
-
-    $('#actualizar').click(function (e) {
-        e.preventDefault();
-        update();
-    });
-
-    $('.clasificaciones').change(function (e) {
-        clearSelectPoblaciones();
-        changePoblaciones(this.value);
-    });
-
-    $('#btnAddPoblacion').click(function (e) {
-        e.preventDefault();
-        addItemsPoblacion(tr_poblacion);
-    });
-
-    $('#btnAddActividad').click(function (e) {
-        e.preventDefault();
-        addItemsActividad(tr_actividad);
-    });
-
-    $('#btnAddPresupuesto').click(function (e) {
-        e.preventDefault();
-        addItemsPresupuesto(tr_presupuesto);
-    });
-
-    $('#form_create').on('submit', function (e) {
-        e.preventDefault();
-
-        let form = $('#form_create');
-        let formData = new FormData(this);
-        formData.append('_token', $('input[name=_token]').val());
-
-        save(form, formData);
-
-    });
-
+    clasificacionesChange();
+    buttonsAdd();
+    formCreate();
 
 });
 
@@ -670,6 +635,7 @@ const modalShow = () => {
             url: url,
             success: function (data) {
                 modal.find('.modal-body').html(data);
+                tooltipsMessages();
             }
         });
     });
@@ -680,9 +646,67 @@ const modalShow = () => {
 
 }
 
+const clasificacionesChange = () => {
+    $('.clasificaciones').change(function (e) {
+        clearSelectPoblaciones();
+        changePoblaciones(this.value);
+    });
+}
 
-const popoverShow = (context) => {
-    $('#' + context.id).popover();
+const buttonsAdd = () => {
+
+    $('#btnAddPoblacion').click(function (e) {
+        e.preventDefault();
+        addItemsPoblacion(tr_poblacion);
+    });
+
+    $('#btnAddActividad').click(function (e) {
+        e.preventDefault();
+        addItemsActividad(tr_actividad);
+    });
+
+    $('#btnAddPresupuesto').click(function (e) {
+        e.preventDefault();
+        addItemsPresupuesto(tr_presupuesto);
+    });
+
+}
+
+const formCreate = () => {
+    $('#form_create').on('submit', function (e) {
+        e.preventDefault();
+
+        let form = $('#form_create');
+        let formData = new FormData(this);
+        formData.append('_token', $('input[name=_token]').val());
+
+        save(form, formData);
+
+    });
+}
+
+
+const sendManagement = (context) => {
+
+    let button = context.id;
+    let url = $('#' + button).data('href');
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            if (data.success) {
+                success(data.success);
+                updateTable();
+                $('#modalShow').modal('hide');
+            } else {
+                warning(data.warning);
+            }
+        },
+    });
+
+
 }
 
 

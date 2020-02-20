@@ -11,41 +11,46 @@ use App\Models\Actividad;
 use App\Models\categoria;
 use App\Models\Clasificacion;
 use App\Models\Documento;
-use App\Models\Estado;
 use App\Models\Fuente;
 use App\Models\linea;
 use App\Models\Poblacion;
 use App\Models\Presupuesto;
 use App\Models\Proceso;
 use App\Models\Proyecto;
-use App\Models\Radicado;
 use App\Models\solicitante;
 use App\Models\solicitud;
+use App\Repositories\SolicitudRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SolicitudController extends Controller
 {
 
-    public function __construct()
+    protected $repository;
+
+    public function __construct(SolicitudRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     public function index()
     {
+
         $documentos = Documento::all(['id', 'tipo_documento', 'categoria']);
         $clasificaciones = Clasificacion::with('poblaciones:id,clasificacion_id,detalle')->get(['id', 'tipo_poblacion']);
         $poblaciones = Poblacion::get(['id', 'detalle', 'clasificacion_id']);
         $categorias = Categoria::all(['id', 'tipo_solicitud']);
         $lineas = Linea::all(['id', 'nombre_linea', 'descripcion']);
         $solicitantes = Solicitante::all(['id', 'razon_social', 'nombre', 'apellido']);
-        $solicitudes = Solicitud::with('categoria:id,tipo_solicitud', 'solicitante:id,nombre,apellido,razon_social,persona_id', 'solicitante.persona:id,tipo_persona')->get();
         $fuentes = Fuente::all(['id', 'fuente_verificacion']);
 
+        $solicitudes = $this->repository->buildQuery('Recepcion Entrada')->get();
+
         if (request()->ajax()) {
-            $solicitudes = Solicitud::all();
+
+            $solicitudes = $this->repository->buildQuery('Recepcion Entrada')->get();
+
             if (count($solicitudes) == 0) {
                 return response()->json(['warning' => 'Error en el servidor']);
             } else {
@@ -72,35 +77,19 @@ class SolicitudController extends Controller
 
                 $solicitud->save();
 
-                if ($request->file('archivo_solicitud')) {
-                    $file = $request->file('archivo_solicitud');
-                    $name = time() . $file->getClientOriginalName();
-                    $file->move(public_path() . '/documentos/solicitudes', $name);
-                    $solicitud->archivo = $name;
-                    $solicitud->save();
-                }
+                $name = $this->storeFile($request, $solicitud);
 
                 if ($solicitud->categoria->tipo_solicitud == 'Proyecto') {
                     $this->storeProyecto($request, $solicitud);
                 }
 
                 if ($request->total) {
-                    $total = $request->total;
-                    $poblaciones = $request->id_poblacion;
-
-                    for ($i = 0; $i < count($total); $i++) {
-                        $solicitud->poblaciones()->attach($poblaciones[$i], ['numero_persona' => $total[$i]]);
-                    }
+                    $this->storePoblacion($request, $solicitud);
                 }
 
-                $estado = Estado::estado('Recepcion Entrada')->first();
+                $this->repository->addStatusSolicitud($solicitud, 'Recepcion Entrada', 'Solicitud Ingresada por Recepcion');
 
-                $solicitud->estados()->attach($estado->id, ['user_id' => Auth::id(), 'status' => 1, 'descripcion' => 'Solicitud Ingresada por Recepcion']);
-
-                $radicado = new Radicado;
-                $radicado->codigo_radicado = auth()->id() + time();
-                $radicado->save();
-
+                $radicado = $this->repository->storeRadicado();
                 $solicitud->radicados()->attach($radicado->id, ['status' => 1, 'descripcion' => 'Radicado de Entrada']);
 
                 DB::commit();
@@ -118,6 +107,76 @@ class SolicitudController extends Controller
 
     }
 
+    public function show($id)
+    {
+        if (request()->ajax()) {
+
+            $solicitud = $this->repository->findSolicitudNormal($id);
+
+            if ($solicitud->categoria->tipo_solicitud == 'Proyecto') {
+
+                $solicitud = $this->repository->findSolicitudProject($id);
+
+            }
+
+            return response()->view('ajax.detail-solicitud', compact('solicitud'));
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function validateSolicitud(ValidateSolicitudRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function validateFormato(ProyectoRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function validatePoblacion(ValidatePoblacionRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function validateActividad(ValidateActividadRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function validatePresupuesto(ValidatePresupuestoRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function sendManagement($id)
+    {
+        if (request()->ajax()) {
+
+            $solicitud = $this->repository->findHistoriesStatus($id);
+
+            if ($this->repository->validateStatus($solicitud->historiales, 'Recepcion Entrada')) {
+
+                DB::beginTransaction();
+                try {
+                    $this->repository->updateStatus($solicitud, 'Verificacion Gerencia', 'Solicitud Enviada A Gerencia');
+                    DB::commit();
+                    return response()->json(['success' => 'SOLICITUD ENVIADA CON EXITO!']);
+                } catch (\Exception $ex) {
+                    DB::rollback();
+                    return response()->json(['warning' => 'OOPS! ERROR DEL SERVIDOR']);
+                }
+            } else {
+                return response()->json(['warning' => 'ESTA SSOLICITUD YA FUE ENVIADA']);
+            }
+        }
+
+    }
+
     public function createObjectSolicitud($request, $solicitud)
     {
 
@@ -128,6 +187,29 @@ class SolicitudController extends Controller
 
         return $solicitud;
 
+    }
+
+    public function storeFile($request, $solicitud)
+    {
+        if ($request->file('archivo_solicitud')) {
+            $file = $request->file('archivo_solicitud');
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/documentos/solicitudes', $name);
+            $solicitud->archivo = $name;
+            $solicitud->save();
+            return $name;
+        }
+        return "";
+    }
+
+    public function storePoblacion($request, $solicitud)
+    {
+        $total = $request->total;
+        $poblaciones = $request->id_poblacion;
+
+        for ($i = 0; $i < count($total); $i++) {
+            $solicitud->poblaciones()->attach($poblaciones[$i], ['numero_persona' => $total[$i]]);
+        }
     }
 
     public function storeProyecto($request, $solicitud)
@@ -174,7 +256,6 @@ class SolicitudController extends Controller
 
         for ($i = 0; $i < count($nombre_actividad); $i++) {
             $actividades[] = new Actividad([
-                'proyecto_id' => $proyecto->id,
                 'nombre_actividad' => $nombre_actividad[$i],
                 'fecha_inicio' => $fecha_ini[$i],
                 'fecha_final' => $fecha_final[$i],
@@ -183,7 +264,6 @@ class SolicitudController extends Controller
 
         for ($i = 0; $i < count($rubros); $i++) {
             $presupuestos[] = new Presupuesto([
-                'proyecto_id' => $proyecto->id,
                 'rubro' => $rubros[$i],
                 'recurso_municipio' => $recursoMunicipio[$i],
                 'fondo_mixto' => $fondoMixto[$i],
@@ -201,56 +281,5 @@ class SolicitudController extends Controller
 
     }
 
-    public function show($id)
-    {
-        if (request()->ajax()) {
-
-            $solicitud = Solicitud::where('id', $id)->with('solicitante:id,nombre,apellido,razon_social,persona_id',
-                'solicitante.persona:id,tipo_persona',
-                'categoria:id,tipo_solicitud'
-            )->first();
-
-            if ($solicitud->categoria->tipo_solicitud == 'Proyecto') {
-
-                $solicitud = Solicitud::where('id', $id)->with('solicitante:id,nombre,apellido,razon_social,persona_id',
-                    'solicitante.persona:id,tipo_persona',
-                    'categoria:id,tipo_solicitud',
-                    'proyecto.actividades', 'proyecto.presupuestos', 'radicadoCurrent', 'poblaciones.clasificacion', 'documentos'
-                )->first();
-
-            }
-            return response()->view('ajax.detail-solicitud', compact('solicitud'));
-        }
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function validateSolicitud(ValidateSolicitudRequest $request)
-    {
-        return response()->json(['success' => 'OK']);
-    }
-
-    public function validateFormato(ProyectoRequest $request)
-    {
-        return response()->json(['success' => 'OK']);
-    }
-
-    public function validatePoblacion(ValidatePoblacionRequest $request)
-    {
-        return response()->json(['success' => 'OK']);
-    }
-
-    public function validateActividad(ValidateActividadRequest $request)
-    {
-        return response()->json(['success' => 'OK']);
-    }
-
-    public function validatePresupuesto(ValidatePresupuestoRequest $request)
-    {
-        return response()->json(['success' => 'OK']);
-    }
 
 }

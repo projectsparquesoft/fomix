@@ -20,4 +20,9 @@ class Historial extends Model
     {
         return $this->belongsTo('App\Models\Solicitud');
     }
+
+    public function estado()
+    {
+        return $this->belongsTo('App\Models\Estado');
+    }
 }

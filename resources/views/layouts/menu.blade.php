@@ -69,7 +69,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
+            <a href="{{route('management.index')}}" class="nav-link {{activeSubMenu('management*')}}">
                 <i class="fas fa-users-cog nav-icon"></i>
                 <p>Atencion de Solicitudes</p>
               </a>

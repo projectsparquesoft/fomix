@@ -64,6 +64,10 @@ Route::resource('fuente_verificacion', 'FuenteVerificacionController', ['except'
     'destroy', 'create', 'edit'
 ]]);
 
+Route::resource('management', 'ManagementController', ['only' => [
+    'index', 'show'
+]]);
+
 
 
 // ESTADOS
@@ -84,6 +88,13 @@ Route::post('validate/poblacion', 'SolicitudController@validatePoblacion')->name
 Route::post('validate/actividad', 'SolicitudController@validateActividad')->name('validate.actividad');
 Route::post('validate/presupuesto', 'SolicitudController@validatePresupuesto')->name('validate.presupuesto');
 //Route::post('validate/documento', 'SolicitudController@validateDocumento')->name('validate.documento');
+
+
+// MOVIMIENTO DE SOLICITUDES
+Route::get('solicitud/sendmanagement/{id}', 'SolicitudController@sendManagement')->name('solicitud.management');
+Route::get('solicitud/deny/{id}', 'ManagementController@denySolicitud')->name('management.deny');
+Route::get('solicitud/approve/{id}', 'ManagementController@approveSolicitud')->name('management.approve');
+
 
 
 

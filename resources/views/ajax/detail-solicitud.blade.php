@@ -33,6 +33,9 @@
         <dd class="col-sm-8">@if($solicitud->archivo) <a target="_blank" href="{{asset('documentos/solicitudes')}}/{{$solicitud->archivo}}">PDF</a> @else No se cargo archivo @endif</dd>
         </dl>
 
+        <button type="button" id="btn_gerencia_send-{{$solicitud->id}}" class="btn btn-info btn-sm send-gerencia" onclick="sendManagement(this);" data-href="{{route('solicitud.management', $solicitud->id)}}" data-toggle="tooltip" data-placement="top" title="ENVIAR A GERENCIA"><i class="fas fa-share-square"></i></button>
+
+
       </div>
       <!-- /.card-body -->
     </div>

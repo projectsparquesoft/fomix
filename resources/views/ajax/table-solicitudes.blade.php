@@ -24,9 +24,8 @@
             <td>{{$solicitud->descripcion}}</td>
             <td>{{$solicitud->archivo}}</td>
             <td class="text-center">
-                <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-warning btn-sm show-details" data-toggle="modal" data-href="{{route('solicitud.show', $solicitud->id)}}" data-target="#modalShow" data-content="Ver detalle de solicitud" rel="popover" data-placement="top" data-trigger="hover" onmouseover="popoverShow(this)"><i class="fas fa-eye"></i></button>  
-                @if ($solicitud->categoria->tipo_solicitud == 'Proyecto')<button type="button" id="btn_document_detail-{{$solicitud->id}}" class="btn btn-success btn-sm add-documents" data-content="Anexar Documentos" rel="popover" data-placement="top" data-trigger="hover" onmouseover="popoverShow(this)"><i class="fas fa-file-alt"></i></button> @endif
-                <button type="button" id="btn_gerencia_detail-{{$solicitud->id}}" class="btn btn-info btn-sm send-gerencia" data-content="Enviar a Gerencia" rel="popover" data-placement="top" data-trigger="hover"><i class="fas fa-share-square" onmouseover="popoverShow(this)"></i></button>
+                <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-warning btn-sm show-details" data-toggle="modal" data-href="{{route('solicitud.show', $solicitud->id)}}" data-target="#modalShow"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="VER DETALLE"></i></button>  
+                @if ($solicitud->categoria->tipo_solicitud == 'Proyecto')<button type="button" id="btn_document_detail-{{$solicitud->id}}" class="btn btn-success btn-sm add-documents" data-toggle="tooltip" data-placement="top" title="ANEXAR DOCUMENTOS"><i class="fas fa-file-alt"></i></button> @endif
             </td>
         </tr>
 

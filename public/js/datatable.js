@@ -1,6 +1,7 @@
 $(function () {
     ajaxHeader();
     dataTableInit();
+    tooltipsMessages();
 })
 
 const dataTableInit = () => {
@@ -118,9 +119,14 @@ const updateTable = () => {
                 $('#id_table').html("");
                 $('#id_table').html(data);
                 dataTableInit();
+                tooltipsMessages();
             }
         }
     });
+}
+
+const tooltipsMessages = () => {
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 
