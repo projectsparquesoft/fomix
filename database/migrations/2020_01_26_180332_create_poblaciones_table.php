@@ -14,7 +14,6 @@ class CreatePoblacionesTable extends Migration
 
             $table->bigInteger('clasificacion_id')->unsigned();
 
-            $table->integer('item');
             $table->text('detalle');
 
             $table->foreign('clasificacion_id')

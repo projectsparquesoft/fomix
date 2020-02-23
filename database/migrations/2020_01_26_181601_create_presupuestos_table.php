@@ -22,7 +22,7 @@ class CreatePresupuestosTable extends Migration
 
             $table->foreign('proyecto_id')
                 ->references('id')
-                ->on('solicitudes')
+                ->on('proyectos')
                 ->onDelete('RESTRICT')
                 ->onUpdate('CASCADE');
 

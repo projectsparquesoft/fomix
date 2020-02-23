@@ -13,7 +13,6 @@ class CreateLineasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre_linea',50);
             $table->text('descripcion');
-            $table->tinyInteger('orden_linea')->comment('1,2..7');
             $table->tinyInteger('status')->comment('vigente/No vigente');
 
             $table->softDeletes();
