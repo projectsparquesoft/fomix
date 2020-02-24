@@ -167,10 +167,41 @@
                     <i class="fab fa-artstation"></i>
                     <p>Fuente de Verificación</p>
                   </a>
-                </li>
-
+            </li>
           </ul>
         </li>
+    <!--reportes--->
+        <li
+          class="nav-item has-treeview">
+          <a href="" class="nav-link">
+            <i class="fas fa-file-pdf"></i>
+            <p>
+              Modulo de Reportes
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('reportesolicitud.index')}}" class="nav-link {{activeSubMenu('reportesolicitud*')}}">
+                <i class="fas fa-file-alt"></i>
+                <p>Reporte de Solicitudes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('reporteproyecto.index')}}" class="nav-link {{activeSubMenu('reporteproyecto*')}}">
+                  <i class="fas fa-file-alt"></i>
+                  <p>Reporte de proyectos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('informacionreporte.index')}}" class="nav-link {{activeSubMenu('reporte*')}}">
+                  <i class="fas fa-file-alt"></i>
+                    <p>Información del reporte</p>
+                </a>
+            </li>
+          </ul>
+        </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

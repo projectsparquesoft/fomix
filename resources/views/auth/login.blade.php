@@ -20,20 +20,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page fondo">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="javascript:void(0)" class="bg-gradient-warning"><b class="color-letra">Fondo</b>Mixto</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Ingresa tus credenciales para Iniciar Sesion</p>
 
-      <form action="{{ route('login') }}" method="POST">
-
+<body>
+  <div class="container">
+    <div class="card card-container">
+    <img src="{{asset('/img/logo_fondo.jpg')}}" class="profile-img-card">
+    <form action="{{ route('login') }}" method="POST">
         @csrf
-
         <div class="input-group mb-3">
           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
           <div class="input-group-append">
@@ -58,27 +51,23 @@
           @enderror
         </div>
         <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          <div class="col-4"></div>
+          <div class="col-8">
+            <button style="float:center" type="submit" class="btn btn-dark" autofocus >Login</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-    
-    </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
+    </div><!-- /card-container -->
+</div><!-- /container -->
+
+
+
+
+
+
 <!-- /.login-box -->
 
 <!-- jQuery -->
@@ -87,6 +76,19 @@
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('js/adminlte.min.js')}}"></script>
-
+<!-- Bootstrap 4 -->
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -69,6 +69,16 @@ Route::resource('management', 'ManagementController', ['only' => [
 ]]);
 
 
+// REPORTES
+Route::resource('reportesolicitud', 'ReporteSolicitudController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
+Route::resource('reporteproyecto', 'ReporteProyectoController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
+Route::resource('informacionreporte', 'InformacionReporteController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
 
 // ESTADOS
 Route::get('tipopoblacion/estado/{id}', 'TipoPoblacionController@changeStatus')->name('tipopoblacion.status');
