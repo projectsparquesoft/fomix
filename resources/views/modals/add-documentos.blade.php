@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalDocumentos">
+<div class="modal fade" id="modalDocumentos" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">

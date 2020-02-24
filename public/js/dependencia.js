@@ -75,7 +75,7 @@ const update = () => {
 
 }
 
-
+//mostar el texto en los inpust de editar 
 const showEdit = () => {
     $('#modalEdit').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget)

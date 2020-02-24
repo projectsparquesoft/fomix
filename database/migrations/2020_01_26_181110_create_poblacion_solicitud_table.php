@@ -16,8 +16,7 @@ class CreatePoblacionSolicitudTable extends Migration
             $table->bigInteger('solicitud_id')->unsigned();
 
             $table->integer('numero_persona');
-            $table->string('fuente_verificacion', 200);
-
+            
             $table->foreign('solicitud_id')
                 ->references('id')
                 ->on('solicitudes')

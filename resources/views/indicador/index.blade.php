@@ -20,9 +20,6 @@
 </div>
 
 @endsection
-
-
-
 @section('content')
 <div class="container-fluid">
 
@@ -40,7 +37,7 @@
 
         @include('ajax.table-indicadores')
 
-        
+
     </div>
     <!-- /fin tabla-->
     <div class="card-footer">

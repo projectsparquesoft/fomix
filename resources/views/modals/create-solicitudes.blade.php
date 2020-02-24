@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalCreate">
+<div class="modal fade" id="modalCreate" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">
@@ -13,7 +13,7 @@
 
                     <div class="col-md-6">
                         <label for="">Categoria:</label>
-                        <select name="categoria_id" id="" class="form-control">
+                        <select name="categoria_id" id="categoria_id" class="form-control" onchange="changeSolicitud(this.value)">
                           <option selected>-- Escoger Opcion --</option>
                             @foreach ($categorias as $categoria)
                             <option value="{{$categoria->id}}">{{$categoria->tipo_solicitud}}</option>
@@ -24,7 +24,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="">Solicitante:</label>
-                        <select name="solicitante_id" id="" class="form-control select2" style="width: 100%;">
+                        <select name="solicitante_id" id="solicitante_id"  class="form-control select2" style="width: 100%;">
                           <option selected>-- Escoger Opcion --</option>
                           @foreach ($solicitantes as $solicitante)
                         <option value="{{$solicitante->id}}">@if($solicitante->razon_social) {{$solicitante->razon_social}} ({{$solicitante->name_complete}})</span> @else {{$solicitante->name_complete}}@endif</option>
@@ -35,18 +35,18 @@
 
                     <div class="col-md-6">
                         <label for="">Descripción:</label>
-                        <textarea name="descripcion" class="form-control"></textarea>
+                        <textarea name="descripcion_solicitud" id="descripcion_solicitud" class="form-control"></textarea>
                     </div>
 
                     <div class="col-md-6">
                         <label for="">Archivo:</label>
-                        <input name="archivo" type="file" class="form-control">
+                        <input name="archivo_solicitud" id="archivo_solicitud" type="file" class="form-control">
                     </div>
                 </div>
             
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
+        <button type="button" class="btn btn-dark" id="btnCompleteSolicitud" onclick="validateSolicitud('{{route('validate.solicitud')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

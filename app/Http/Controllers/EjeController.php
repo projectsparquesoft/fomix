@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Eje;
-use App\Http\Requests\EjesRequest;
 
+use App\Http\Requests\EjesRequest;
+use App\Models\Eje;
 use Illuminate\Http\Request;
 
 class EjeController extends Controller
@@ -15,7 +15,7 @@ class EjeController extends Controller
 
     public function index(Request $request)
     {
-            $ejes = Eje::all();
+        $ejes = Eje::all();
 
         if ($request->ajax()) {
             $ejes = Eje::all();
@@ -26,7 +26,7 @@ class EjeController extends Controller
                 return response()->view('ajax.table-ejes', compact('ejes'));
             }
         }
-       return view('ejes.index', compact('ejes'));
+        return view('ejes.index', compact('ejes'));
     }
 
     public function store(EjesRequest $request)
@@ -41,7 +41,6 @@ class EjeController extends Controller
         }
 
     }
-
 
     public function update(EjesRequest $request, $id)
     {

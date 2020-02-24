@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalPoblacion">
+<div class="modal fade" id="modalPoblacion" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">
@@ -47,7 +47,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                     <label>Fuente Verificacion</label>
-                        <select name="fuente_verificacion" class="form-control select2bs4 show-tick" style="width: 100%;" multiple data-placeholder="Escoger Fuente Verificacion">
+                        <select name="fuente_verificacion" id="fuente_verificacion" class="form-control select2bs4 show-tick" style="width: 100%;" multiple data-placeholder="Escoger Fuente Verificacion">
                             @foreach ($fuentes as $fuente)
                               <option  value="{{$fuente->id}}">{{$fuente->fuente_verificacion}}</option>
                             @endforeach
@@ -77,6 +77,8 @@
                         </table>
                     </div>
 
+                    <input type="hidden" id="table_poblacion_empty" value="1">
+
 
 
                    
@@ -84,7 +86,7 @@
             
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-dark" onclick="validatePoblacion('{{route('validate.poblacion')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalPresupuesto">
+<div class="modal fade" id="modalPresupuesto" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">
@@ -11,38 +11,40 @@
                     <div class="form-row">
                         <div class="col-md-10 col-sm-10"><h6 style="float:left"><b> PRESUPUESTO DE EGRESOS</b> (Gastos)</h6> <h6 style="float:right"><b> INGRESOS </b>(Fuentes de Financiación)</h6>  </div>
                         <div class="col-md-2 col-sm-2">
-                            <button style="float:right" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
+                            <button style="float:right" type="button" id="btnAddPresupuesto" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                         </div>
                         <br> <br>
                             <div class="col-md-4">
                                 <label for="">Rubro</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" name="rubro" id="rubro-999">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="">Recursos del Municipio</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" name="recurso_municipio" id="recurso_municipio-999">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="">Fondo Mixto</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" name="fondo_mixto" id="fondo_mixto-999">
                             </div>
 
                             <div class="col-md-6">
                                 <label for="">Ministerio de Cultura</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" name="ministerio_cultura" id="ministerio_cultura-999">
                             </div>
 
                             <div class="col-md-6">
                                 <label for="">Ingresos Propios</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" name="ingreso_propio" id="ingreso_propio-999">
                             </div>
 
+                            <div id="clonar_presupuesto"></div>
 
+                            
                             <div class="table-responsive">
                                 <br>
-                                <table id="tabla" class="table table-hover table-sm">
+                                <table id="table_presupuesto" class="table table-hover table-sm">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
@@ -55,24 +57,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <td>1</td>
-                                        <td>$10000</td>
-                                        <td>$10000</td>
-                                        <td>$10000</td>
-                                        <td>$10000</td>
-                                        <td>$10000</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  data-target="#modalEdit" ><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i></button>
-                                        </td>
+                                        
                                     </tbody>
                                 </table>
                             </div>
+
+                        <input type="hidden" id="table_presupuesto_empty" value="1">
+
                     </div>
 
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-dark" onclick="validatePresupuesto('{{route('validate.presupuesto')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

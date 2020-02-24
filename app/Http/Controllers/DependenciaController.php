@@ -31,11 +31,6 @@ class DependenciaController extends Controller
     }
 
 
-    public function create()
-    {
-    }
-
-
     public function store(DependenciasRequest $request)
     {
             $dependencias = new Dependencia();
@@ -48,11 +43,6 @@ class DependenciaController extends Controller
             }
     }
 
-
-    public function edit($id)
-    {
-        //
-    }
 
     public function update(DependenciasRequest $request, $id)
     {

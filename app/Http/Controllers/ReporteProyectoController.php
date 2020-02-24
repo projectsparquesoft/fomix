@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Linea;
+use App\Models\Poblacion;
+use App\Models\Proceso;
 use Illuminate\Http\Request;
 
-class PresupuestoController extends Controller
+class ReporteProyectoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,10 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        return view('solicitud.index');
+        $procesos = Proceso::all(['id','nombre_proceso']);
+        $poblaciones = Poblacion::all(['id', 'detalle']);
+        $lineas = Linea::all(['id', 'descripcion']);
+        return view('reportes.reporteproyecto', compact('lineas', 'poblaciones', 'procesos'));
     }
 
     /**

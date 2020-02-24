@@ -2,7 +2,7 @@
 
 
 Route::get('/', function () {
-    return view('auth.login2');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -22,9 +22,6 @@ Route::resource('proyecto', 'proyectoController', ['except' => [
     'destroy', 'show',
 ]]);
 
-Route::resource('presupuesto', 'PresupuestoController', ['except' => [
-    'destroy', 'show',
-]]);
 
 // PARAMETROS
 
@@ -67,7 +64,16 @@ Route::resource('fuente_verificacion', 'FuenteVerificacionController', ['except'
     'destroy', 'create', 'edit'
 ]]);
 
-
+// REPORTES
+Route::resource('reportesolicitud', 'ReporteSolicitudController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
+Route::resource('reporteproyecto', 'ReporteProyectoController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
+Route::resource('informacionreporte', 'InformacionReporteController', ['except' => [
+    'destroy', 'create', 'edit'
+]]);
 
 // ESTADOS
 Route::get('tipopoblacion/estado/{id}', 'TipoPoblacionController@changeStatus')->name('tipopoblacion.status');
@@ -80,4 +86,14 @@ Route::get('empleados/estado/{id}','EmpleadoController@changeBoss')->name('emple
 Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipalities');
 Route::post('solicitantes/search', 'SolicitanteController@action')->name('solicitante.search');
 Route::post('empleados/change', 'EmpleadoController@storeChangeDependencia')->name('empleados.change');
+// VALIDACIONES
+Route::post('validate/solicitud', 'SolicitudController@validateSolicitud')->name('validate.solicitud');
+Route::post('validate/formato', 'SolicitudController@validateFormato')->name('validate.formato');
+Route::post('validate/poblacion', 'SolicitudController@validatePoblacion')->name('validate.poblacion');
+Route::post('validate/actividad', 'SolicitudController@validateActividad')->name('validate.actividad');
+Route::post('validate/presupuesto', 'SolicitudController@validatePresupuesto')->name('validate.presupuesto');
+//Route::post('validate/documento', 'SolicitudController@validateDocumento')->name('validate.documento');
+
+
+
 

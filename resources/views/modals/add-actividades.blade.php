@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalActividades">
+<div class="modal fade" id="modalActividades" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background:#fcd846">
@@ -12,57 +12,52 @@
 
                             <div class="col-md-10 col-sm-10"></div>
                             <div class="col-md-2 col-sm-2">
-                                <button style="float:right" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
+                                <button style="float:right" type="button" id="btnAddActividad" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                             </div>
 
                             <div class="col-md-12">
                                 <label for="">Actividades</label>
-                                <textarea name="nombre_actividad" class="form-control" id="nombre_actividad"></textarea>
+                                <textarea name="nombre_actividad" id="nombre_actividad-999" class="form-control"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="">Fecha de Inicio</label>
-                                <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
+                                <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio-999">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Fecha de Finalización</label>
-                                <input type="date" class="form-control" name="fecha_final" id="fecha_final">
+                                <input type="date" class="form-control" name="fecha_final" id="fecha_final-999">
                             </div>
 
                     </div>
+
+                    <div id="clonar_actividad"></div>
 
                     <br>
 
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-hover table-sm ">
+                        <table id="table_actividad" class="table table-hover table-sm ">
                             <thead class="thead-light">
                                 <tr>
                                     <th>#</th>
                                     <th>Actividades</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Fecha de Finalización</th>
+                                    <th>Inicio</th>
+                                    <th>Finalización</th>
                                     <th style="width:20%" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Abir puesto de empanadas</td>
-                                        <td>13/02/2020</td>
-                                        <td>20/02/2020</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  data-target="#modalEdit" ><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i></button>
-                                        </td>
-                                    </tr>
-
+    
+                                
                             </tbody>
                         </table>
                     </div>
 
+                    <input type="hidden" id="table_actividad_empty" value="1">
+
+
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" data-dismiss="modal">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-dark" onclick="validateActividad('{{route('validate.actividad')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

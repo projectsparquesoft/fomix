@@ -16,6 +16,7 @@ class SolicitanteController extends Controller
     {
         $this->middleware('auth');
     }
+    
     public function index(Request $request)
     {
         $solicitantes = Solicitante::with('municipio.departamento')->get();
@@ -34,7 +35,6 @@ class SolicitanteController extends Controller
         }
         return view('solicitante.index', compact('solicitantes', 'personas', 'departamentos', 'proponentes'));
     }
-
 
     public function store(SolicitanteRequest $request)
     {

@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SolicitudRequest;
+use App\Http\Requests\ProyectoRequest;
+use App\Http\Requests\ValidateActividadRequest;
+use App\Http\Requests\ValidatePoblacionRequest;
+use App\Http\Requests\ValidateSolicitudRequest;
 use App\Models\categoria;
 use App\Models\Clasificacion;
+use App\Models\Documento;
 use App\Models\Fuente;
 use App\Models\linea;
 use App\Models\Poblacion;
 use App\Models\solicitante;
 use App\Models\solicitud;
-use App\Models\Documento;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
-    {   $documentos = Documento::all(['id', 'tipo_documento', 'categoria']);
+    {
+        $documentos = Documento::all(['id', 'tipo_documento', 'categoria']);
         $clasificaciones = Clasificacion::with('poblaciones:id,clasificacion_id,detalle')->get(['id', 'tipo_poblacion']);
         $poblaciones = Poblacion::get(['id', 'detalle', 'clasificacion_id']);
         $categorias = Categoria::all(['id', 'tipo_solicitud']);
@@ -38,14 +47,7 @@ class SolicitudController extends Controller
         return view('solicitud.index', compact('categorias', 'solicitudes', 'solicitantes', 'lineas', 'poblaciones', 'clasificaciones', 'fuentes', 'documentos'));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(SolicitudRequest $request)
+    public function store(Request $request)
     {
         if ($request->file('archivo')) {
             $file = $request->file('archivo');
@@ -64,26 +66,34 @@ class SolicitudController extends Controller
 
     }
 
-
     public function show($id)
     {
         //
     }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
 
     public function update(Request $request, $id)
     {
         //
     }
 
-    public function destroy($id)
+    public function validateSolicitud(ValidateSolicitudRequest $request)
     {
-        //
+        return response()->json(['success' => 'OK']);
     }
+
+    public function validateFormato(ProyectoRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function validatePoblacion(ValidatePoblacionRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
+    public function validateActividad(ValidateActividadRequest $request)
+    {
+        return response()->json(['success' => 'OK']);
+    }
+
 }
