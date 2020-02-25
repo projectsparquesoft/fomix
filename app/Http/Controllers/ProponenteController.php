@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\proponente;
+use App\Models\Proponente;
 use App\Http\Requests\ProponenteRequest;
 use Illuminate\Http\Request;
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IndicadorRequest;
 use App\Models\Eje;
-use App\Models\indicador;
+use App\Models\Indicador;
 use Illuminate\Http\Request;
 
 class IndicadorController extends Controller
@@ -54,7 +54,7 @@ class IndicadorController extends Controller
     public function update(IndicadorRequest $request, $id)
     {
         if (request()->ajax()) {
-            indicador::findOrFail($request->id_row)->update($request->all());
+            Indicador::findOrFail($request->id_row)->update($request->all());
             return response()->json(['success' => 'INDICADOR ACTUALIZADO CORRECTAMENTE']);
         }
     }
