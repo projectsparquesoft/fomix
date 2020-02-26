@@ -24,6 +24,9 @@
 <body>
   <div class="container">
     <div class="card card-container">
+        <div class="col-md-12 text-center letra">
+            <h1>Fondo Mixto</h1>
+         </div>
     <img src="{{asset('/img/logo_fondo.jpg')}}" class="profile-img-card">
     <form action="{{ route('login') }}" method="POST">
         @csrf
@@ -54,7 +57,7 @@
           <!-- /.col -->
           <div class="col-4"></div>
           <div class="col-8">
-            <button style="float:center" type="submit" class="btn btn-dark" autofocus >Login</button>
+            <button style="float:center" type="submit" class="btn btn-warning" id="botonlogin"autofocus >Login</button>
           </div>
           <!-- /.col -->
         </div>
