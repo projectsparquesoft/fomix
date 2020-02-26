@@ -12,7 +12,7 @@ class Linea extends Model
     protected $table = 'lineas';
 
     protected $fillable = [
-        'nombre_linea', 'descripcion', 'orden_linea', 'status',
+        'nombre_linea', 'descripcion', 'status',
     ];
 
     protected $hidden = [

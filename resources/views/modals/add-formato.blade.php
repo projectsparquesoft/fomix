@@ -46,8 +46,8 @@
               <div class="col-md-12">
                 <div class="form-group">
                 <label>Líneas</label>
-                    <select name="id_linea" id="id_linea" class="form-control select2bs4 show-tick" style="width: 100%;" multiple data-placeholder="Escoger Líneas">
-                        @foreach ($lineas as $linea)
+                    <select name="id_linea[]" id="id_linea" class="form-control select2bs4 show-tick" style="width: 100%;" multiple>  
+                      @foreach ($lineas as $linea)
                             <option  value="{{$linea->id}}">{{$linea->descripcion}}</option>
                         @endforeach
                     </select>

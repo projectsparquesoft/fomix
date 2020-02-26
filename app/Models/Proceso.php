@@ -20,4 +20,9 @@ class Proceso extends Model
     {
         return $this->belongsToMany('App\Models\Proyecto');
     }
+
+    public function scopeProceso($query, $proceso)
+    {
+        return $query->where('nombre_proceso', $proceso);
+    }
 }

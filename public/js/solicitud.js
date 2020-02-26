@@ -1,66 +1,33 @@
 $(function () {
 
-    $('#guardar').click(function (e) {
-        e.preventDefault();
-        save();
-    });
+    clearFormData();
+    modalShow();
+    clasificacionesChange();
+    buttonsAdd();
+    formCreate();
 
-    $('#actualizar').click(function (e) {
-        e.preventDefault();
-        update();
-    });
-
-    //Initialize Select2 Elements
-    $('.select2').select2();
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-        theme: 'bootstrap4'
-    });
-
-    $('.clasificaciones').change(function (e) {
-        clearSelectPoblaciones();
-        changePoblaciones(this.value);
-    });
-
-    $('#btnAddPoblacion').click(function (e) {
-        e.preventDefault();
-        addItemsPoblacion(tr_poblacion);
-    });
-
-    $('#btnAddActividad').click(function (e) {
-        e.preventDefault();
-        addItemsActividad(tr_actividad);
-    });
-
-    $('#btnAddPresupuesto').click(function (e) {
-        e.preventDefault();
-        addItemsPresupuesto(tr_presupuesto);
-    });
-
-   
 });
 
+
 //guardar en el form
-const save = () => {
-    let form = $('#form_create');
+const save = (form, formData) => {
+
     $.ajax({
-        data: form.serialize(),
-        url: form.attr('action'),
         type: form.attr('method'),
-        dataType: 'json',
+        url: form.attr('action'),
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
         success: function (data) {
 
             if (data.success) {
 
                 success(data.success);
-                $('#form_create')[0].reset();
-                $(".select2").val("");
-                $(".select2").select2();
+                clearFormData();
                 updateTable();
             } else {
                 warning(data.warning);
-
             }
 
         },
@@ -72,7 +39,6 @@ const save = () => {
             }
         }
     });
-
 }
 
 //actualizar-editform
@@ -277,9 +243,8 @@ const addTablePresupuesto = (x, rubro, recurso_municipio, fondo_mixto, ministeri
 }
 
 const cloneInputsPoblacion = (x, poblacion, total) => {
-
     return `<div id="clone_poblacion-${x}">
-    <input type="hidden" name="id_poblacion[]" id="id_poblacion-${x}" value="${poblacion}">
+    <input type="number" style="display:none;" name="id_poblacion[]" id="id_poblacion-${x}" value="${poblacion}">
     <input type="hidden" name="total[]" id="total-${x}" value="${total}">
     </div>`
 }
@@ -298,10 +263,10 @@ const cloneInputsPresupuesto = (x, rubro, recurso_municipio, fondo_mixto, minist
 
     return `<div id="clone_presupuesto-${x}">
     <input type="hidden" name="rubro[]" id="rubro-${x}" value="${rubro}">
-    <input type="hidden" name="recurso_municipio[]" id="recurso_municipio-${x}" value=" ${recurso_municipio} ">
+    <input type="hidden" name="recurso_municipio[]" id="recurso_municipio-${x}" value="${recurso_municipio}">
     <input type="hidden" name="fondo_mixto[]" id="fondo_mixto-${x}" value="${fondo_mixto}">
-    <input type="hidden" name="ministerio_cultura[]" id="ministerio_cultura-${x}"  value=" ${ministerio_cultura} ">
-    <input type="hidden" name="ingreso_propio[]" id="ingreso_propio-${x}" value=" ${ingreso_propio} ">
+    <input type="hidden" name="ministerio_cultura[]" id="ministerio_cultura-${x}"  value="${ministerio_cultura}">
+    <input type="hidden" name="ingreso_propio[]" id="ingreso_propio-${x}" value="${ingreso_propio}">
     </div>`;
 
 }
@@ -373,7 +338,7 @@ const validatedItems = (items) => {
 
     for (let index = 0; index < items.length; index++) {
 
-        if (items[index] == '') {
+        if (items[index] == '' || items[index] == '0') {
             return false;
         }
 
@@ -413,11 +378,9 @@ const changeSolicitud = (value) => {
 
 const validateSolicitud = (url) => {
 
-    //let archivo = $("#archivo_solicitud");
     let archivo = document.getElementById('archivo_solicitud');
 
     let data = new FormData();
-    //data.append("_token", $('#token').val());
     data.append("categoria", $('#categoria_id').val());
     data.append("solicitante", $('#solicitante_id').val());
     data.append("descripcion", $('#descripcion_solicitud').val());
@@ -453,7 +416,7 @@ const validateFormato = (url) => {
 
 
     let data = new FormData();
-    //data.append("_token", $('#token').val());
+
     data.append("titulo", $('#titulo').val());
     data.append("fecha_ini", $('#fecha_ini').val());
     data.append("fecha_fin", $('#fecha_fin').val());
@@ -497,7 +460,6 @@ const validatePoblacion = (url) => {
     if ($("#table_poblacion_empty").val() == 1 || $("#clonar_poblacion").html() == "") {
 
         let data = new FormData();
-        //data.append("_token", $('#token').val());
         data.append("poblacion", $('#poblacion_id-999').val());
         data.append("total", $('#total-999').val());
         data.append("fuente_verificacion", $('#fuente_verificacion').val());
@@ -529,6 +491,7 @@ const validatePoblacion = (url) => {
         });
 
     } else {
+        $('#form_poblacion').val("1");
         $('#modalPoblacion').modal('hide');
     }
 
@@ -541,7 +504,6 @@ const validateActividad = (url) => {
     if ($("#table_actividad_empty").val() == 1 || $("#clonar_actividad").html() == "") {
 
         let data = new FormData();
-        //data.append("_token", $('#token').val());
         data.append("nombre_actividad", $('#nombre_actividad-999').val());
         data.append("fecha_inicio", $('#fecha_inicio-999').val());
         data.append("fecha_final", $('#fecha_final-999').val());
@@ -573,6 +535,7 @@ const validateActividad = (url) => {
         });
 
     } else {
+        $('#form_actividad').val("1");
         $('#modalActividades').modal('hide');
     }
 
@@ -584,10 +547,12 @@ const validatePresupuesto = (url) => {
     if ($("#table_presupuesto_empty").val() == 1 || $("#clonar_presupuesto").html() == "") {
 
         let data = new FormData();
-        //data.append("_token", $('#token').val());
-        data.append("nombre_actividad", $('#nombre_actividad-999').val());
-        data.append("fecha_inicio", $('#fecha_inicio-999').val());
-        data.append("fecha_final", $('#fecha_final-999').val());
+        data.append("rubro", $('#rubro-999').val());
+        data.append("recurso_municipio", $('#recurso_municipio-999').val());
+        data.append("fondo_mixto", $('#fondo_mixto-999').val());
+        data.append("ministerio_cultura", $('#ministerio_cultura-999').val());
+        data.append("ingreso_propio", $('#ingreso_propio-999').val());
+
 
         $.ajax({
             data: data,
@@ -616,10 +581,135 @@ const validatePresupuesto = (url) => {
         });
 
     } else {
+        $('#form_presupuesto').val("1");
         $('#modalPresupuesto').modal('hide');
     }
 
 }
+
+const clearFormData = () => {
+    $('#form_solicitud').val("0");
+    $('#form_formato').val("0");
+    $('#form_poblacion').val("0");
+    $('#form_actividad').val("0");
+    $('#form_presupuesto').val("0");
+
+    $('#form_create')[0].reset();
+
+    $('.select2').select2({
+        placeholder: '-- Escoger Opciones --',
+    });
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+    });
+
+
+    $("#clonar_presupuesto").html("");
+    $("#clonar_actividad").html("");
+    $("#clonar_poblacion").html("");
+
+    $('#table_presupuesto tbody').html("");
+    $('#table_actividad tbody').html("");
+    $('#table_poblacion tbody').html("");
+
+}
+
+const popovers = () => {
+    $('.show-details').popover();
+    $('.add-documents').popover();
+    $('.send-gerencia').popover();
+}
+
+const modalShow = () => {
+    $('#modalShow').on('show.bs.modal', function (event) {
+
+        let button = $(event.relatedTarget)
+        let url = button.data('href')
+
+        let modal = $(this)
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                modal.find('.modal-body').html(data);
+                tooltipsMessages();
+            }
+        });
+    });
+
+    $('#modalShow').on('hide.bs.modal', function (e) {
+        $(this).find('.modal-body').html("");
+    });
+
+}
+
+const clasificacionesChange = () => {
+    $('.clasificaciones').change(function (e) {
+        clearSelectPoblaciones();
+        changePoblaciones(this.value);
+    });
+}
+
+const buttonsAdd = () => {
+
+    $('#btnAddPoblacion').click(function (e) {
+        e.preventDefault();
+        addItemsPoblacion(tr_poblacion);
+    });
+
+    $('#btnAddActividad').click(function (e) {
+        e.preventDefault();
+        addItemsActividad(tr_actividad);
+    });
+
+    $('#btnAddPresupuesto').click(function (e) {
+        e.preventDefault();
+        addItemsPresupuesto(tr_presupuesto);
+    });
+
+}
+
+const formCreate = () => {
+    $('#form_create').on('submit', function (e) {
+        e.preventDefault();
+
+        let form = $('#form_create');
+        let formData = new FormData(this);
+        formData.append('_token', $('input[name=_token]').val());
+
+        save(form, formData);
+
+    });
+}
+
+
+const sendManagement = (context) => {
+
+    let button = context.id;
+    let url = $('#' + button).data('href');
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            if (data.success) {
+                success(data.success);
+                updateTable();
+                $('#modalShow').modal('hide');
+            } else {
+                warning(data.warning);
+            }
+        },
+    });
+
+
+}
+
+
 
 
 

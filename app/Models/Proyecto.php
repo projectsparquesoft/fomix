@@ -33,12 +33,17 @@ class Proyecto extends Model
 
     public function lineas()
     {
-        return $this->belongsToMany('App\Models\Lineas');
+        return $this->belongsToMany('App\Models\Linea')->withTimestamps();
     }
 
     public function procesos()
     {
-        return $this->belongsToMany('App\Models\Proceso');
+        return $this->belongsToMany('App\Models\Proceso')->withTimestamps();
+    }
+
+    public function procesoCurrent()
+    {
+        return $this->belongsToMany('App\Models\Proceso')->wherePivot('status', 1);
     }
 
     public function fuentes()
@@ -49,6 +54,11 @@ class Proyecto extends Model
     public function actividades()
     {
         return $this->hasMany('App\Models\Actividad');
+    }
+
+    public function historiales()
+    {
+        return $this->hasMany('App\Models\ProcesoProyecto');
     }
 
     public function presupuestos()

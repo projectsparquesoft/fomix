@@ -34,7 +34,6 @@ class PoblacionController extends Controller
         $poblaciones = new Poblacion();
         $poblaciones->clasificacion_id  = $request->clasificacion_id;
         $poblaciones->detalle = $request->detalle;
-        $poblaciones->item=1;
         $exito= $poblaciones->save();
         if ($exito) {
            return response()->json(['success' =>'POBLACION CREADA CORRECTAMENTE' ]);

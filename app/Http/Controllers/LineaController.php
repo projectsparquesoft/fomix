@@ -33,7 +33,6 @@ class LineaController extends Controller
         $lineas = new Linea();
         $lineas->nombre_linea = $request->nombre_linea;
         $lineas->descripcion = $request->descripcion;
-        $lineas->orden_linea = 1;
         $lineas->status = 1;
         $exito = $lineas->save();
 

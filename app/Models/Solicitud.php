@@ -12,7 +12,7 @@ class Solicitud extends Model
     protected $table = 'solicitudes';
 
     protected $fillable = [
-        'categoria_id', 'solicitante_id', 'archivo', 'valor', 'status', 'descripcion'
+        'categoria_id', 'solicitante_id', 'archivo', 'valor', 'status', 'descripcion',
     ];
 
     protected $hidden = [
@@ -48,7 +48,12 @@ class Solicitud extends Model
 
     public function radicados()
     {
-        return $this->belongsToMany('App\Models\Radicado');
+        return $this->belongsToMany('App\Models\Radicado')->withTimestamps();
+    }
+
+    public function radicadoCurrent()
+    {
+        return $this->belongsToMany('App\Models\Radicado')->wherePivot('status', 1);
     }
 
     public function indicadores()
@@ -58,7 +63,9 @@ class Solicitud extends Model
 
     public function poblaciones()
     {
-        return $this->belongsToMany('App\Models\Poblacion');
+        return $this->belongsToMany('App\Models\Poblacion')
+            ->withPivot('numero_persona')
+            ->withTimestamps();
     }
 
     public function documentos()
@@ -68,7 +75,9 @@ class Solicitud extends Model
 
     public function estados()
     {
-        return $this->belongsToMany('App\Models\Estado', 'historiales');
+        return $this->belongsToMany('App\Models\Estado', 'historiales')
+            ->withTimestamps()
+            ->wherePivot('status', 1);
     }
 
     public function users()

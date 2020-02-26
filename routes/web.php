@@ -15,7 +15,7 @@ Route::resource('solicitante', 'SolicitanteController', ['except' => [
 ]]);
 
 Route::resource('solicitud', 'SolicitudController', ['except' => [
-    'destroy', 'show',
+    'destroy', 'create', 'edit'
 ]]);
 
 Route::resource('proyecto', 'proyectoController', ['except' => [
@@ -74,6 +74,11 @@ Route::resource('reporteproyecto', 'ReporteProyectoController', ['except' => [
 Route::resource('informacionreporte', 'InformacionReporteController', ['except' => [
     'destroy', 'create', 'edit'
 ]]);
+Route::resource('management', 'ManagementController', ['only' => [
+    'index', 'show'
+]]);
+
+
 
 // ESTADOS
 Route::get('tipopoblacion/estado/{id}', 'TipoPoblacionController@changeStatus')->name('tipopoblacion.status');
@@ -93,6 +98,13 @@ Route::post('validate/poblacion', 'SolicitudController@validatePoblacion')->name
 Route::post('validate/actividad', 'SolicitudController@validateActividad')->name('validate.actividad');
 Route::post('validate/presupuesto', 'SolicitudController@validatePresupuesto')->name('validate.presupuesto');
 //Route::post('validate/documento', 'SolicitudController@validateDocumento')->name('validate.documento');
+
+
+// MOVIMIENTO DE SOLICITUDES
+Route::get('solicitud/sendmanagement/{id}', 'SolicitudController@sendManagement')->name('solicitud.management');
+Route::get('solicitud/deny/{id}', 'ManagementController@denySolicitud')->name('management.deny');
+Route::get('solicitud/approve/{id}', 'ManagementController@approveSolicitud')->name('management.approve');
+
 
 
 

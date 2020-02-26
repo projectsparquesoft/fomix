@@ -18,7 +18,7 @@ class CreateSolicitudesTable extends Migration
             $table->tinyInteger('status');
             $table->text('descripcion')->nullable();
 
-            $table->string('archivo', 255);
+            $table->string('archivo', 255)->nullable();
 
             $table->foreign('categoria_id')
                 ->references('id')

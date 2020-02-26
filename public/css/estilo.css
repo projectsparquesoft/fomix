@@ -46,6 +46,7 @@
     background-repeat: no-repeat;
 }
 
+<<<<<<< HEAD
 #botonlogin{
     background-color:black;
     border-radius: 10px;
@@ -55,3 +56,10 @@
 
 
 
+=======
+.color-letra {
+    color: antiquewhite;
+}
+
+
+>>>>>>> 15db79921f1a4b72ffe3c550951cbdf15d1d2808

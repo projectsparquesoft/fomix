@@ -6,25 +6,31 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ValidatePresupuestoRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            //
+            'rubro' => 'required|integer',
+            'recurso_municipio' => 'required|integer',
+            'fondo_mixto' => 'required|integer',
+            'ministerio_cultura' => 'required|integer',
+            'ingreso_propio' => 'required|integer',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'rubro' => 'Rubro',
+            'recurso_municipio' => 'Recurso Municipio',
+            'fondo_mixto' => 'Fondo Mixto',
+            'ministerio_cultura' => 'Ministerio Cultura',
+            'ingreso_propio' => 'Ingreso Propio',
         ];
     }
 }

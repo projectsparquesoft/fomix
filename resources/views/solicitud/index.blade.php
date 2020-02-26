@@ -11,6 +11,8 @@
  <!--select-->
  <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
  <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+ <link rel="stylesheet" href="{{asset('css/tooltip.css')}}">
+
 @stop
 
 @section('link')
@@ -33,8 +35,26 @@
       <button id="btn-poblacion" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
       <button id="btn-actividades" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
       <button id="btn-presupuesto" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
-      <button id="btn-guardar-solicitud" style="display:none;" type="button" class="btn btn-success btn-sm">Guardar<i class="fas fa-save"></i></button>
+      <form id="form_create" action="{{route('solicitud.store')}}" method="POST" onkeypress="return disableEnterKey(event);" enctype="multipart/form-data">
+        @csrf
+       <input type="hidden" name="form_solicitud" id="form_solicitud" value="0">
+       <input type="hidden" name="form_formato" id="form_formato" value="0">
+       <input type="hidden" name="form_poblacion" id="form_poblacion" value="0">
+       <input type="hidden" name="form_actividad" id="form_actividad" value="0">
+       <input type="hidden" name="form_presupuesto" id="form_presupuesto" value="0">
+       {{--<input type="hidden" name="form_documento" id="form_documento" value="0">--}}
+      
+        @include('modals.create-solicitudes')
+        @include('modals.add-formato')
+        @include('modals.add-poblacion')
+        @include('modals.add-actividades')
+        @include('modals.add-presupuesto')
+        {{--@include('modals.add-documentos')--}}
 
+        <button id="btn-guardar-solicitud" style="display:none; margin-top:10px;"  type="submit" class="btn btn-success btn-sm">Guardar<i class="fas fa-save"></i></button>
+
+      </form>
+      
             <!----Modals-->
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -52,26 +72,13 @@
 </div>
 <form id="form_hidden" style="display:none" action="{{route('solicitud.index')}}" method="GET"><input type="hidden" name="opcion" value="ok"></form>
 
-<form id="form_create" action="{{route('solicitud.store')}}" method="POST" onkeypress="return disableEnterKey(event);" enctype="multipart/form-data">
-  @csrf
- <input type="hidden" name="form_solicitud" id="form_solicitud" value="0">
- <input type="hidden" name="form_formato" id="form_formato" value="0">
- <input type="hidden" name="form_poblacion" id="form_poblacion" value="0">
- <input type="hidden" name="form_actividad" id="form_actividad" value="0">
- <input type="hidden" name="form_presupuesto" id="form_presupuesto" value="0">
- {{--<input type="hidden" name="form_documento" id="form_documento" value="0">--}}
-
-  @include('modals.create-solicitudes')
-  @include('modals.add-formato')
-  @include('modals.add-poblacion')
-  @include('modals.add-actividades')
-  @include('modals.add-presupuesto')
-  {{--@include('modals.add-documentos')--}}
-</form>
 
 <input id="list_poblaciones" type="hidden" value='@json($poblaciones)'>
 <input id="list_clasificaciones" type="hidden" value='@json($clasificaciones)'>
 <input id="list_categorias" type="hidden" value='@json($categorias)'>
+
+@include('modals.show-solicitud')
+
 
 
  {{--@include('modals.edit-solicitante')--}}

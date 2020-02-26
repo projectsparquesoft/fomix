@@ -19,7 +19,7 @@ class ProyectoRequest extends FormRequest
             'fecha_ini' => 'required|date',
             'fecha_fin' => 'required|date',
             'descripcion_proyecto' => 'required|min:3',
-            'id_linea' => 'required|integer',
+            'id_linea' => 'required',
             'id_linea.*' => 'required',
             'antecedentes' => 'required|min:3',
             'justificacion' => 'required|min:3',

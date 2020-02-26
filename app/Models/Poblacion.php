@@ -9,7 +9,7 @@ class Poblacion extends Model
     protected $table = 'poblaciones';
 
     protected $fillable = [
-        'item', 'clasificacion_id', 'detalle',
+        'clasificacion_id', 'detalle',
     ];
 
     protected $hidden = [
