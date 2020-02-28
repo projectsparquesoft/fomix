@@ -23,7 +23,7 @@
 
 <body>
   <div class="container">
-    <div class="card card-container">
+    <div class="card card-container fondologin">
         <div class="col-md-12 text-center letra">
             <h1>Fondo Mixto</h1>
          </div>

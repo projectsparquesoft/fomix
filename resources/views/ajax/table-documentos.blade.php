@@ -30,7 +30,7 @@
                 @endif
             </td>
             <td class="text-center">
-             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$documento->id}}" data-nombre="{{$documento->tipo_documento}}" data-categoria="{{$documento->categoria}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$documento->id}}" data-nombre="{{$documento->tipo_documento}}" data-categoria="{{$documento->categoria}}" data-target="#modalEdit"> <i class="fas fa-pencil-alt"></i>Editar</button>
             </td>
         </tr>
         @endforeach

@@ -21,8 +21,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <a data-toggle="modal" data-target="#modalEdit"  data-id="{{$tipopoblacion->id}}" data-tipo_poblacion="{{$tipopoblacion->tipo_poblacion}}" class="btn btn-warning btn-sm">
-                        <i class="fas fa-pencil-alt"></i>Editar</a>
+                    <button type="button" class="botones show-details" data-toggle="modal" data-id="{{$tipopoblacion->id}}" data-tipo_poblacion="{{$tipopoblacion->tipo_poblacion}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
                 </td>
                 </tr>
             @endforeach

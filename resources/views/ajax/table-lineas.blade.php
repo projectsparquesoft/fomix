@@ -22,7 +22,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$linea->id}}" data-nombre_linea="{{$linea->nombre_linea}}" data-descripcion="{{$linea->descripcion}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                        <button type="button" class="botones" data-toggle="modal" data-id="{{$linea->id}}" data-nombre_linea="{{$linea->nombre_linea}}" data-descripcion="{{$linea->descripcion}}" data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
                     </td>
                 </tr>
             @endforeach

@@ -50,7 +50,6 @@
 @endsection
 
 @section('extra-script')
-
 <!-- DataTables -->
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -59,8 +58,6 @@
 <!--data tables y js de documentos--->
 <script src="{{asset('js/datatable.js')}}"></script>
 <script src="{{asset('js/documento.js')}}"></script>
-
-
 @stop
 
 

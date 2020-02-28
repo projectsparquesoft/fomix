@@ -16,16 +16,16 @@
             <dd class="col-sm-8">{{$solicitud->categoria->tipo_solicitud}}</dd>
 
             <dt class="col-sm-4">Solicitante:</dt>
-            <dd class="col-sm-8"> 
+            <dd class="col-sm-8">
                 @if ($solicitud->solicitante->razon_social)
                 {{$solicitud->solicitante->razon_social}}
-                @else 
+                @else
                 {{$solicitud->solicitante->nombre}} {{$solicitud->solicitante->apellido}}
                 @endif
             </dd>
 
             <dt class="col-sm-4">Descripcion</dt>
-            <dd class="col-sm-8"> 
+            <dd class="col-sm-8">
                 {{$solicitud->descripcion}}
             </dd>
 
@@ -61,14 +61,14 @@
             <dd class="col-sm-8">{{$solicitud->proyecto->titulo}}</dd>
 
             <dt class="col-sm-4">Fechas de Realizacion:</dt>
-            <dd class="col-sm-8"> 
+            <dd class="col-sm-8">
                 Fecha Inicio: {{$solicitud->proyecto->fecha_inicio}} -
-                Fecha Final: {{$solicitud->proyecto->fecha_final}} 
+                Fecha Final: {{$solicitud->proyecto->fecha_final}}
             </dd>
 
             <dt class="col-sm-4">Descripcion</dt>
-            <dd class="col-sm-8"> 
-                {{$solicitud->proyecto->descripcion}} 
+            <dd class="col-sm-8">
+                {{$solicitud->proyecto->descripcion}}
             </dd>
 
         </dl>
@@ -86,13 +86,13 @@
           <i class="fas fa-text-width"></i>
           Poblacion Afectada:
         </h3>
-        <div class="card-tools">
+        <div class="card-tools" >
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
           </div>
       </div>
       <!-- /.card-header -->
-      <div class="card-body">
-          
+      <div class="card-body" >
+
         <div class="table-responsive">
             <table class="table table-hover table-sm">
                 <thead class="thead-light">
@@ -109,8 +109,8 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$poblacion->clasificacion->tipo_poblacion}}</td>
                         <td>{{$poblacion->detalle}}</td>
-                        <td>{{$poblacion->pivot->numero_persona}}</td>     
-                     </tr>                      
+                        <td>{{$poblacion->pivot->numero_persona}}</td>
+                     </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -146,14 +146,14 @@
                         <th>Fin</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach ($solicitud->proyecto->actividades as $actividad)
                      <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$actividad->nombre_actividad}}</td>
                         <td>{{$actividad->fecha_inicio}}</td>
-                        <td>{{$actividad->fecha_final}}</td>     
-                     </tr>                      
+                        <td>{{$actividad->fecha_final}}</td>
+                     </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -197,9 +197,9 @@
                         <td class="text-center">${{number_format($presupuesto->rubro, 0)}}</td>
                         <td class="text-center">${{number_format($presupuesto->recurso_municipio, 0)}}</td>
                         <td class="text-center">${{number_format($presupuesto->fondo_mixto, 0)}}</td>
-                        <td class="text-center">${{number_format($presupuesto->ministerio_cultura, 0)}}</td>     
-                        <td class="text-center">${{number_format($presupuesto->ingreso_propio, 0)}}</td>     
-                     </tr>                      
+                        <td class="text-center">${{number_format($presupuesto->ministerio_cultura, 0)}}</td>
+                        <td class="text-center">${{number_format($presupuesto->ingreso_propio, 0)}}</td>
+                     </tr>
                     @endforeach
                 </tbody>
             </table>

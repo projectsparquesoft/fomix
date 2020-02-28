@@ -13,19 +13,19 @@
 @section('link')
 
 <div class="row mb-2">
-    <div class="col-sm-12 text-center ">
-      <h3>Modulo Proponentes</h3>
+    <div class="col-sm-12 text-center letra_titulo">
+      <p>Modulo Proponentes</h3>
     </div>
-  </div>
+</div>
 
 @endsection
 
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card" style="background:whitesmoke" >
-    <div class="card-header" style="background:whitesmoke">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Proponentes  <i class="fas fa-user-plus"></i></button>
+  <div class="card card" style="background:#EBF5FB" >
+    <div class="card-header">
+      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Crear Proponentes  <i class="fas fa-user-plus"></i></button>
             <!----Modals-->
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -59,8 +59,6 @@
 <script src="{{asset('js/datatable.js')}}"></script>
 <script src="{{asset('js/proponente.js')}}"></script>
 
-
-
-
 @stop
+
 

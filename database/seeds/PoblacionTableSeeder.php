@@ -11,7 +11,6 @@ class PoblacionTableSeeder extends Seeder
     {
         
         Poblacion::create([
-            'item' => 1,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Etaria (Edad)')
                 ->first(['id'])
                 ->id,
@@ -19,7 +18,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 2,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Etaria (Edad)')
                 ->first(['id'])
                 ->id,
@@ -27,7 +25,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 3,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Etaria (Edad)')
                 ->first(['id'])
                 ->id,
@@ -35,7 +32,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 4,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Etaria (Edad)')
                 ->first(['id'])
                 ->id,
@@ -43,7 +39,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 5,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Grupos étnicos')
                 ->first(['id'])
                 ->id,
@@ -51,7 +46,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 6,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Grupos étnicos')
                 ->first(['id'])
                 ->id,
@@ -59,7 +53,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 7,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Grupos étnicos')
                 ->first(['id'])
                 ->id,
@@ -67,7 +60,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 8,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Grupos étnicos')
                 ->first(['id'])
                 ->id,
@@ -75,7 +67,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 9,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Grupos étnicos')
                 ->first(['id'])
                 ->id,
@@ -83,7 +74,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 10,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Grupos étnicos')
                 ->first(['id'])
                 ->id,
@@ -91,7 +81,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 11,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Género')
                 ->first(['id'])
                 ->id,
@@ -99,7 +88,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 12,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Género')
                 ->first(['id'])
                 ->id,
@@ -107,7 +95,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 13,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Población Vulnerable')
                 ->first(['id'])
                 ->id,
@@ -115,7 +102,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 14,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Población Vulnerable')
                 ->first(['id'])
                 ->id,
@@ -123,7 +109,6 @@ class PoblacionTableSeeder extends Seeder
         ]);
 
         Poblacion::create([
-            'item' => 15,
             'clasificacion_id' => Clasificacion::where('tipo_poblacion', 'Población Vulnerable')
                 ->first(['id'])
                 ->id,

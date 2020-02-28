@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Poblacion;
-use App\Models\clasificacion;
+use App\Models\Clasificacion;
 use App\Http\Requests\PoblacionRequest;
 use Illuminate\Http\Request;
 

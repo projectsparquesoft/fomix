@@ -1,11 +1,11 @@
 <table id="tabla" class="table table-hover table-sm">
     <thead class="thead-light">
         <tr>
-            <th>#</th>
-            <th>Indicador</th>
-            <th>Meta</th>
-            <th>Estado</th>
-            <th>Acciones</th>
+            <th class="text-center">#</th>
+            <th class="text-center">Indicador</th>
+            <th class="text-center">Meta</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
                 @endif
             </td>
             <td style="width: 20%" class="text-center">
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$indicador->id}}" data-nombre="{{$indicador->nombre_indicador}}" data-eje="{{$indicador->eje_id}}" data-meta="{{$indicador->meta}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" id="" class="botones show-details" data-toggle="modal" data-id="{{$indicador->id}}" data-nombre="{{$indicador->nombre_indicador}}" data-eje="{{$indicador->eje_id}}" data-meta="{{$indicador->meta}}" data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
              </td>
         </tr>
         @endforeach

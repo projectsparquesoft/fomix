@@ -1,13 +1,13 @@
 <div class="modal fade" id="modalPoblacion" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header" style="background:#fcd846">
+        <div class="modal-header" style="background:#A2ECB4">
           <h4 class="modal-title">Añadir Población <i class="fas fa-user-plus"></i></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="background:whitesmoke">
+        <div class="modal-body" style="background:#D5DBDB">
                 <div class="form-row">
 
                   <div class="col-md-10 col-sm-10"></div>
@@ -32,7 +32,7 @@
                       <label for="poblacion_id-999">Poblacion:</label>
                       <select id="poblacion_id-999" class="form-control poblaciones">
                         <option value="0">-- Escoger Opcion --</option>
-                        
+
                       </select>
                     </div>
                   </div>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div id="clonar_poblacion"></div>
-	
+
 
                   <br>
 
@@ -71,8 +71,8 @@
                                     <th style="width:20%" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            
+                            <tbody style="background-color:#EBF5FB">
+
                             </tbody>
                         </table>
                     </div>
@@ -80,7 +80,7 @@
                     <input type="hidden" id="table_poblacion_empty" value="1">
 
                 </div>
-            
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-dark" onclick="validatePoblacion('{{route('validate.poblacion')}}')">Completado <i class="fas fa-times-circle"></i></button>

@@ -12,7 +12,7 @@ class DocumentoController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $documentos = Documento::all();

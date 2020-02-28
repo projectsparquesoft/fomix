@@ -14,8 +14,8 @@
 @section('link')
 
 <div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Modulo de Indicadores</h1>
+  <div class="col-sm-12 text-center letra_titulo">
+    <p>Modulo de Indicadores</h1>
   </div>
 </div>
 
@@ -23,9 +23,9 @@
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Indicadores <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Crear Indicadores <i class="fas fa-user-plus"></i></button>
             <!----Modals-->
 
       <div class="card-tools">
@@ -36,7 +36,6 @@
     <div class="card-body table-responsive" id="id_table">
 
         @include('ajax.table-indicadores')
-
 
     </div>
     <!-- /fin tabla-->

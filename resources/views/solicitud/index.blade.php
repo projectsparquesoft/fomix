@@ -18,8 +18,8 @@
 @section('link')
 
 <div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Modulo de Solicitudes</h1>
+  <div class="col-sm-12 text-center letra_titulo">
+    <p>Modulo de Solicitudes</p>
   </div>
 </div>
 
@@ -28,13 +28,13 @@
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
-      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalCreate">Añadir Solicitud <i class="fas fa-file-alt nav-icon"></i></button>
-      <button id="btn-formato" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalFormato">Añadir Formato <i class="fas fa-file nav-icon"></i></button>
-      <button id="btn-poblacion" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
-      <button id="btn-actividades" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
-      <button id="btn-presupuesto" style="display:none;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
+      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Añadir Solicitud <i class="fas fa-file-alt nav-icon"></i></button>
+      <button id="btn-formato" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalFormato">Añadir Formato <i class="fas fa-file nav-icon"></i></button>
+      <button id="btn-poblacion" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
+      <button id="btn-actividades" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
+      <button id="btn-presupuesto" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
       <form id="form_create" action="{{route('solicitud.store')}}" method="POST" onkeypress="return disableEnterKey(event);" enctype="multipart/form-data">
         @csrf
        <input type="hidden" name="form_solicitud" id="form_solicitud" value="0">
@@ -43,7 +43,7 @@
        <input type="hidden" name="form_actividad" id="form_actividad" value="0">
        <input type="hidden" name="form_presupuesto" id="form_presupuesto" value="0">
        {{--<input type="hidden" name="form_documento" id="form_documento" value="0">--}}
-      
+
         @include('modals.create-solicitudes')
         @include('modals.add-formato')
         @include('modals.add-poblacion')
@@ -51,10 +51,10 @@
         @include('modals.add-presupuesto')
         {{--@include('modals.add-documentos')--}}
 
-        <button id="btn-guardar-solicitud" style="display:none; margin-top:10px;"  type="submit" class="btn btn-success btn-sm">Guardar<i class="fas fa-save"></i></button>
+        <button id="btn-guardar-solicitud" style="display:none; margin-top:10px;"  type="submit" class="btn btn-primary btn-md">Guardar <i class="fas fa-save"></i></button>
 
       </form>
-      
+
             <!----Modals-->
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -65,7 +65,7 @@
         @include('ajax.table-solicitudes')
     </div>
     <!-- /fin tabla-->
-    <div class="card-footer">
+    <div class="card-footer ">
       Listado de los solicitudes.
     </div>
   </div>
@@ -101,7 +101,7 @@
   let poblaciones = $('#list_poblaciones').val();
   let clasificaciones = $('#list_clasificaciones').val();
   let categorias = $('#list_categorias').val();
-  
+
 
   poblaciones = JSON.parse(poblaciones);
   clasificaciones = JSON.parse(clasificaciones);

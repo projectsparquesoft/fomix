@@ -1,7 +1,7 @@
 .tooltip-inner {
-    background-color: #f33e3e !important;
+    background-color: #2C40D1 !important;
     /*!important is not necessary if you place custom.css at the end of your css calls. For the purpose of this demo, it seems to be required in SO snippet*/
-    color: #fff;
+    color:white;
 }
 
 .tooltip.top .tooltip-arrow {

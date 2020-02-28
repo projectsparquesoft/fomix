@@ -8,17 +8,17 @@ use App\Http\Requests\ValidatePoblacionRequest;
 use App\Http\Requests\ValidatePresupuestoRequest;
 use App\Http\Requests\ValidateSolicitudRequest;
 use App\Models\Actividad;
-use App\Models\categoria;
+use App\Models\Categoria;
 use App\Models\Clasificacion;
 use App\Models\Documento;
 use App\Models\Fuente;
-use App\Models\linea;
+use App\Models\Linea;
 use App\Models\Poblacion;
 use App\Models\Presupuesto;
 use App\Models\Proceso;
 use App\Models\Proyecto;
-use App\Models\solicitante;
-use App\Models\solicitud;
+use App\Models\Solicitante;
+use App\Models\Solicitud;
 use App\Repositories\SolicitudRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,7 +63,6 @@ class SolicitudController extends Controller
 
     public function store(Request $request)
     {
-
         if (request()->ajax()) {
 
             $name = "";

@@ -78,6 +78,16 @@ class SolicitudRepository
         return false;
     }
 
+    public function updateStatus($solicitud, $status, $descripcion)
+    {
+        foreach ($solicitud->historiales as $history) {
+            $solicitud->estados()->updateExistingPivot($history->estado_id, ['status' => 0]);
+        }
+
+        $this->addStatusSolicitud($solicitud, $status, $descripcion);
+
+    }
+
     public function updateProcesos($proyecto, $status, $descripcion)
     {
         foreach ($proyecto->historiales as $history) {

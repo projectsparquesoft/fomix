@@ -18,15 +18,15 @@
                 @endif
 
                 @if($poblacion->clasificacion_id == 2)
-                    <span class="badge bg-warning">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                    <span class="badge bg-success">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
 
                 @if($poblacion->clasificacion_id == 3)
-                    <span class="badge bg-primary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                    <span class="badge bg-secondary">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
 
                 @if($poblacion->clasificacion_id == 4)
-                    <span class="badge bg-dark">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                    <span class="badge bg-info">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
 
                 @if($poblacion->clasificacion_id > 4)
@@ -36,8 +36,7 @@
             </td>
             <td>{{$poblacion->detalle}}</td>
             <td class="text-center">
-                <a data-toggle="modal" data-target="#modalEdit"  data-id="{{$poblacion->id}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}" class="btn btn-warning btn-sm">
-                <i class="fas fa-pencil-alt"></i>Editar</a>
+                <button type="button" class="botones show-details" data-toggle="modal" data-id="{{$poblacion->id}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
             </td>
             </tr>
         @endforeach

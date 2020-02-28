@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dependencia;
+use App\Models\Dependencia;
 use Illuminate\Http\Request;
 use App\Http\Requests\DependenciasRequest;
 

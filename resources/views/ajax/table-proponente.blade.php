@@ -11,11 +11,13 @@
             <tr>
             <td>{{$loop->iteration}}</td>
             <td>{{$proponente->nombre_proponente}}</td>
-            <td>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$proponente->id}}" data-nombre_proponente="{{$proponente->nombre_proponente}}"  data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+            <td class="text-center">
+                <button type="button" class="botones show-details" data-toggle="modal" data-id="{{$proponente->id}}" data-nombre_proponente="{{$proponente->nombre_proponente}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
             </td>
             </tr>
         @endforeach
     </tbody>
 
 </table>
+
+

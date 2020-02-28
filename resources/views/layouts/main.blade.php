@@ -8,7 +8,9 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
+{{-- css --}}
+<link rel="stylesheet" href="{{asset('css/tooltip.css')}}">
+<link rel="stylesheet" href="{{asset('css/estilo.css')}}">
 
   @section('css')
 
@@ -58,7 +60,7 @@
     @include('layouts.menu')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper "  id="fondocontainer">
       <!-- Content Header (Page header) -->
 
       <section class="content-header">

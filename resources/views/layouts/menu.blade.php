@@ -1,8 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="javascript:void(0)" class="brand-link">
-    <img src="{{asset('img/fonmix.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="">
-    <span class="brand-text font-weight-light">Fondo Mixto</span>
+
+    <img src="{{asset('img/logofm.png')}}"  alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:2em">
+    <span class="brand-text font-weight-light letra">Fondo Mixto</span>
   </a>
 
   <!-- Sidebar -->

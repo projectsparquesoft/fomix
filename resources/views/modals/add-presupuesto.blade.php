@@ -1,13 +1,13 @@
 <div class="modal fade" id="modalPresupuesto" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header" style="background:#fcd846">
+        <div class="modal-header" style="background:#A2ECB4">
           <h4 class="modal-title">Presupuesto General <i class="fas fa-hand-holding-usd"></i></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="background:whitesmoke">
+        <div class="modal-body" style="background:#D5DBDB">
                     <div class="form-row">
                         <div class="col-md-10 col-sm-10"><h6 style="float:left"><b> PRESUPUESTO DE EGRESOS</b> (Gastos)</h6> <h6 style="float:right"><b> INGRESOS </b>(Fuentes de Financiación)</h6>  </div>
                         <div class="col-md-2 col-sm-2">
@@ -41,7 +41,7 @@
 
                             <div id="clonar_presupuesto"></div>
 
-                            
+
                             <div class="table-responsive">
                                 <br>
                                 <table id="table_presupuesto" class="table table-hover table-sm">
@@ -49,15 +49,15 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Rubro</th>
-                                            <th>Recursos_Municipio</th>
+                                            <th>Recursos Municipio</th>
                                             <th>Fondo Mixto</th>
-                                            <th>Ministerio_Cultura</th>
+                                            <th>Ministerio Cultura</th>
                                             <th>Ingresos Propios</th>
                                             <th style="width:20%" class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        
+                                    <tbody style="background-color:#EBF5FB">
+
                                     </tbody>
                                 </table>
                             </div>
