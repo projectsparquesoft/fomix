@@ -15,7 +15,7 @@
 
 <div class="row mb-2">
   <div class="col-sm-12 text-center letra_titulo">
-    <p>Modulo de Indicadores</h1>
+    <p>Modulo de Indicadores</p>
   </div>
 </div>
 

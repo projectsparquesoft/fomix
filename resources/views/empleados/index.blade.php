@@ -10,28 +10,24 @@
 <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 <!-- icheck bootstrap -->
 <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  
+
 @stop
 
-
 @section('link')
-
 <div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Modulo de Empleados</h1>
+  <div class="col-sm-12 text-center letra_titulo">
+    <p>Modulo de Empleados</p>
   </div>
 </div>
 
 @endsection
 
-
-
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCreate">Crear Empleados <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Crear Empleados <i class="fas fa-user-plus"></i></button>
             <!----Modals-->
 
       <div class="card-tools">
@@ -43,7 +39,7 @@
 
         @include('ajax.table-empleados')
 
-        
+
     </div>
     <!-- /fin tabla-->
     <div class="card-footer">

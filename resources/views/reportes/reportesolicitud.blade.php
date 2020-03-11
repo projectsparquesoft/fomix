@@ -13,8 +13,8 @@
 @section('link')
 
 <div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Reporte de Solicitudes</h1>
+  <div class="col-sm-12 text-center letra_titulo">
+    <p>Reporte de Solicitudes</p>
   </div>
 </div>
 
@@ -22,7 +22,7 @@
 
 @section('content')
 <div class="container-fluid">
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
 <small>
     Filtros por:

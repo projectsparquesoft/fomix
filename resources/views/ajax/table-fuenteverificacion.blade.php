@@ -12,9 +12,8 @@
             <td>{{$loop->iteration}}</td>
             <td> {{$fuente->fuente_verificacion}}</td>
             <td class="text-center">
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$fuente->id}}" data-fuente_verificacion="{{$fuente->fuente_verificacion}}"  data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="botones" data-toggle="modal" data-id="{{$fuente->id}}" data-fuente_verificacion="{{$fuente->fuente_verificacion}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt"></i>Editar</button>
             </td>
-
         </tr>
         @endforeach
 

@@ -1,5 +1,5 @@
 
- body {
+ .body_login{
     background-repeat:no-repeat;
     background-size:100% 100%;
     background-image: url('../img/carnaval.jpg');
@@ -67,7 +67,7 @@
 .botones{
     background-color:#A2ECB4;
     border-radius:20px;
- 
+
 
 }
 

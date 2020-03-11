@@ -11,15 +11,15 @@
 
 @section('link')
 <div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Reporte de Proyectos</h1>
+  <div class="col-sm-12 text-center letra_titulo">
+    <p>Reporte de Proyectos</p>
   </div>
 </div>
 @endsection
 
 @section('content')
 <div class="container-fluid">
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
 <small>Filtro Por:</small>
       <div class="card-tools">

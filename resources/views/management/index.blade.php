@@ -18,8 +18,8 @@
 @section('link')
 
 <div class="row mb-2">
-  <div class="col-sm-12 text-center">
-    <h1>Modulo de Solicitudes</h1>
+  <div class="col-sm-12 text-center letra_titulo">
+    <p>Atención de las Peticiones</p>
   </div>
 </div>
 
@@ -41,7 +41,7 @@
     </div>
     <!-- /fin tabla-->
     <div class="card-footer">
-      Listado de los solicitudes.
+      Listado...
     </div>
   </div>
 </div>

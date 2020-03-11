@@ -14,7 +14,7 @@
                 <td>{{$dependencia->nombre_dependencia}}</td>
                 <td>{{$dependencia->descripcion}}</td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$dependencia->id}}" data-nombre_dependencia="{{$dependencia->nombre_dependencia}}" data-descripcion="{{$dependencia->descripcion}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                    <button type="button" class="botones" data-toggle="modal" data-id="{{$dependencia->id}}" data-nombre_dependencia="{{$dependencia->nombre_dependencia}}" data-descripcion="{{$dependencia->descripcion}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
                 </td>
             </tr>
         @endforeach

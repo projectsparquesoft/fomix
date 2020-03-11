@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body>
+<body class="body_login">
   <div class="container">
     <div class="card card-container fondologin">
         <div class="col-md-12 text-center letra">
