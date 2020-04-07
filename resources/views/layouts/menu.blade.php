@@ -64,40 +64,64 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link ">
-                <i class="fas fa-file nav-icon"></i>
-                <p>Proyectos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-            <a href="{{route('management.index')}}" class="nav-link {{activeSubMenu('management*')}}">
-                <i class="fas fa-users-cog nav-icon"></i>
-                <p>Atencion de Solicitudes</p>
-              </a>
-            </li>
-
+                <a href="{{route('management.index')}}" class="nav-link {{activeSubMenu('management*')}}">
+                    <i class="fas fa-users-cog nav-icon"></i>
+                    <p>Atención de Solicitudes</p>
+                  </a>
+                </li>
           </ul>
         </li>
 
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Juridica
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-user-friends nav-icon"></i>
+              <p>
+                Asistente Administrativo
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('asistente.index')}}" class="nav-link {{activeSubMenu('asistente*')}}">
+                        <i class="fas fa-book-reader nav-icon"></i>
+                        <p>Verificación a las Solicitudes</p>
+                      </a>
+                    </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-paste nav-icon"></i>
+              <p>
+                Jurídica
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
 
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <p>Atencion de Peticiones</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-
+              <li class="nav-item">
+              <a href="{{route('juridica.index')}}" class="nav-link {{activeSubMenu('juridica*')}}">
+                <i class="far fa-file-alt nav-icon"></i>
+                  <p>Atención de las Peticiones</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-file-powerpoint nav-icon"></i>
+                <p>Proyectos</p>
+                <i class="right fas fa-angle-left"></i>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{route('proyectos.index')}}" class="nav-link {{activeSubMenu('proyectos*')}}">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>Lista de los Proyectos</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
         <li
           class="nav-item has-treeview">
           <a href="" class="nav-link">
@@ -123,7 +147,7 @@
             <li class="nav-item">
               <a href="{{route('lineas.index')}}" class="nav-link {{activeSubMenu('lineas*')}}">
                 <i class="fas fa-tasks"></i>
-                <p>Lineas</p>
+                <p>Líneas</p>
               </a>
             </li>
             <li class="nav-item">
@@ -135,7 +159,7 @@
             <li class="nav-item">
               <a href="{{route('poblacion.index')}}" class="nav-link {{activeSubMenu('poblacion*')}}">
                 <i class="fas fa-users"></i>
-                <p>Poblacion</p>
+                <p>Población</p>
               </a>
             </li>
             <li class="nav-item">

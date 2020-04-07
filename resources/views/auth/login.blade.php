@@ -66,11 +66,6 @@
     </div><!-- /card-container -->
 </div><!-- /container -->
 
-
-
-
-
-
 <!-- /.login-box -->
 
 <!-- jQuery -->

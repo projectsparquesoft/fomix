@@ -60,8 +60,17 @@ Route::resource('empleados', 'EmpleadoController', ['except' => [
 Route::resource('fuente_verificacion', 'FuenteVerificacionController', ['except' => [
     'destroy', 'create', 'edit',
 ]]);
-
+//RUTAS DE LAS DEPENdenciaS
 Route::resource('management', 'ManagementController', ['only' => [
+    'index', 'show',
+]]);
+Route::resource('juridica', 'JuridicaController', ['only' => [
+    'index', 'show',
+]]);
+Route::resource('asistente', 'AsistenteAdministrativoController', ['only' => [
+    'index', 'show',
+]]);
+Route::resource('proyectos', 'ProyectosController', ['only' => [
     'index', 'show',
 ]]);
 
@@ -91,6 +100,16 @@ Route::get('change/municipalities/{id}', 'MunicipioController@changeMunicipaliti
 
 // MOVIMIENTO DE SOLICITUDES
 Route::get('solicitud/sendmanagement/{id}', 'SolicitudController@sendManagement')->name('solicitud.management');
+//ruta de viaje es decir, de asistente a juridica
+Route::get('solicitud/enviarasistente/{id}', 'SolicitudController@enviarAsistente')->name('solicitud.asistente');
+Route::get('solicitud/enviarjuridica/{id}', 'SolicitudController@enviarJuridica')->name('solicitud.juridica');
+Route::get('solicitud/proyectos/{id}', 'SolicitudController@enviarProyectos')->name('solicitud.proyectos');
+
+
+
+
+
+
 Route::get('solicitud/deny/{id}', 'ManagementController@denySolicitud')->name('management.deny');
 Route::get('solicitud/approve/{id}', 'ManagementController@approveSolicitud')->name('management.approve');
 

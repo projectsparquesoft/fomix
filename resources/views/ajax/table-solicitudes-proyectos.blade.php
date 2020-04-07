@@ -28,12 +28,12 @@
                 <button type="button" class="btn btn-success btn-sm show-details" data-toggle="modal" data-target="#modalIndicadores"><i class="fas fa-chart-bar" data-toggle="tooltip" data-placement="top" title="AGREGAR INDICADORES"></i></button>
 
                 <button type="button"  id="btn_show_send-{{$solicitud->id}}"
-                class="btn btn-info btn-sm"
-                onclick="enviarAsistente(this);"
-                data-href="{{route('solicitud.asistente', $solicitud->id)}}"
-                data-toggle="tooltip" data-placement="top" title="ENVIAR A ASISTENTE ADMINISTRATIVO">
+                class="btn btn-info btn-sm" onclick=";"
+                data-href=""
+                data-toggle="tooltip" data-placement="top" title="ENVIAR A RECEPCION">
                 <i class="fas fa-share-square"></i>
                 </button>
+
 
             </td>
 

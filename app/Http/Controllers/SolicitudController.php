@@ -93,12 +93,12 @@ class SolicitudController extends Controller
 
                 DB::commit();
 
-                return response()->json(['success' => 'SOLICITUD CREADO CON EXITO!']);
+                return response()->json(['success' => 'SOLICITUD CREADA CON EXITO!']);
 
             } catch (\Exception $ex) {
                 DB::rollback();
                 \File::delete(public_path() . '/documentos/solicitudes/' . $name);
-                dd($ex);
+
                 return response()->json(['warning' => 'ERROR AL GUARDAR DATOS']);
             }
 
@@ -170,11 +170,73 @@ class SolicitudController extends Controller
                     return response()->json(['warning' => 'OOPS! ERROR DEL SERVIDOR']);
                 }
             } else {
-                return response()->json(['warning' => 'ESTA SSOLICITUD YA FUE ENVIADA']);
+                return response()->json(['warning' => 'ESTA SOLICITUD YA FUE ENVIADA']);
             }
         }
 
     }
+
+
+  //Metodo de enviar a ASISTENTE
+  public function enviarAsistente($id)
+  {
+      if (request()->ajax()) {
+
+          $solicitud = $this->repository->findHistoriesStatus($id);
+
+              DB::beginTransaction();
+              try {
+                  $this->repository->updateStatus($solicitud, 'Verificacion Asistente', 'Solicitud Enviada a Asistente Administrativo');
+                  DB::commit();
+                  return response()->json(['success' => 'SOLICITUD ENVIADA CON EXITO!']);
+              } catch (\Exception $ex) {
+                  DB::rollback();
+                  return response()->json(['warning' => 'OOPS! ERROR DEL SERVIDOR']);
+              }
+
+      }
+
+  }
+
+  //Metodo de enviar a juridica
+  public function enviarJuridica($id)
+  {
+      if (request()->ajax()) {
+
+          $solicitud = $this->repository->findHistoriesStatus($id);
+
+              DB::beginTransaction();
+              try {
+                  $this->repository->updateStatus($solicitud, 'Recepcion Juridica', 'Solicitud Enviada A Juridica');
+                  DB::commit();
+                  return response()->json(['success' => 'SOLICITUD ENVIADA CON EXITO!']);
+              } catch (\Exception $ex) {
+                  DB::rollback();
+                  return response()->json(['warning' => 'OOPS! ERROR DEL SERVIDOR']);
+              }
+      }
+
+  }
+
+ //Metodo de enviar a proyectos
+ public function enviarProyectos($id)
+ {
+     if (request()->ajax()) {
+
+         $solicitud = $this->repository->findHistoriesStatus($id);
+
+             DB::beginTransaction();
+             try {
+                 $this->repository->updateStatus($solicitud, 'Verificacion Proyecto', 'Solicitud Enviada A Proyectos');
+                 DB::commit();
+                 return response()->json(['success' => 'SOLICITUD ENVIADA CON EXITO!']);
+             } catch (\Exception $ex) {
+                 DB::rollback();
+                 return response()->json(['warning' => 'OOPS! ERROR DEL SERVIDOR']);
+             }
+     }
+
+ }
 
     public function createObjectSolicitud($request, $solicitud)
     {
