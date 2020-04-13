@@ -23,9 +23,9 @@
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
-      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Crear Fuente de Verificación <i class="fab fa-artstation"></i></button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Crear Fuente de Verificación <i class="fab fa-artstation"></i></button>
             <!----Modals-->
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>

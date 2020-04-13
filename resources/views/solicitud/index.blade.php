@@ -30,11 +30,11 @@
 
   <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
-      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Añadir Solicitud <i class="fas fa-file-alt nav-icon"></i></button>
-      <button id="btn-formato" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalFormato">Añadir Formato <i class="fas fa-file nav-icon"></i></button>
-      <button id="btn-poblacion" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
-      <button id="btn-actividades" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
-      <button id="btn-presupuesto" style="display:none;" type="button" class="botones" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Añadir Solicitud <i class="fas fa-file-alt nav-icon"></i></button>
+      <button id="btn-formato" style="display:none;" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalFormato">Añadir Formato <i class="fas fa-file nav-icon"></i></button>
+      <button id="btn-poblacion" style="display:none;" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPoblacion">Añadir Población <i class="fas fa-users"></i></button>
+      <button id="btn-actividades" style="display:none;" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalActividades">Añadir Actividades <i class="fas fa-network-wired"></i></button>
+      <button id="btn-presupuesto" style="display:none;" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPresupuesto">Añadir Presupuesto <i class="fas fa-hand-holding-usd"></i></button>
       <form id="form_create" action="{{route('solicitud.store')}}" method="POST" onkeypress="return disableEnterKey(event);" enctype="multipart/form-data">
         @csrf
        <input type="hidden" name="form_solicitud" id="form_solicitud" value="0">

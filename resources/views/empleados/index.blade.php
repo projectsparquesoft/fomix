@@ -27,7 +27,7 @@
 
   <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
-      <button type="button" class="botones" data-toggle="modal" data-target="#modalCreate">Crear Empleados <i class="fas fa-user-plus"></i></button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Crear Empleados <i class="fas fa-user-plus"></i></button>
             <!----Modals-->
 
       <div class="card-tools">

@@ -1,4 +1,4 @@
-<table id="tabla" class="table table-hover table-sm">
+<table id="tabla" class="table table-hover table-sm mejoratb">
     <thead class="thead-light">
         <tr>
             <th class="text-center">#</th>
@@ -16,13 +16,13 @@
             <td>{{$indicador->meta}}</td>
             <td>
                 @if($indicador->status)
-                    <button class="btn badge bg-gradient-primary sm" onclick="changeStatus('{{ route('indicador.status', $indicador->id) }}');">Activo</button>
+                    <button class="btn badge bg-gradient-warning sm" onclick="changeStatus('{{ route('indicador.status', $indicador->id) }}');">Activo</button>
                  @else
                     <button class="btn badge bg-gradient-info sm" onclick="changeStatus('{{ route('indicador.status', $indicador->id) }}');">Inactivo</button>
                 @endif
             </td>
             <td style="width: 20%" class="text-center">
-                <button type="button" id="" class="botones show-details" data-toggle="modal" data-id="{{$indicador->id}}" data-nombre="{{$indicador->nombre_indicador}}" data-eje="{{$indicador->eje_id}}" data-meta="{{$indicador->meta}}" data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
+                <button type="button" id="" class="btn btn-primary show-details" data-toggle="modal" data-id="{{$indicador->id}}" data-nombre="{{$indicador->nombre_indicador}}" data-eje="{{$indicador->eje_id}}" data-meta="{{$indicador->meta}}" data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
              </td>
         </tr>
         @endforeach

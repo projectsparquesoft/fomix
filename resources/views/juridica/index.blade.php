@@ -16,7 +16,7 @@
 
 <div class="row mb-2">
   <div class="col-sm-12 text-center letra_titulo">
-    <p>Atención de las Solicitudes de Juridica</p>
+    <p>Solicitudes de Juridica</p>
   </div>
 </div>
 
@@ -25,7 +25,7 @@
 @section('content')
 <div class="container-fluid">
 
-  <div class="card card" style="background:whitesmoke">
+  <div class="card card" style="background:#EBF5FB">
     <div class="card-header">
             <!----Modals-->
       <div class="card-tools">

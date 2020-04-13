@@ -1,4 +1,4 @@
-<table id="tabla" class="table table-hover table-sm">
+<table id="tabla" class="table table-hover table-sm mejoratb">
     <thead class="thead-light">
         <tr>
             <th>#</th>
@@ -14,7 +14,7 @@
             <td>{{$eje->nombre_eje}}</td>
             <td>{{$eje->nombre_programa}}</td>
             <td class="text-center">
-                <button type="button" class="botones" data-toggle="modal" data-id="{{$eje->id}}" data-nombre_eje="{{$eje->nombre_eje}}" data-nombre_programa="{{$eje->nombre_programa}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-id="{{$eje->id}}" data-nombre_eje="{{$eje->nombre_eje}}" data-nombre_programa="{{$eje->nombre_programa}}" data-target="#modalEdit" class="btn btn-warning btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</button>
             </td>
         </tr>
 

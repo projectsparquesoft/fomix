@@ -1,4 +1,4 @@
-<table id="tabla" class="table table-hover table-sm">
+<table id="tabla" class="table table-hover table-sm mejoratb">
     <thead class="thead-right">
         <tr>
             <th>Item</th>
@@ -18,7 +18,7 @@
                 @endif
 
                 @if($poblacion->clasificacion_id == 2)
-                    <span class="badge bg-success">{{$poblacion->clasificacion->tipo_poblacion}}</span>
+                    <span class="badge bg-warning">{{$poblacion->clasificacion->tipo_poblacion}}</span>
                 @endif
 
                 @if($poblacion->clasificacion_id == 3)
@@ -36,7 +36,7 @@
             </td>
             <td>{{$poblacion->detalle}}</td>
             <td class="text-center">
-                <button type="button" class="botones show-details" data-toggle="modal" data-id="{{$poblacion->id}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
+                <button type="button" class="btn btn-primary show-details" data-toggle="modal" data-id="{{$poblacion->id}}" data-item="{{$poblacion->item}}" data-clasificacion_id="{{$poblacion->clasificacion_id}}" data-detalle="{{$poblacion->detalle}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt" data-toggle="tooltip" data-placement="top" title="EDITAR"></i></button>
             </td>
             </tr>
         @endforeach

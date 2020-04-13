@@ -1,17 +1,17 @@
 <div class="modal fade" id="modalPresupuesto" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header" style="background:#A2ECB4">
-          <h4 class="modal-title">Presupuesto General <i class="fas fa-hand-holding-usd"></i></h4>
+        <div class="modal-header" id="fondocontainer">
+          <h4 id="centrartitle">Presupuesto General <i class="fas fa-hand-holding-usd"></i></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="background:#D5DBDB">
+        <div class="modal-body" style="background:#E1E2E3">
                     <div class="form-row">
                         <div class="col-md-10 col-sm-10"><h6 style="float:left"><b> PRESUPUESTO DE EGRESOS</b> (Gastos)</h6> <h6 style="float:right"><b> INGRESOS </b>(Fuentes de Financiación)</h6>  </div>
                         <div class="col-md-2 col-sm-2">
-                            <button style="float:right" type="button" id="btnAddPresupuesto" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
+                            <button style="float:right" type="button" id="btnAddPresupuesto" class="btn btn-primary btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                         </div>
                         <br> <br>
                             <div class="col-md-4">
@@ -44,7 +44,7 @@
 
                             <div class="table-responsive">
                                 <br>
-                                <table id="table_presupuesto" class="table table-hover table-sm">
+                                <table id="table_presupuesto" class="table table-hover table-sm mejoratb">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
@@ -68,7 +68,7 @@
 
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" onclick="validatePresupuesto('{{route('validate.presupuesto')}}')">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-success" onclick="validatePresupuesto('{{route('validate.presupuesto')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

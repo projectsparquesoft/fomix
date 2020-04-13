@@ -1,13 +1,13 @@
 <div class="modal fade" id="modalActividades" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header" style="background:#A2ECB4">
-          <h4 class="modal-title">Actividades  <i class="fas fa-network-wired"></i></h4>
+        <div class="modal-header" id="fondocontainer">
+          <h4 id="centrartitle">Actividades  <i class="fas fa-network-wired"></i></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="background:#D5DBDB">
+        <div class="modal-body" style="background:#E1E2E3">
                     <div class="form-row">
 
                             <div class="col-md-10 col-sm-10"></div>
@@ -35,7 +35,7 @@
                     <br>
 
                     <div class="table-responsive">
-                        <table id="table_actividad" class="table table-hover table-sm ">
+                        <table id="table_actividad" class="table table-hover table-sm mejoratb">
                             <thead class="thead-light">
                                 <tr>
                                     <th>#</th>
@@ -57,7 +57,7 @@
 
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" onclick="validateActividad('{{route('validate.actividad')}}')">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-success" onclick="validateActividad('{{route('validate.actividad')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

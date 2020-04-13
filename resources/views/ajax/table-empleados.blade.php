@@ -1,4 +1,4 @@
-<table id="tabla" class="table table-hover table-sm">
+<table id="tabla" class="table table-hover table-sm mejoratb">
     <thead class="thead-light">
         <tr>
             <th>#</th>
@@ -20,15 +20,15 @@
             <td>{{$empleado->currentDependencia->first()->nombre_dependencia}}</td>
             <td>
                 @if($empleado->is_jefe)
-                    <button class="btn badge bg-gradient-primary sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">SI</button>
+                    <button class="btn badge bg-gradient-warning sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">SI</button>
                  @else
                     <button class="btn badge bg-gradient-info sm" onclick="changeBoss('{{ route('empleados.status', $empleado->id) }}');">NO</button>
                 @endif
             </td>
             <td class="text-center">
-                <button type="button" class="botones" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-email="{{$empleado->email}}" data-celular="{{$empleado->celular}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt"></i>Editar</button>
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-href="{{route('empleados.show', $empleado->id)}}" data-target="#modalShow" class="btn btn-warning btn-sm"> <i class="fas fa-eye"></i>Ver</button>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-dependencia="{{$empleado->currentDependencia->first()->id}}" data-target="#modalChange" class="btn btn-warning btn-sm"> <i class="fas fa-exchange-alt"></i>Cambio</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-nid="{{$empleado->nid}}" data-nombre="{{$empleado->nombre}}" data-apellido="{{$empleado->apellido}}" data-email="{{$empleado->email}}" data-celular="{{$empleado->celular}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-href="{{route('empleados.show', $empleado->id)}}" data-target="#modalShow" class="btn btn-warning btn-sm"> <i class="fas fa-eye"></i>Ver</button>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-id="{{$empleado->id}}" data-dependencia="{{$empleado->currentDependencia->first()->id}}" data-target="#modalChange" class="btn btn-warning btn-sm"> <i class="fas fa-exchange-alt"></i>Cambio</button>
             </td>
         </tr>
         @endforeach

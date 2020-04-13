@@ -1,4 +1,4 @@
-<table id="tabla" class="table table-hover table-sm">
+<table id="tabla" class="table table-hover table-sm mejoratb">
     <thead class="thead-light">
         <tr>
             <th>#</th>
@@ -12,7 +12,7 @@
             <td>{{$loop->iteration}}</td>
             <td> {{$fuente->fuente_verificacion}}</td>
             <td class="text-center">
-                <button type="button" class="botones" data-toggle="modal" data-id="{{$fuente->id}}" data-fuente_verificacion="{{$fuente->fuente_verificacion}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt"></i>Editar</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-id="{{$fuente->id}}" data-fuente_verificacion="{{$fuente->fuente_verificacion}}"  data-target="#modalEdit"> <i class="fas fa-pencil-alt"></i>Editar</button>
             </td>
         </tr>
         @endforeach

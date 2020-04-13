@@ -94,7 +94,7 @@
       <div class="card-body" >
 
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm mejoratb">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -137,7 +137,7 @@
       <!-- /.card-header -->
       <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm mejoratb">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -179,7 +179,7 @@
       <!-- /.card-header -->
       <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm mejoratb">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>

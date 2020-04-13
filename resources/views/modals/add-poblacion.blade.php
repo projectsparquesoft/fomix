@@ -1,18 +1,18 @@
 <div class="modal fade" id="modalPoblacion" data-backdrop="static">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header" style="background:#A2ECB4">
-          <h4 class="modal-title">Añadir Población <i class="fas fa-user-plus"></i></h4>
+        <div class="modal-header" id="fondocontainer">
+          <h4 id="centrartitle">Añadir Población <i class="fas fa-user-plus"></i></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="background:#D5DBDB">
+        <div class="modal-body" style="background:#E1E2E3">
                 <div class="form-row">
 
                   <div class="col-md-10 col-sm-10"></div>
                       <div class="col-md-2 col-sm-2">
-                            <button style="float:right" id="btnAddPoblacion" type="button" class="btn btn-info btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
+                            <button style="float:right" id="btnAddPoblacion" type="button" class="btn btn-primary btn-md btn-group-vertical" > <i class="fas fa-plus-circle"></i></button>
                       </div>
 
                   <div class="col-md-4">
@@ -61,7 +61,7 @@
                   <br>
 
                     <div class="table-responsive">
-                        <table class="table table-hover table-sm " id="table_poblacion">
+                        <table class="table table-hover table-sm  mejoratb" id="table_poblacion">
                             <thead class="thead-light">
                                 <tr>
                                     <th>#</th>
@@ -83,7 +83,7 @@
 
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-dark" onclick="validatePoblacion('{{route('validate.poblacion')}}')">Completado <i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-success" onclick="validatePoblacion('{{route('validate.poblacion')}}')">Completado <i class="fas fa-times-circle"></i></button>
         </div>
       </div>
     </div>

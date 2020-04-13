@@ -1,4 +1,4 @@
-<table id="tabla" class="table table-hover table-sm">
+<table id="tabla" class="table table-hover table-sm mejoratb">
     <thead class="thead-light">
         <tr>
             <th>#</th>
@@ -24,11 +24,11 @@
             <td>{{$solicitud->descripcion}}</td>
             <td>{{$solicitud->archivo}}</td>
             <td class="text-center">
-                <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-warning btn-sm show-details" data-toggle="modal" data-href="{{route('management.show', $solicitud->id)}}" data-target="#modalShow"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="VER DETALLE"></i></button>
-                <button type="button" class="btn btn-success btn-sm show-details" data-toggle="modal" data-target="#modalIndicadores"><i class="fas fa-chart-bar" data-toggle="tooltip" data-placement="top" title="AGREGAR INDICADORES"></i></button>
+                <button type="button" id="btn_show_detail-{{$solicitud->id}}" class="btn btn-info btn-sm show-details" data-toggle="modal" data-href="{{route('management.show', $solicitud->id)}}" data-target="#modalShow"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="VER DETALLE"></i></button>
+                <button type="button" class="btn btn-warning btn-sm show-details" data-toggle="modal" data-target="#modalIndicadores"><i class="fas fa-chart-bar" data-toggle="tooltip" data-placement="top" title="AGREGAR INDICADORES"></i></button>
 
                 <button type="button"  id="btn_show_send-{{$solicitud->id}}"
-                class="btn btn-info btn-sm"
+                class="btn btn-success btn-sm"
                 onclick="enviarAsistente(this);"
                 data-href="{{route('solicitud.asistente', $solicitud->id)}}"
                 data-toggle="tooltip" data-placement="top" title="ENVIAR A ASISTENTE ADMINISTRATIVO">

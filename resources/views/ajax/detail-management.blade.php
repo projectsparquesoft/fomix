@@ -20,33 +20,33 @@
             <dd class="col-sm-8">{{$solicitud->categoria->tipo_solicitud}}</dd>
 
             <dt class="col-sm-4">Solicitante:</dt>
-            <dd class="col-sm-8"> 
+            <dd class="col-sm-8">
                 @if ($solicitud->solicitante->razon_social)
                 {{$solicitud->solicitante->razon_social}}
-                @else 
+                @else
                 {{$solicitud->solicitante->nombre}} {{$solicitud->solicitante->apellido}}
                 @endif
             </dd>
 
             <dt class="col-sm-4">Descripcion</dt>
-            <dd class="col-sm-8"> 
+            <dd class="col-sm-8">
                 {{$solicitud->descripcion}}
             </dd>
 
             <dt class="col-sm-4">Archivo</dt>
         <dd class="col-sm-8">@if($solicitud->archivo) <a target="_blank" href="{{asset('documentos/solicitudes')}}/{{$solicitud->archivo}}">PDF</a> @else No se cargo archivo @endif</dd>
         </dl>
-        
+
         @if($solicitud->proyecto->procesoCurrent->first()->nombre_proceso == 'Aprobado')
         <button type="button" id="btn_gerencia_send-{{$solicitud->id}}" class="btn btn-info btn-sm send-gerencia" onclick="sendManagement(this);" data-href="{{route('solicitud.management', $solicitud->id)}}" data-toggle="tooltip" data-placement="top" title="ENVIAR A JURIDICA"><i class="fas fa-share-square"></i></button>
-        @else 
+        @else
         <button type="button" id="btn_approve-{{$solicitud->id}}" class="btn btn-success btn-sm" onclick="saveApprove(this);" data-href="{{route('management.approve', $solicitud->id)}}" data-toggle="tooltip" data-placement="top" title="APROBAR"><i class="fas fa-thumbs-up"></i></button>
         <button type="button" id="btn_deny-{{$solicitud->id}}" class="btn btn-danger btn-sm" onclick="saveDeny(this);" data-href="{{route('management.deny', $solicitud->id)}}" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><i class="fas fa-thumbs-down"></i></button>
         @endif
 
         <button type="button" style="display:none;" id="btn_show_send-{{$solicitud->id}}" class="btn btn-info btn-sm" onclick="sendManagement(this);" data-href="{{route('solicitud.management', $solicitud->id)}}" data-toggle="tooltip" data-placement="top" title="ENVIAR A JURIDICA"><i class="fas fa-share-square"></i></button>
 
-        
+
 
       </div>
       <!-- /.card-body -->
@@ -73,14 +73,14 @@
             <dd class="col-sm-8">{{$solicitud->proyecto->titulo}}</dd>
 
             <dt class="col-sm-4">Fechas de Realizacion:</dt>
-            <dd class="col-sm-8"> 
+            <dd class="col-sm-8">
                 Fecha Inicio: {{$solicitud->proyecto->fecha_inicio}} -
-                Fecha Final: {{$solicitud->proyecto->fecha_final}} 
+                Fecha Final: {{$solicitud->proyecto->fecha_final}}
             </dd>
 
             <dt class="col-sm-4">Descripcion</dt>
-            <dd class="col-sm-8"> 
-                {{$solicitud->proyecto->descripcion}} 
+            <dd class="col-sm-8">
+                {{$solicitud->proyecto->descripcion}}
             </dd>
 
         </dl>
@@ -104,9 +104,9 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-          
+
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm mejoratb">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -121,8 +121,8 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$poblacion->clasificacion->tipo_poblacion}}</td>
                         <td>{{$poblacion->detalle}}</td>
-                        <td>{{$poblacion->pivot->numero_persona}}</td>     
-                     </tr>                      
+                        <td>{{$poblacion->pivot->numero_persona}}</td>
+                     </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -149,7 +149,7 @@
       <!-- /.card-header -->
       <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm mejoratb">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -164,8 +164,8 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$actividad->nombre_actividad}}</td>
                         <td>{{$actividad->fecha_inicio}}</td>
-                        <td>{{$actividad->fecha_final}}</td>     
-                     </tr>                      
+                        <td>{{$actividad->fecha_final}}</td>
+                     </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -191,7 +191,7 @@
       <!-- /.card-header -->
       <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm mejoratb">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -209,9 +209,9 @@
                         <td class="text-center">${{number_format($presupuesto->rubro, 0)}}</td>
                         <td class="text-center">${{number_format($presupuesto->recurso_municipio, 0)}}</td>
                         <td class="text-center">${{number_format($presupuesto->fondo_mixto, 0)}}</td>
-                        <td class="text-center">${{number_format($presupuesto->ministerio_cultura, 0)}}</td>     
-                        <td class="text-center">${{number_format($presupuesto->ingreso_propio, 0)}}</td>     
-                     </tr>                      
+                        <td class="text-center">${{number_format($presupuesto->ministerio_cultura, 0)}}</td>
+                        <td class="text-center">${{number_format($presupuesto->ingreso_propio, 0)}}</td>
+                     </tr>
                     @endforeach
                 </tbody>
             </table>

@@ -187,8 +187,8 @@ const addTablePoblacion = (x, clasificacion, poblacion, total) => {
         <td class="text-center">${name_poblacion}</td>
         <td class="text-center">${total}</td>
         <td class="text-center">
-            <button  type="button" class="botones" onclick="addFormPoblacion(${clasificacion},${poblacion},${total},${x})" ><i class="fas fa-pencil-alt"></i></button>
-            <button type="button" class="botones" onclick="deleteItemPoblacion(${x})"><i class="fas fa-trash-alt"></i></button>
+            <button  type="button" class="btn btn-primary" onclick="addFormPoblacion(${clasificacion},${poblacion},${total},${x})" ><i class="fas fa-pencil-alt"></i></button>
+            <button type="button" class="btn btn-danger" onclick="deleteItemPoblacion(${x})"><i class="fas fa-trash-alt"></i></button>
         </td>
     </tr>`;
 
@@ -207,8 +207,8 @@ const addTableActividad = (x, actividad, fecha_ini, fecha_fin) => {
             <td class="text-center">${fecha_ini}</td>
             <td class="text-center">${fecha_fin}</td>
             <td class="text-center">
-                <button type="button" class="botones" onclick="addFormActividad(${x},'${actividad}', '${fecha_ini}', '${fecha_fin}')" ><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="botones" onclick="deleteItemActividad(${x})"><i class="fas fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-primary" onclick="addFormActividad(${x},'${actividad}', '${fecha_ini}', '${fecha_fin}')" ><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger" onclick="deleteItemActividad(${x})"><i class="fas fa-trash-alt"></i></button>
             </td>
         </tr>`;
 
@@ -229,8 +229,8 @@ const addTablePresupuesto = (x, rubro, recurso_municipio, fondo_mixto, ministeri
             <td class="text-center">${formatterPeso.format(ministerio_cultura)}</td>
             <td class="text-center">${formatterPeso.format(ingreso_propio)}</td>
             <td class="text-center">
-                <button type="button" class="botones" onclick="addFormPresupuesto(${x}, ${rubro}, ${recurso_municipio}, ${fondo_mixto}, ${ministerio_cultura}, ${ingreso_propio})"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="botones" onclick="deleteItemPresupuesto(${x})"><i class="fas fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-primary" onclick="addFormPresupuesto(${x}, ${rubro}, ${recurso_municipio}, ${fondo_mixto}, ${ministerio_cultura}, ${ingreso_propio})"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger" onclick="deleteItemPresupuesto(${x})"><i class="fas fa-trash-alt"></i></button>
             </td>
         </tr>`;
 
