@@ -48,7 +48,7 @@ class AsistenteAdministrativoController extends Controller
 
             }
 
-            return response()->view('ajax.detail-management', compact('solicitud'));
+            return response()->view('ajax.detail-asistente', compact('solicitud'));
         }
 
 

@@ -37,7 +37,7 @@
 
 
       </div>
-      <!-- /.card-body -->
+      <!-- /.card-header -->
     </div>
     <!-- /.card -->
 </div>

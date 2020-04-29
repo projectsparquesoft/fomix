@@ -109,27 +109,4 @@ const enviarAsistente = (context) => {
 
 
 }
-/**
-const enviarJuridica = (context) => {
 
-    let button = context.id;
-    let url = $('#' + button).data('href');
-
-    $.ajax({
-        url: url,
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            if (data.success) {
-                success(data.success);
-                updateTable();
-              //  $('#modalShow').modal('hide');
-            } else {
-                warning(data.warning);
-            }
-        },
-    });
-
-
-}
-*/

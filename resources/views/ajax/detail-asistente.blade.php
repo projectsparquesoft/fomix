@@ -37,10 +37,9 @@
     <dd class="col-sm-8">@if($solicitud->archivo) <a target="_blank" href="{{asset('documentos/solicitudes')}}/{{$solicitud->archivo}}">PDF</a> @else No se cargo archivo @endif</dd>
     </dl>
     <button type="button"  id="btn_show_send-{{$solicitud->id}}"
-        class="btn btn-success btn-sm"
-        onclick="enviarAsistente(this);"
-        data-href="{{route('solicitud.asistente', $solicitud->id)}}"
-        data-toggle="tooltip" data-placement="top" title="ENVIAR A ASISTENTE ADMINISTRATIVO">
+        class="btn btn-success btn-sm" onclick="enviarJuridica(this);"
+        data-href="{{route('solicitud.juridica', $solicitud->id)}}"
+        data-toggle="tooltip" data-placement="top" title="ENVIAR A JURIDICA">
         <i class="fas fa-share-square"></i>
     </button>
   </div>

@@ -48,7 +48,7 @@ class ProyectosController extends Controller
 
             }
 
-            return response()->view('ajax.detail-management', compact('solicitud'));
+            return response()->view('ajax.detail-proyectos', compact('solicitud'));
         }
 
 

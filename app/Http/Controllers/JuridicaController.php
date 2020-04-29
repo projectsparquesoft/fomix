@@ -48,7 +48,7 @@ class JuridicaController extends Controller
 
             }
 
-            return response()->view('ajax.detail-management', compact('solicitud'));
+            return response()->view('ajax.detail-juridica', compact('solicitud'));
         }
 
 

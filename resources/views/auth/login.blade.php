@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,51 +23,59 @@
 </head>
 
 <body class="body_login">
-  <div class="container">
-    <div class="card card-container fondologin">
-        <div class="col-md-12 text-center letra">
-            <h1>Fondo Mixto</h1>
-         </div>
-    <img src="{{asset('/img/logo_fondo.jpg')}}" class="profile-img-card">
-    <form action="{{ route('login') }}" method="POST">
-        @csrf
-        <div class="input-group mb-3">
-          <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+                <form id="formlogin"  action="{{ route('login') }}" method="POST">
+                    @csrf
+
+                    <h1>Fondo Mixto</h1>
+                    <div class="social-container">
+                        <img src="{{asset('/img/logo1.jpg')}}" >
+                    </div>
+                    <h5>Ingresa tus credenciales</h5>
+
+                    <div class="input-group mb-3">
+                      <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+
+                      @error('email')
+                      <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span>
+                      @enderror
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+
+                      @error('email')
+                      <span id="exampleInputPassword1-error" class="error invalid-feedback">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <button style="float:center" type="submit"   autofocus >Login</button>
+
+
+                      {{-- -BOTÒN register---}}
+                        <a  href="{{ route('register') }}">{{ __('Register') }}</a>
+
+                      </div>
+
+                    </div>
+
+                </form>
+
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                 <div class="overlay-panel overlay-right">
+                    {{-- -
+                    <button class="ghost" id="signUp">Register</button>
+                    --}}
+                </div>
             </div>
-          </div>
-          @error('email')
-          <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span>
-          @enderror
         </div>
-
-        <div class="input-group mb-3">
-          <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-          @error('email')
-          <span id="exampleInputPassword1-error" class="error invalid-feedback">{{ $message }}</span>
-          @enderror
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-4"></div>
-          <div class="col-8">
-            <button style="float:center" type="submit" class="btn btn-warning" id="botonlogin"autofocus >Login</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-    </div><!-- /card-container -->
-</div><!-- /container -->
-
-<!-- /.login-box -->
+    </div>
 
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
